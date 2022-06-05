@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/activity_main.xml" value="0.26139642238892097" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/drawer.xml" value="0.23489583333333333" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/header_navigation_drawer.xml" value="0.14722222222222223" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/menu/navigation_drawer.xml" value="0.176171875" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
