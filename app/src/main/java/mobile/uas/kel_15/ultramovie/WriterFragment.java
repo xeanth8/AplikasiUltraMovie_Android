@@ -2,11 +2,23 @@ package mobile.uas.kel_15.ultramovie;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+import mobile.uas.kel_15.ultramovie.adapter.GenreAdapter;
+import mobile.uas.kel_15.ultramovie.adapter.WriterAdapter;
+import mobile.uas.kel_15.ultramovie.dummy.Genres;
+import mobile.uas.kel_15.ultramovie.dummy.Writers;
+import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.model.Writer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +72,26 @@ public class WriterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_writer, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ArrayList<Writer> writerList;
+        RecyclerView rvWriters = (RecyclerView) view.findViewById(R.id.writer_recycler_view);
+
+        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
+        rvWriters.setLayoutManager(recyclerViewLayoutManager);
+
+        writerList = new ArrayList<>();
+        for(int i = 0; i < Genres.names.length; i++) {
+            writerList.add(new Writer(
+                    Writers.names[i]
+            ));
+        }
+
+        RecyclerView.Adapter<WriterAdapter.ViewHolder> recyclerViewAdapter = new WriterAdapter(writerList);
+        rvWriters.setAdapter(recyclerViewAdapter);
     }
 }

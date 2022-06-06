@@ -32,7 +32,7 @@
     </style>
 
     <style name="expandedTitleTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
-        <item name="android:textSize">34sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/opensans_bold</item>
     </style>

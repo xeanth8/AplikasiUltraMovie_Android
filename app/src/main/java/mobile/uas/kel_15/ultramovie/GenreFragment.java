@@ -2,11 +2,22 @@ package mobile.uas.kel_15.ultramovie;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+import mobile.uas.kel_15.ultramovie.adapter.GenreAdapter;
+import mobile.uas.kel_15.ultramovie.adapter.MovieAdapter;
+import mobile.uas.kel_15.ultramovie.dummy.Genres;
+import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.model.Movie;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +71,26 @@ public class GenreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_genre, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ArrayList<Genre> genreList;
+        RecyclerView rvGenres = (RecyclerView) view.findViewById(R.id.genre_recycler_view);
+
+        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
+        rvGenres.setLayoutManager(recyclerViewLayoutManager);
+
+        genreList = new ArrayList<>();
+        for(int i = 0; i < Genres.names.length; i++) {
+            genreList.add(new Genre(
+                    Genres.names[i]
+            ));
+        }
+
+        RecyclerView.Adapter<GenreAdapter.ViewHolder> recyclerViewAdapter = new GenreAdapter(genreList);
+        rvGenres.setAdapter(recyclerViewAdapter);
     }
 }

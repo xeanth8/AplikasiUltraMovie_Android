@@ -2,11 +2,21 @@ package mobile.uas.kel_15.ultramovie;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+import mobile.uas.kel_15.ultramovie.adapter.MovieAdapter;
+import mobile.uas.kel_15.ultramovie.dummy.Movies;
+import mobile.uas.kel_15.ultramovie.model.Movie;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +24,6 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MovieFragment extends Fragment {
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -56,9 +65,32 @@ public class MovieFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ArrayList<Movie> movieList;
+        RecyclerView rvMovies = (RecyclerView) view.findViewById(R.id.movie_recycler_view);
+
+        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
+        rvMovies.setLayoutManager(recyclerViewLayoutManager);
+
+        movieList = new ArrayList<>();
+        for(int i = 0; i < Movies.titles.length; i++) {
+            movieList.add(new Movie(
+                    Movies.titles[i],
+                    Movies.genres[i],
+                    Movies.writers[i]
+            ));
+        }
+
+        RecyclerView.Adapter<MovieAdapter.ViewHolder> recyclerViewAdapter = new MovieAdapter(movieList);
+        rvMovies.setAdapter(recyclerViewAdapter);
     }
 }

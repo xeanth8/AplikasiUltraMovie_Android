@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/movieFragment">
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="mobile.uas.kel_15.ultramovie.MovieFragment"
+        android:label="fragment_movie"
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/action_movieFragment_to_genreFragment"
+            app:destination="@id/genreFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_movieFragment_to_moreFragment"
+            app:destination="@id/moreFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_movieFragment_to_writerFragment"
+            app:destination="@id/writerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/genreFragment"
+        android:name="mobile.uas.kel_15.ultramovie.GenreFragment"
+        android:label="fragment_genre"
+        tools:layout="@layout/fragment_genre" >
+        <action
+            android:id="@+id/action_genreFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_genreFragment_to_writerFragment"
+            app:destination="@id/writerFragment" />
+        <action
+            android:id="@+id/action_genreFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/writerFragment"
+        android:name="mobile.uas.kel_15.ultramovie.WriterFragment"
+        android:label="fragment_writer"
+        tools:layout="@layout/fragment_writer" >
+        <action
+            android:id="@+id/action_writerFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_writerFragment_to_genreFragment"
+            app:destination="@id/genreFragment" />
+        <action
+            android:id="@+id/action_writerFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_writerFragment"
+            app:destination="@id/writerFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_genreFragment"
+            app:destination="@id/genreFragment" />
+    </fragment>
+</navigation>

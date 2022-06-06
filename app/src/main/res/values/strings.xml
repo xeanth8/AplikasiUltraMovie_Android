@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AplikasiUltraMovie_Android</string>
+    <string name="app_name">Ultra Movie 15</string>
 
     <string name="openNavDrawer">Navigation Drawer Open</string>
     <string name="closeNavDrawer">Navigation Drawer Close</string>
@@ -28,6 +28,9 @@
     <string name="navigation_item_about_us">About Us</string>
 
     <string name="movies_home_title">Movies</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="genres_home_title">Genres</string>
+    <string name="writers_home_title">Writers</string>
+
+    <string name="fab_desc_add">Add</string>
+
 </resources>
