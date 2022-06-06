@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/activity_main.xml" value="0.26139642238892097" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/font/font.xml" value="0.21614583333333334" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/activity_genre.xml" value="0.37083333333333335" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/activity_more.xml" value="0.37083333333333335" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/activity_writer.xml" value="0.37083333333333335" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/drawer.xml" value="0.23489583333333333" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_genre.xml" value="0.371875" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_more.xml" value="0.371875" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie.xml" value="0.25" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_writer.xml" value="0.371875" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/header_navigation_drawer.xml" value="0.14722222222222223" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.23333333333333334" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/menu/navigation_drawer.xml" value="0.176171875" />
       </map>
     </option>

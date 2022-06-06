@@ -4,6 +4,7 @@
     <string name="openNavDrawer">Navigation Drawer Open</string>
     <string name="closeNavDrawer">Navigation Drawer Close</string>
 
+    <!--    temp string resource -->
     <string name="content">With the idea of imparting programming
       knowledge, Mr. Sandeep Jain, an IIT Roorkee alumnus started a
       dream, GeeksforGeeks. Whether programming excites you or you feel
@@ -20,9 +21,13 @@
       geeks and we are only a fraction of it yet.
     </string>
 
+    <string name="navigation_item_movies">Movies</string>
+    <string name="navigation_item_genres">Genres</string>
+    <string name="navigation_item_writers">Writers</string>
+    <string name="navigation_item_more">More</string>
+    <string name="navigation_item_about_us">About Us</string>
 
-    <string name="navigation_drawer_item_movies">Movies</string>
-    <string name="navigation_drawer_item_genres">Genres</string>
-    <string name="navigation_drawer_item_writers">Writers</string>
-    <string name="navigation_drawer_item_about_us">About Us</string>
+    <string name="movies_home_title">Movies</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

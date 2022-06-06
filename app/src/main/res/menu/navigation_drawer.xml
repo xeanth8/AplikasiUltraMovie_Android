@@ -5,17 +5,17 @@
         <item
             android:id="@+id/navigation_drawer_item_movies"
             android:icon="@drawable/ic_launcher_background"
-            android:title="@string/navigation_drawer_item_movies"
+            android:title="@string/navigation_item_movies"
             android:checkable="true"/>
         <item
             android:id="@+id/navigation_drawer_item_genres"
             android:icon="@drawable/ic_launcher_background"
-            android:title="@string/navigation_drawer_item_genres"
+            android:title="@string/navigation_item_genres"
             android:checkable="true"/>
         <item
             android:id="@+id/navigation_drawer_item_writers"
             android:icon="@drawable/ic_launcher_background"
-            android:title="@string/navigation_drawer_item_writers"
+            android:title="@string/navigation_item_writers"
             android:checkable="true"/>
     </group>
 
@@ -24,7 +24,7 @@
         <item
             android:id="@+id/navigation_drawer_item_about_us"
             android:icon="@drawable/ic_launcher_background"
-            android:title="@string/navigation_drawer_item_about_us"
+            android:title="@string/navigation_item_about_us"
             android:checkable="true"/>
     </group>
 
