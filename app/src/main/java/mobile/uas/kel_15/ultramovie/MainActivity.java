@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         navigationBarView = findViewById(R.id.bottom_navigation);
         navigationBarView.setOnItemSelectedListener(item -> {
                     int id = item.getItemId();
-
                     if (id == R.id.navigation_bottom_item_movies) {
                         showFragment(new MovieFragment());
                     } else if (id == R.id.navigation_bottom_item_genres) {

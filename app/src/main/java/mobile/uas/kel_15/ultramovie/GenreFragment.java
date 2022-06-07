@@ -11,13 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 import mobile.uas.kel_15.ultramovie.adapter.GenreAdapter;
-import mobile.uas.kel_15.ultramovie.adapter.MovieAdapter;
-import mobile.uas.kel_15.ultramovie.dummy.Genres;
+import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.GenresDummy;
 import mobile.uas.kel_15.ultramovie.model.Genre;
-import mobile.uas.kel_15.ultramovie.model.Movie;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,10 +83,11 @@ public class GenreFragment extends Fragment {
         RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
         rvGenres.setLayoutManager(recyclerViewLayoutManager);
 
+        // TODO: Get genre data from database.
         genreList = new ArrayList<>();
-        for(int i = 0; i < Genres.names.length; i++) {
+        for(int i = 0; i < GenresDummy.names.length; i++) {
             genreList.add(new Genre(
-                    Genres.names[i]
+                    GenresDummy.names[i]
             ));
         }
 

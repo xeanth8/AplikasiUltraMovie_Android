@@ -1,10 +1,11 @@
 package mobile.uas.kel_15.ultramovie;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +16,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import mobile.uas.kel_15.ultramovie.adapter.MovieAdapter;
-import mobile.uas.kel_15.ultramovie.dummy.Movies;
+import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.MoviesDummy;
 import mobile.uas.kel_15.ultramovie.model.Movie;
 
 /**
@@ -81,16 +82,19 @@ public class MovieFragment extends Fragment {
         RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
         rvMovies.setLayoutManager(recyclerViewLayoutManager);
 
+
+        // TODO: Get movie data from database.
         movieList = new ArrayList<>();
-        for(int i = 0; i < Movies.titles.length; i++) {
+        for(int i = 0; i < MoviesDummy.titles.length; i++) {
             movieList.add(new Movie(
-                    Movies.titles[i],
-                    Movies.genres[i],
-                    Movies.writers[i]
+                    MoviesDummy.titles[i],
+                    MoviesDummy.genres[i],
+                    MoviesDummy.writers[i]
             ));
         }
 
         RecyclerView.Adapter<MovieAdapter.ViewHolder> recyclerViewAdapter = new MovieAdapter(movieList);
         rvMovies.setAdapter(recyclerViewAdapter);
+
     }
 }

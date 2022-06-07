@@ -1,10 +1,8 @@
-package mobile.uas.kel_15.ultramovie.dummy;
+package mobile.uas.kel_15.ultramovie.dummy_to_be_removed;
 
-import java.util.ArrayList;
-
-public class Movies {
+public class MoviesDummy {
     public static String[] titles = {
-            "Title 1", "Title 2", "Title 3", "Title4", "Title 5", "Title 6"
+            "Title 1", "Title 2", "Title 3", "Title4", "Title 5", "Title 6", "Title 7"
     };
 
     public static String[][] genres = {
@@ -25,6 +23,9 @@ public class Movies {
             },
             {
                 "genre1f"
+            },
+            {
+                "genre1g", "genre2g"
             }
     };
 
@@ -46,6 +47,9 @@ public class Movies {
             },
             {
                     "name1f"
+            },
+            {
+                "name1g", "name2g", "name 3g"
             }
     };
 }

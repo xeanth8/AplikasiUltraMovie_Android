@@ -13,11 +13,9 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import mobile.uas.kel_15.ultramovie.adapter.GenreAdapter;
 import mobile.uas.kel_15.ultramovie.adapter.WriterAdapter;
-import mobile.uas.kel_15.ultramovie.dummy.Genres;
-import mobile.uas.kel_15.ultramovie.dummy.Writers;
-import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.GenresDummy;
+import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.WritersDummy;
 import mobile.uas.kel_15.ultramovie.model.Writer;
 
 /**
@@ -84,10 +82,11 @@ public class WriterFragment extends Fragment {
         RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
         rvWriters.setLayoutManager(recyclerViewLayoutManager);
 
+        // TODO: Get writer data from database.
         writerList = new ArrayList<>();
-        for(int i = 0; i < Genres.names.length; i++) {
+        for(int i = 0; i < GenresDummy.names.length; i++) {
             writerList.add(new Writer(
-                    Writers.names[i]
+                    WritersDummy.names[i]
             ));
         }
 

@@ -25,7 +25,6 @@
                 app:collapsedTitleTextColor="@color/md_theme_light_onSurfaceVariant"
                 app:expandedTitleTextColor="@color/md_theme_light_onSurfaceVariant"
                 app:expandedTitleTextAppearance="@style/expandedTitleTextAppearance"
-                app:contentScrim="@color/md_theme_light_surface"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <com.google.android.material.appbar.MaterialToolbar
