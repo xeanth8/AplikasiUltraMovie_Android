@@ -5,6 +5,8 @@ public class Movie {
     private String[] genres;
     private String[] writers;
 
+    public Movie() {}
+
     public Movie(String title, String[] genres, String[] writers) {
         this.title = title;
         this.genres = genres;

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="mobile.uas.kel_15.ultramovie.MovieFragment"
+        android:name="mobile.uas.kel_15.ultramovie.movie.MovieListFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" >
+        tools:layout="@layout/fragment_movie_list" >
         <action
             android:id="@+id/action_movieFragment_to_genreFragment"
             app:destination="@id/genreFragment"
@@ -34,9 +34,9 @@
     </fragment>
     <fragment
         android:id="@+id/genreFragment"
-        android:name="mobile.uas.kel_15.ultramovie.GenreFragment"
+        android:name="mobile.uas.kel_15.ultramovie.genre.GenreListFragment"
         android:label="fragment_genre"
-        tools:layout="@layout/fragment_genre" >
+        tools:layout="@layout/fragment_genre_list" >
         <action
             android:id="@+id/action_genreFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
@@ -49,9 +49,9 @@
     </fragment>
     <fragment
         android:id="@+id/writerFragment"
-        android:name="mobile.uas.kel_15.ultramovie.WriterFragment"
+        android:name="mobile.uas.kel_15.ultramovie.writer.WriterListFragment"
         android:label="fragment_writer"
-        tools:layout="@layout/fragment_writer" >
+        tools:layout="@layout/fragment_writer_list" >
         <action
             android:id="@+id/action_writerFragment_to_movieFragment"
             app:destination="@id/movieFragment" />

@@ -12,21 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Movie;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MovieFragment#newInstance} factory method to
+ * Use the {@link MovieListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MovieFragment extends Fragment {
-    MovieViewModel viewModel;
+public class MovieListFragment extends Fragment {
+    private MovieListViewModel viewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +37,7 @@ public class MovieFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MovieFragment() {
+    public MovieListFragment() {
         // Required empty public constructor
     }
 
@@ -50,8 +50,8 @@ public class MovieFragment extends Fragment {
      * @return A new instance of fragment MovieFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MovieFragment newInstance(String param1, String param2) {
-        MovieFragment fragment = new MovieFragment();
+    public static MovieListFragment newInstance(String param1, String param2) {
+        MovieListFragment fragment = new MovieListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,7 +72,7 @@ public class MovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false);
+        return inflater.inflate(R.layout.fragment_movie_list, container, false);
     }
 
     @Override
@@ -84,9 +84,13 @@ public class MovieFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        MovieViewModel viewModel;
-        viewModel = new ViewModelProvider(this).get(MovieViewModel.class);
-
+        viewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
+//        viewModel.getAllMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
+//            @Override
+//            public void onChanged(List<Movie> movies) {
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
         viewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::submitList);
 
         FloatingActionButton fab = view.findViewById(R.id.movie_fab_add);

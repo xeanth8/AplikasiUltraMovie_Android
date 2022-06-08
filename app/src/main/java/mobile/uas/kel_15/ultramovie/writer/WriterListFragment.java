@@ -12,21 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.GenresDummy;
-import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.WritersDummy;
-import mobile.uas.kel_15.ultramovie.genre.GenreAdapter;
-import mobile.uas.kel_15.ultramovie.genre.GenreViewModel;
-import mobile.uas.kel_15.ultramovie.model.Writer;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link WriterFragment#newInstance} factory method to
+ * Use the {@link WriterListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WriterFragment extends Fragment {
+public class WriterListFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +30,7 @@ public class WriterFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public WriterFragment() {
+    public WriterListFragment() {
         // Required empty public constructor
     }
 
@@ -50,8 +43,8 @@ public class WriterFragment extends Fragment {
      * @return A new instance of fragment WriterFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static WriterFragment newInstance(String param1, String param2) {
-        WriterFragment fragment = new WriterFragment();
+    public static WriterListFragment newInstance(String param1, String param2) {
+        WriterListFragment fragment = new WriterListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,7 +65,7 @@ public class WriterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_writer, container, false);
+        return inflater.inflate(R.layout.fragment_writer_list, container, false);
     }
 
     @Override

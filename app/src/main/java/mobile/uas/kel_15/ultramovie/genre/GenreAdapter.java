@@ -1,52 +1,39 @@
-package mobile.uas.kel_15.ultramovie.adapter;
+package mobile.uas.kel_15.ultramovie.genre;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 
-import java.util.ArrayList;
-
-import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 
-public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> {
-    private final ArrayList<Genre> genresData;
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_genre, parent, false);
-
-        return new ViewHolder(view);
-    }
-
-    public GenreAdapter(ArrayList<Genre> data) {
-        this.genresData = data;
+public class GenreAdapter extends ListAdapter<Genre, GenreViewHolder> {
+    public GenreAdapter(@NonNull DiffUtil.ItemCallback<Genre> diffCallback) {
+        super(diffCallback);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TextView tvName = holder.tvName;
-
-        tvName.setText(genresData.get(position).getName());
+    public GenreViewHolder onCreateViewHolder(ViewGroup parent, int view) {
+        return GenreViewHolder.create(parent);
     }
 
     @Override
-    public int getItemCount() {
-        return genresData.size();
+    public void onBindViewHolder(@NonNull GenreViewHolder holder, int position) {
+        Genre current = getItem(position);
+        holder.bind(current.getName());
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName;
+    static class GenreDiff extends DiffUtil.ItemCallback<Genre> {
 
-        ViewHolder(View v) {
-            super(v);
+        @Override
+        public boolean areItemsTheSame(@NonNull Genre oldItem, @NonNull Genre newItem) {
+            return oldItem == newItem;
+        }
 
-            tvName = v.findViewById(R.id.card_genre_name);
+        @Override
+        public boolean areContentsTheSame(@NonNull Genre oldItem, @NonNull Genre newItem) {
+            return false;
         }
     }
 }

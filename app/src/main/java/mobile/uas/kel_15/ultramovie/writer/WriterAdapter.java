@@ -1,52 +1,40 @@
-package mobile.uas.kel_15.ultramovie.adapter;
+package mobile.uas.kel_15.ultramovie.writer;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 
-import java.util.ArrayList;
-
-import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.model.Writer;
 
-public class WriterAdapter extends RecyclerView.Adapter<WriterAdapter.ViewHolder> {
-    private final ArrayList<Writer> writerData;
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_writer, parent, false);
-
-        return new ViewHolder(view);
-    }
-
-    public WriterAdapter(ArrayList<Writer> data) {
-        this.writerData = data;
+public class WriterAdapter extends ListAdapter<Writer, WriterViewHolder> {
+    public WriterAdapter(@NonNull DiffUtil.ItemCallback<Writer> diffCallback) {
+        super(diffCallback);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TextView tvName = holder.tvName;
-
-        tvName.setText(writerData.get(position).getName());
+    public WriterViewHolder onCreateViewHolder(ViewGroup parent, int view) {
+        return WriterViewHolder.create(parent);
     }
 
     @Override
-    public int getItemCount() {
-        return writerData.size();
+    public void onBindViewHolder(@NonNull WriterViewHolder holder, int position) {
+        Writer current = getItem(position);
+        holder.bind(current.getName());
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName;
+    static class WriterDiff extends DiffUtil.ItemCallback<Writer> {
 
-        ViewHolder(View v) {
-            super(v);
+        @Override
+        public boolean areItemsTheSame(@NonNull Writer oldItem, @NonNull Writer newItem) {
+            return oldItem == newItem;
+        }
 
-            tvName = v.findViewById(R.id.card_writer_name);
+        @Override
+        public boolean areContentsTheSame(@NonNull Writer oldItem, @NonNull Writer newItem) {
+            return false;
         }
     }
 }

@@ -1,60 +1,38 @@
-package mobile.uas.kel_15.ultramovie.adapter;
-
-import android.view.LayoutInflater;
-import android.view.View;
+package mobile.uas.kel_15.ultramovie.movie;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 
-import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.movie.MoviesUiState;
+import mobile.uas.kel_15.ultramovie.model.Movie;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-    private final MoviesUiState moviesData;
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_movie, parent, false);
-
-        return new ViewHolder(view);
-    }
-
-    public MovieAdapter(MoviesUiState data) {
-        this.moviesData = data;
+public class MovieAdapter extends ListAdapter<Movie, MovieViewHolder> {
+    public MovieAdapter(@NonNull DiffUtil.ItemCallback<Movie> diffCallback) {
+        super(diffCallback);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TextView tvTitle = holder.tvTitle;
-        TextView tvGenre = holder.tvGenre;
-        TextView tvWriter = holder.tvWriter;
-
-        tvTitle.setText(moviesData.movieItems[position].title);
-
-        String genres = String.join(", ", moviesData.movieItems[position].genres);
-        tvGenre.setText(genres);
-
-        String writers = String.join(", ", moviesData.movieItems[position].writers);
-        tvWriter.setText(writers);
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int view) {
+        return MovieViewHolder.create(parent);
     }
 
     @Override
-    public int getItemCount() {
-        return moviesData.movieItems.length;
+    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+        Movie current = getItem(position);
+        holder.bind(current.getTitle(), current.getGenres(), current.getWriters());
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvGenre, tvWriter;
+    static class MovieDiff extends DiffUtil.ItemCallback<Movie> {
 
-        ViewHolder(View v) {
-            super(v);
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem == newItem;
+        }
 
-            tvTitle = v.findViewById(R.id.card_movie_title);
-            tvGenre = v.findViewById(R.id.card_movie_genre);
-            tvWriter = v.findViewById(R.id.card_movie_writer);
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return false;
         }
     }
 }
