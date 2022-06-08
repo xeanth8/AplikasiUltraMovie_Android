@@ -8,13 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.model.Movie;
+import mobile.uas.kel_15.ultramovie.movie.MoviesUiState;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-    private final ArrayList<Movie> moviesData;
+    private final MoviesUiState moviesData;
 
     @NonNull
     @Override
@@ -24,7 +22,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
-    public MovieAdapter(ArrayList<Movie> data) {
+    public MovieAdapter(MoviesUiState data) {
         this.moviesData = data;
     }
 
@@ -34,18 +32,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvGenre = holder.tvGenre;
         TextView tvWriter = holder.tvWriter;
 
-        tvTitle.setText(moviesData.get(position).getTitle());
+        tvTitle.setText(moviesData.movieItems[position].title);
 
-        String genres = String.join(", ", moviesData.get(position).getGenres());
+        String genres = String.join(", ", moviesData.movieItems[position].genres);
         tvGenre.setText(genres);
 
-        String writers = String.join(", ", moviesData.get(position).getWriters());
+        String writers = String.join(", ", moviesData.movieItems[position].writers);
         tvWriter.setText(writers);
     }
 
     @Override
     public int getItemCount() {
-        return moviesData.size();
+        return moviesData.movieItems.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

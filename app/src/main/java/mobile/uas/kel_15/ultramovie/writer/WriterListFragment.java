@@ -1,9 +1,10 @@
-package mobile.uas.kel_15.ultramovie;
+package mobile.uas.kel_15.ultramovie.writer;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,9 +14,11 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import mobile.uas.kel_15.ultramovie.adapter.WriterAdapter;
+import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.GenresDummy;
 import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.WritersDummy;
+import mobile.uas.kel_15.ultramovie.genre.GenreAdapter;
+import mobile.uas.kel_15.ultramovie.genre.GenreViewModel;
 import mobile.uas.kel_15.ultramovie.model.Writer;
 
 /**
@@ -76,21 +79,14 @@ public class WriterFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<Writer> writerList;
-        RecyclerView rvWriters = (RecyclerView) view.findViewById(R.id.writer_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.writer_recycler_view);
+        final WriterAdapter adapter = new WriterAdapter(new WriterAdapter.WriterDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
-        rvWriters.setLayoutManager(recyclerViewLayoutManager);
+        WriterViewModel viewModel;
+        viewModel = new ViewModelProvider(this).get(WriterViewModel.class);
 
-        // TODO: Get writer data from database.
-        writerList = new ArrayList<>();
-        for(int i = 0; i < GenresDummy.names.length; i++) {
-            writerList.add(new Writer(
-                    WritersDummy.names[i]
-            ));
-        }
-
-        RecyclerView.Adapter<WriterAdapter.ViewHolder> recyclerViewAdapter = new WriterAdapter(writerList);
-        rvWriters.setAdapter(recyclerViewAdapter);
+        viewModel.getAllWriters().observe(getViewLifecycleOwner(), adapter::submitList);
     }
 }

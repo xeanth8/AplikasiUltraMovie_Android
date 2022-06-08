@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GenreFragment"
-    android:id="@+id/frame_genre">
+    tools:context=".writer.WriterFragment"
+    android:id="@+id/frame_writer">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
@@ -21,7 +21,7 @@
                 style="?attr/collapsingToolbarLayoutMediumStyle"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
-                app:title="@string/genres_home_title"
+                app:title="@string/writers_home_title"
                 app:collapsedTitleTextColor="@color/md_theme_light_onSurfaceVariant"
                 app:expandedTitleTextColor="@color/md_theme_light_onSurfaceVariant"
                 app:expandedTitleTextAppearance="@style/expandedTitleTextAppearance"
@@ -39,10 +39,10 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/genre_recycler_view"
+            android:id="@+id/writer_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/card_genre"
+            tools:listitem="@layout/card_writer"
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 

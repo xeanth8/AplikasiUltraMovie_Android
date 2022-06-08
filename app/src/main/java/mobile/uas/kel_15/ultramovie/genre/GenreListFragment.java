@@ -1,11 +1,10 @@
-package mobile.uas.kel_15.ultramovie;
+package mobile.uas.kel_15.ultramovie.genre;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,18 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
-import mobile.uas.kel_15.ultramovie.adapter.MovieAdapter;
-import mobile.uas.kel_15.ultramovie.dummy_to_be_removed.MoviesDummy;
-import mobile.uas.kel_15.ultramovie.model.Movie;
+import mobile.uas.kel_15.ultramovie.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MovieFragment#newInstance} factory method to
+ * Use the {@link GenreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MovieFragment extends Fragment {
+public class GenreFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,7 +30,7 @@ public class MovieFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MovieFragment() {
+    public GenreFragment() {
         // Required empty public constructor
     }
 
@@ -44,11 +40,11 @@ public class MovieFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MovieFragment.
+     * @return A new instance of fragment GenreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MovieFragment newInstance(String param1, String param2) {
-        MovieFragment fragment = new MovieFragment();
+    public static GenreFragment newInstance(String param1, String param2) {
+        GenreFragment fragment = new GenreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,35 +62,24 @@ public class MovieFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false);
+        return inflater.inflate(R.layout.fragment_genre, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<Movie> movieList;
-        RecyclerView rvMovies = (RecyclerView) view.findViewById(R.id.movie_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.genre_recycler_view);
+        final GenreAdapter adapter = new GenreAdapter(new GenreAdapter.GenreDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(getContext());
-        rvMovies.setLayoutManager(recyclerViewLayoutManager);
+        GenreViewModel viewModel;
+        viewModel = new ViewModelProvider(this).get(GenreViewModel.class);
 
-
-        // TODO: Get movie data from database.
-        movieList = new ArrayList<>();
-        for(int i = 0; i < MoviesDummy.titles.length; i++) {
-            movieList.add(new Movie(
-                    MoviesDummy.titles[i],
-                    MoviesDummy.genres[i],
-                    MoviesDummy.writers[i]
-            ));
-        }
-
-        RecyclerView.Adapter<MovieAdapter.ViewHolder> recyclerViewAdapter = new MovieAdapter(movieList);
-        rvMovies.setAdapter(recyclerViewAdapter);
-
+        viewModel.getAllGenres().observe(getViewLifecycleOwner(), adapter::submitList);
     }
 }
