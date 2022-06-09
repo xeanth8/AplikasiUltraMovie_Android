@@ -15,7 +15,10 @@
 
 	if($action != "read" && $action != "find" && $action != "delete")
 	{
-		$id_movie = (int)$_POST['id_movie'];
+		if(isset($_POST['id_movie']))
+		{
+			$id_movie = (int)$_POST['id_movie'];
+		}
 		$nm_movie = $_POST['nm_movie'];
 		$genres = str_replace(", ", ",",$_POST['genres']);
 		$writers = str_replace(", ", ",",$_POST['writers']);
