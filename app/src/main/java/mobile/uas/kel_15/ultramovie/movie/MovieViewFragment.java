@@ -1,66 +1,103 @@
 package mobile.uas.kel_15.ultramovie.movie;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.viewbinding.ViewBinding;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
+import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MovieViewFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MovieViewFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private MovieViewViewModel mViewModel;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView tvTitle, tvWriter, tvDirector, tvStars, tvSynopsis;
+    private ChipGroup cgGenre;
 
-    public MovieViewFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MovieAddFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MovieViewFragment newInstance(String param1, String param2) {
-        MovieViewFragment fragment = new MovieViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static MovieViewFragment newInstance() {
+        return new MovieViewFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_movie_view, container, false);
     }
+
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        tvTitle = getActivity().findViewById(R.id.movie_view_title);
+        tvWriter = getActivity().findViewById(R.id.movie_view_writer_content);
+        tvDirector = getActivity().findViewById(R.id.movie_view_director_content);
+        tvStars = getActivity().findViewById(R.id.movie_view_star_content);
+        tvSynopsis = getActivity().findViewById(R.id.movie_view_synopsis_content);
+        cgGenre = getActivity().findViewById(R.id.movie_chip_group_genres);
+
+        mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieViewViewModel.class);
+
+        String movieId = MovieViewFragmentArgs.fromBundle(getArguments()).getMovieId();
+        mViewModel.getMovie(movieId).observe(getViewLifecycleOwner(), movie -> {
+            tvTitle.setText(movie.getTitle());
+
+            String writer = String.join(", ", movie.getWriters());
+            tvWriter.setText(writer);
+
+            tvDirector.setText(movie.getDirector());
+
+            for (String genre: movie.getGenres()) {
+                Chip chip = new Chip(getContext());
+                chip.setText(genre);
+                chip.setClickable(false);
+                cgGenre.addView(chip);
+            }
+
+            String stars = String.join("\n",
+                    Arrays.stream(movie.getStars())
+                            .map(String::trim)
+                            .toArray(String[]::new));
+            tvStars.setText(stars);
+
+            tvSynopsis.setText(movie.getSynopsis());
+
+
+            TextView tvWriterLabel = getActivity().findViewById(R.id.movie_view_writer_label);
+            tvWriterLabel.setText("Written by");
+            TextView tvDirectorLabel = getActivity().findViewById(R.id.movie_view_director_label);
+            tvDirectorLabel.setText("Directed by");
+            TextView tvStarsLabel = getActivity().findViewById(R.id.movie_view_star_label);
+            tvStarsLabel.setText("Starring");
+            TextView tvSynopsisLabel = getActivity().findViewById(R.id.movie_view_synopsis_label);
+            tvSynopsisLabel.setText("Synopsis");
+        });
+
+        mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            if (isLoading != null) {
+                if (isLoading) {
+                    getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.GONE);
+                } else {
+                    getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+    }
+
 }

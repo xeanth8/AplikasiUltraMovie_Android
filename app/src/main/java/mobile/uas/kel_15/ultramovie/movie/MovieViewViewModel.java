@@ -5,25 +5,34 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
 
-public class MovieListViewModel extends AndroidViewModel {
+public class MovieViewViewModel extends AndroidViewModel {
     private MovieRepository repository;
-    private MutableLiveData<List<Movie>> _allMovies;
+    private MutableLiveData<Movie> _movie;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
-    public MovieListViewModel(Application application) {
+    public MovieViewViewModel(Application application) {
         super(application);
         repository = new MovieRepository(application);
     }
 
-    public LiveData<List<Movie>> getAllMovies() {
-        if(_allMovies == null) _allMovies = repository.getAllMovies();
-        return _allMovies;
+    public LiveData<Movie> getMovie(String movieId) {
+        if(_movie == null) _movie = repository.getMovie(movieId);
+        return _movie;
+    }
+
+    public void update(Movie movie) {
+        repository.update(movie);
+    }
+
+    public void delete(Movie movie) {
+        repository.delete(movie);
     }
 
     public static void processStarted() {

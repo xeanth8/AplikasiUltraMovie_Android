@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.repository.GenreRepository;
 
 public class GenreViewModel extends AndroidViewModel {
     private GenreRepository repository;

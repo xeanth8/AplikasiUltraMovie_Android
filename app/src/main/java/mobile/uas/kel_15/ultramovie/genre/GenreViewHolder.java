@@ -21,7 +21,7 @@ public class GenreViewHolder extends RecyclerView.ViewHolder {
         tvName.setText(name);
     }
 
-    static GenreViewHolder create(ViewGroup parent) {
+    public static GenreViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_genre, parent, false);
         return new GenreViewHolder(view);
