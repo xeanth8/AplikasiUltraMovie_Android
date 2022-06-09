@@ -1,9 +1,9 @@
 <?php
 
-	$server = "sql312.epizy.com";
-	$user = "epiz_31909233";
-	$pass = "ZEQHJYVZgdEW";
-	$db = "epiz_31909233_ultramovie";
+	$server = "localhost";
+	$user = "id19075684_root";
+	$pass = "!R#{FV2*#i0bP2mC";
+	$db = "id19075684_ultramovie";
 	$conn = mysqli_connect($server, $user, $pass, $db);
 
 	if(!$conn)
