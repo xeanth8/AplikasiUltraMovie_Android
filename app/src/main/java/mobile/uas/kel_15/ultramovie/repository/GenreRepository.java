@@ -1,4 +1,4 @@
-package mobile.uas.kel_15.ultramovie.genre;
+package mobile.uas.kel_15.ultramovie.repository;
 
 import android.app.Application;
 

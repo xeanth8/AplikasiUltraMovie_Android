@@ -1,55 +1,44 @@
 package mobile.uas.kel_15.ultramovie;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import static androidx.navigation.ui.NavigationUI.navigateUp;
+import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
 import android.os.Bundle;
 
-import com.google.android.material.navigation.NavigationBarView;
-
-import mobile.uas.kel_15.ultramovie.genre.GenreListFragment;
-import mobile.uas.kel_15.ultramovie.movie.MovieListFragment;
-import mobile.uas.kel_15.ultramovie.movie.MovieViewFragment;
-import mobile.uas.kel_15.ultramovie.writer.WriterListFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    //    Toolbar toolbar;
-//    DrawerLayout drawerLayout;
-//    NavigationView navigationView;
-    NavigationBarView navigationBarView;
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NetworkManager.getInstance(this);
 
-        showFragment(new MovieListFragment());
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_container);
+        NavController navController = navHostFragment.getNavController();
+//        setupActionBarWithNavController(this, navController);
 
-        navigationBarView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView navigationBarView;
+        navigationBarView = findViewById(R.id.bottom_navigation_view);
         navigationBarView.setOnItemSelectedListener(item -> {
                     int id = item.getItemId();
                     if (id == R.id.navigation_bottom_item_movies) {
-                        showFragment(new MovieListFragment());
+                        navController.navigate(R.id.movieListFragment);
                     } else if (id == R.id.navigation_bottom_item_genres) {
-                        showFragment(new MovieViewFragment());
+                        navController.navigate(R.id.genreListFragment);
                     } else if (id == R.id.navigation_bottom_item_writers) {
-                        showFragment(new WriterListFragment());
+                        navController.navigate(R.id.writerListFragment);
                     } else if (id == R.id.navigation_bottom_item_more) {
-                        showFragment(new MoreFragment());
+                        navController.navigate(R.id.moreFragment);
                     }
 
                     return true;
                 }
         );
-
-    }
-
-    private void showFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_container, fragment).commit();
+        navigationBarView.setOnItemReselectedListener(item -> {});
     }
 }

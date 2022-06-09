@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import mobile.uas.kel_15.ultramovie.genre.GenreViewHolder;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 
 public class GenreAdapter extends ListAdapter<Genre, GenreViewHolder> {
@@ -24,7 +25,7 @@ public class GenreAdapter extends ListAdapter<Genre, GenreViewHolder> {
         holder.bind(current.getName());
     }
 
-    static class GenreDiff extends DiffUtil.ItemCallback<Genre> {
+    public static class GenreDiff extends DiffUtil.ItemCallback<Genre> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Genre oldItem, @NonNull Genre newItem) {

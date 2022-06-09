@@ -34,7 +34,6 @@
     <string name="app_bar_item_delete">Delete</string>
 
 
-
     <string name="fab_desc_add">Add</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

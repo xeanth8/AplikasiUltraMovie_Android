@@ -1,4 +1,4 @@
-package mobile.uas.kel_15.ultramovie.writer;
+package mobile.uas.kel_15.ultramovie.repository;
 
 import android.app.Application;
 
