@@ -21,10 +21,6 @@ public class MovieListFragment extends Fragment {
 
     private MovieListViewModel mViewModel;
 
-    public static MovieListFragment newInstance() {
-        return new MovieListFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -35,14 +31,19 @@ public class MovieListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Setup adapter untuk setiap card movie
         RecyclerView recyclerView = view.findViewById(R.id.movie_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final MovieListAdapter adapter = new MovieListAdapter();
         recyclerView.setAdapter(adapter);
 
+        // Inisialisasi ViewModel
         mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieListViewModel.class);
+
+        // Observe perubahan data-data movie
         mViewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::setMovieList);
 
+        // Cek proses loading untuk spinner
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
             if (isLoading != null) {
                 if (isLoading) {
@@ -52,13 +53,5 @@ public class MovieListFragment extends Fragment {
                 }
             }
         });
-
-
-
-
-//        getActivity().findViewById(R.id.movie_recycler_view).setOnClickListener(v -> {
-//            NavHostFragment.findNavController(this).navigate(R.id.action_movieListFragment_to_movieViewFragment);
-//        });
     }
-
 }

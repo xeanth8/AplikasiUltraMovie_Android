@@ -1,19 +1,18 @@
 package mobile.uas.kel_15.ultramovie.movie;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelStoreOwner;
-import androidx.viewbinding.ViewBinding;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -24,14 +23,8 @@ import mobile.uas.kel_15.ultramovie.R;
 
 public class MovieViewFragment extends Fragment {
 
-    private MovieViewViewModel mViewModel;
-
     private TextView tvTitle, tvWriter, tvDirector, tvStars, tvSynopsis;
     private ChipGroup cgGenre;
-
-    public static MovieViewFragment newInstance() {
-        return new MovieViewFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -50,9 +43,13 @@ public class MovieViewFragment extends Fragment {
         tvSynopsis = getActivity().findViewById(R.id.movie_view_synopsis_content);
         cgGenre = getActivity().findViewById(R.id.movie_chip_group_genres);
 
-        mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieViewViewModel.class);
+        // Inisialisasi ViewModel
+        MovieViewViewModel mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieViewViewModel.class);
 
+        // Ambil safeargs dari Fragment MovieList
         String movieId = MovieViewFragmentArgs.fromBundle(getArguments()).getMovieId();
+
+        // Observe perubahan data movie
         mViewModel.getMovie(movieId).observe(getViewLifecycleOwner(), movie -> {
             tvTitle.setText(movie.getTitle());
 
@@ -61,6 +58,7 @@ public class MovieViewFragment extends Fragment {
 
             tvDirector.setText(movie.getDirector());
 
+            // Buat chip untuk setiap genre
             for (String genre: movie.getGenres()) {
                 Chip chip = new Chip(getContext());
                 chip.setText(genre);
@@ -76,17 +74,18 @@ public class MovieViewFragment extends Fragment {
 
             tvSynopsis.setText(movie.getSynopsis());
 
-
+            // Label-label field dihapus agar halaman terlihat bersih
             TextView tvWriterLabel = getActivity().findViewById(R.id.movie_view_writer_label);
-            tvWriterLabel.setText("Written by");
+            tvWriterLabel.setText(R.string.movie_view_writer_label);
             TextView tvDirectorLabel = getActivity().findViewById(R.id.movie_view_director_label);
-            tvDirectorLabel.setText("Directed by");
+            tvDirectorLabel.setText(R.string.movie_view_director_label);
             TextView tvStarsLabel = getActivity().findViewById(R.id.movie_view_star_label);
-            tvStarsLabel.setText("Starring");
+            tvStarsLabel.setText(R.string.movie_view_star_label);
             TextView tvSynopsisLabel = getActivity().findViewById(R.id.movie_view_synopsis_label);
-            tvSynopsisLabel.setText("Synopsis");
+            tvSynopsisLabel.setText(R.string.movie_view_synopsis_label);
         });
 
+        // Cek proses loading untuk spinner
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
             if (isLoading != null) {
                 if (isLoading) {
@@ -95,6 +94,11 @@ public class MovieViewFragment extends Fragment {
                     getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.VISIBLE);
                 }
             }
+        });
+
+        ActionMenuItemView amDelete = getActivity().findViewById(R.id.app_bar_item_delete);
+        amDelete.setOnClickListener(v -> {
+            mViewModel.delete(movieId);
         });
 
 

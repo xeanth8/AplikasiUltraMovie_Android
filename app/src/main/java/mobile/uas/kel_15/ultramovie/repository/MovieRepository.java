@@ -145,8 +145,8 @@ public class MovieRepository  {
         // TODO: Implement update function
     }
 
-    public void delete(Movie movie) {
-        // TODO: implemen delete function
+    public void delete(String movieId) {
+        // TODO: implement delete function
     }
 }
 

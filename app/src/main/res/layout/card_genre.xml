@@ -18,7 +18,7 @@
             android:id="@+id/card_genre_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Genre"
+            android:text="@string/card_genre_name_placeholder"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textColor="@color/md_theme_light_onSurface"/>
     </LinearLayout>

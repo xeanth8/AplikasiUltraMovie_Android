@@ -3,78 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieFragment">
+    app:startDestination="@id/movieListFragment">
 
     <fragment
-        android:id="@+id/movieFragment"
+        android:id="@+id/movieListFragment"
         android:name="mobile.uas.kel_15.ultramovie.movie.MovieListFragment"
-        android:label="fragment_movie"
+        android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list" >
         <action
-            android:id="@+id/action_movieFragment_to_genreFragment"
-            app:destination="@id/genreFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_movieFragment_to_moreFragment"
-            app:destination="@id/moreFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_movieFragment_to_writerFragment"
-            app:destination="@id/writerFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            android:id="@+id/action_movieListFragment_to_movieViewFragment"
+            app:destination="@id/movieViewFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/movieListFragment"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/genreFragment"
+        android:id="@+id/movieViewFragment"
+        android:name="mobile.uas.kel_15.ultramovie.movie.MovieViewFragment"
+        android:label="fragment_movie_view"
+        tools:layout="@layout/fragment_movie_view" >
+        <argument
+            android:name="movie_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/genreListFragment"
         android:name="mobile.uas.kel_15.ultramovie.genre.GenreListFragment"
-        android:label="fragment_genre"
-        tools:layout="@layout/fragment_genre_list" >
-        <action
-            android:id="@+id/action_genreFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-        <action
-            android:id="@+id/action_genreFragment_to_writerFragment"
-            app:destination="@id/writerFragment" />
-        <action
-            android:id="@+id/action_genreFragment_to_moreFragment"
-            app:destination="@id/moreFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/writerFragment"
-        android:name="mobile.uas.kel_15.ultramovie.writer.WriterListFragment"
-        android:label="fragment_writer"
-        tools:layout="@layout/fragment_writer_list" >
-        <action
-            android:id="@+id/action_writerFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-        <action
-            android:id="@+id/action_writerFragment_to_genreFragment"
-            app:destination="@id/genreFragment" />
-        <action
-            android:id="@+id/action_writerFragment_to_moreFragment"
-            app:destination="@id/moreFragment" />
-    </fragment>
+        android:label="fragment_genre_list"
+        tools:layout="@layout/fragment_genre_list" />
     <fragment
         android:id="@+id/moreFragment"
         android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" >
-        <action
-            android:id="@+id/action_moreFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-        <action
-            android:id="@+id/action_moreFragment_to_writerFragment"
-            app:destination="@id/writerFragment" />
-        <action
-            android:id="@+id/action_moreFragment_to_genreFragment"
-            app:destination="@id/genreFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/writerListFragment"
+        android:name="mobile.uas.kel_15.ultramovie.writer.WriterListFragment"
+        android:label="fragment_writer_list"
+        tools:layout="@layout/fragment_writer_list" />
 </navigation>

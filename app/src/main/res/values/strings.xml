@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Ultra Movie 15</string>
 
-    <string name="openNavDrawer">Navigation Drawer Open</string>
-    <string name="closeNavDrawer">Navigation Drawer Close</string>
-
     <!--    temp string resource -->
     <string name="content">With the idea of imparting programming
       knowledge, Mr. Sandeep Jain, an IIT Roorkee alumnus started a
@@ -32,10 +29,22 @@
     <string name="writers_home_title">Writers</string>
 
     <string name="app_bar_item_delete">Delete</string>
-
+    <string name="app_bar_desc_delete">Delete</string>
 
     <string name="fab_desc_add">Add</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="fab_desc_edit">Edit</string>
+
+    <string name="card_genre_name_placeholder">Genre</string>
+    <string name="card_movie_title_placeholder">Title</string>
+    <string name="card_movie_genre_placeholder">Genres</string>
+    <string name="card_movie_writer_placeholder">Writers</string>
+    <string name="card_writer_name_placeholder">Name</string>
+
+    <string name="movie_view_writer_label">Written by</string>
+    <string name="movie_view_director_label">Directed by</string>
+    <string name="movie_view_star_label">Starring</string>
+    <string name="movie_view_synopsis_label">Synopsis</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -45,17 +54,6 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_movie_edit">MovieEditActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_bar_desc_delete">Delete</string>
-    <string name="fab_desc_edit">Edit</string>
 
 </resources>

@@ -1,53 +1,53 @@
 package mobile.uas.kel_15.ultramovie.genre;
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import mobile.uas.kel_15.ultramovie.R;
 
 public class GenreListFragment extends Fragment {
 
-    public GenreListFragment() {
-        // Required empty public constructor
-    }
-
-    public static GenreListFragment newInstance() {
-        return new GenreListFragment();
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_genre_list, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Setup adapter untuk setiap card genre
         RecyclerView recyclerView = view.findViewById(R.id.genre_recycler_view);
-        final GenreAdapter adapter = new GenreAdapter(new GenreAdapter.GenreDiff());
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        final GenreListAdapter adapter = new GenreListAdapter();
+        recyclerView.setAdapter(adapter);
 
-        GenreViewModel viewModel;
-        viewModel = new ViewModelProvider(this).get(GenreViewModel.class);
+        // Inisialisasi ViewModel
+        GenreListViewModel mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(GenreListViewModel.class);
 
-        viewModel.getAllGenres().observe(getViewLifecycleOwner(), adapter::submitList);
+        // Observe perubahan data-data genre
+        mViewModel.getAllGenres().observe(getViewLifecycleOwner(), adapter::setGenreList);
+
+        // Cek proses loading untuk spinner
+        mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            if (isLoading != null) {
+                if (isLoading) {
+                    getActivity().findViewById(R.id.genre_list_progress_bar).setVisibility(View.GONE);
+                } else {
+                    getActivity().findViewById(R.id.genre_list_progress_bar).setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 }

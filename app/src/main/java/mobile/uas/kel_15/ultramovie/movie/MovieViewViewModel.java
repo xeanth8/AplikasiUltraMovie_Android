@@ -31,8 +31,8 @@ public class MovieViewViewModel extends AndroidViewModel {
         repository.update(movie);
     }
 
-    public void delete(Movie movie) {
-        repository.delete(movie);
+    public void delete(String movieId) {
+        repository.delete(movieId);
     }
 
     public static void processStarted() {

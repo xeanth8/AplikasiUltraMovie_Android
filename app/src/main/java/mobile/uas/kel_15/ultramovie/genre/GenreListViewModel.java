@@ -1,4 +1,4 @@
-package mobile.uas.kel_15.ultramovie.writer;
+package mobile.uas.kel_15.ultramovie.genre;
 
 import android.app.Application;
 
@@ -10,24 +10,22 @@ import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.model.Movie;
-import mobile.uas.kel_15.ultramovie.model.Writer;
 import mobile.uas.kel_15.ultramovie.repository.GenreRepository;
 import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
-import mobile.uas.kel_15.ultramovie.repository.WriterRepository;
 
-public class WriterListViewModel extends AndroidViewModel {
-    private WriterRepository repository;
-    private MutableLiveData<List<Writer>> _allWriters;
+public class GenreListViewModel extends AndroidViewModel {
+    private GenreRepository repository;
+    private MutableLiveData<List<Genre>> _allGenres;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
-    public WriterListViewModel(Application application) {
+    public GenreListViewModel(Application application) {
         super(application);
-        repository = new WriterRepository(application);
+        repository = new GenreRepository(application);
     }
 
-    public LiveData<List<Writer>> getAllWriters() {
-        if(_allWriters == null) _allWriters = repository.getAllWriters();
-        return _allWriters;
+    public LiveData<List<Genre>> getAllGenres() {
+        if(_allGenres == null) _allGenres = repository.getAllGenres();
+        return _allGenres;
     }
 
     public static void processStarted() {

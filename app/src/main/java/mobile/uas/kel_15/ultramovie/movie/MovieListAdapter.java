@@ -22,9 +22,7 @@ import mobile.uas.kel_15.ultramovie.model.Movie;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
     private List<Movie> movieList = new ArrayList<>();
-    public MovieListAdapter() {
-
-    }
+    public MovieListAdapter() { }
 
     @NonNull
     @Override
