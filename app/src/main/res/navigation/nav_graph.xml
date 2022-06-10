@@ -15,9 +15,17 @@
             app:destination="@id/movieViewFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@id/movieListFragment"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/movieListFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_movieFillFragment"
+            app:destination="@id/movieFillFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/writerListFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieViewFragment"
@@ -27,6 +35,14 @@
         <argument
             android:name="movie_id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_movieViewFragment_to_movieFillFragment"
+            app:destination="@id/movieFillFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/movieViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/genreListFragment"
@@ -34,13 +50,21 @@
         android:label="fragment_genre_list"
         tools:layout="@layout/fragment_genre_list" />
     <fragment
-        android:id="@+id/moreFragment"
-        android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
-        android:label="fragment_more"
-        tools:layout="@layout/fragment_more" />
-    <fragment
         android:id="@+id/writerListFragment"
         android:name="mobile.uas.kel_15.ultramovie.writer.WriterListFragment"
         android:label="fragment_writer_list"
         tools:layout="@layout/fragment_writer_list" />
+    <fragment
+        android:id="@+id/movieFillFragment"
+        android:name="mobile.uas.kel_15.ultramovie.movie.MovieFillFragment"
+        android:label="MovieFillFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
 </navigation>

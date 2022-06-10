@@ -11,16 +11,8 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-        <ProgressBar
-            android:id="@+id/writer_list_progress_bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
-
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_layout"
+            android:id="@+id/app_bar_layout_placeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true">
@@ -36,7 +28,7 @@
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/main_toolbar"
+                    android:id="@+id/main_toolbar_placeholder"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
@@ -46,36 +38,26 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.facebook.shimmer.ShimmerFrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/writer_list_shimmer"
-            android:layout_gravity="center">
-
-            <include layout="@layout/fragment_writer_list_placeholder"/>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/writer_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/card_writer"
-            android:scrollbars="vertical"
-            android:layout_marginBottom="8dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/movie_fab_add"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/fab_desc_add"
-            app:srcCompat="@drawable/ic_baseline_add_24"
-            app:tint="@color/md_theme_light_onPrimary"
-            android:backgroundTint="@color/md_theme_light_primary"/>
+            android:orientation="vertical"
+            android:layout_marginTop="?attr/collapsingToolbarLayoutLargeSize">
 
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+            <include layout="@layout/card_writer_placeholder"/>
+
+        </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

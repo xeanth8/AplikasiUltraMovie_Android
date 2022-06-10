@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+
 import mobile.uas.kel_15.ultramovie.R;
 
 public class GenreListFragment extends Fragment {
@@ -39,13 +41,17 @@ public class GenreListFragment extends Fragment {
         // Observe perubahan data-data genre
         mViewModel.getAllGenres().observe(getViewLifecycleOwner(), adapter::setGenreList);
 
-        // Cek proses loading untuk spinner
-        mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
-            if (isLoading != null) {
-                if (isLoading) {
-                    getActivity().findViewById(R.id.genre_list_progress_bar).setVisibility(View.GONE);
+        // Cek proses loading untuk shimmer layout
+        mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.genre_list_shimmer);
+
+            if (isFinishedLoading != null) {
+                if (isFinishedLoading) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    shimmerFrameLayout.setVisibility(View.GONE);
                 } else {
-                    getActivity().findViewById(R.id.genre_list_progress_bar).setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    shimmerFrameLayout.setVisibility(View.VISIBLE);
                 }
             }
         });

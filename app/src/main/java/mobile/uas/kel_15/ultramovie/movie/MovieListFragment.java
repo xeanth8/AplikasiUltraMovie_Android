@@ -1,5 +1,6 @@
 package mobile.uas.kel_15.ultramovie.movie;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -8,12 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import mobile.uas.kel_15.ultramovie.R;
 
@@ -40,16 +46,26 @@ public class MovieListFragment extends Fragment {
         // Inisialisasi ViewModel
         mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieListViewModel.class);
 
-        // Observe perubahan data-data movie
+        // Observe perubahan data-data movie dan berikan data movienya ke Adapter
         mViewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::setMovieList);
 
-        // Cek proses loading untuk spinner
-        mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
-            if (isLoading != null) {
-                if (isLoading) {
-                    getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.GONE);
+//        FloatingActionButton fab;
+//        fab = getActivity().findViewById(R.id.movie_fab_add).setOnClickListener(v -> {
+//            NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieFillFragment(null);
+////            Navigation.findNavController().navigate(action);
+//        });
+
+        // Cek proses loading untuk shimmer layout
+        mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.movie_list_shimmer);
+
+            if (isFinishedLoading != null) {
+                if (isFinishedLoading) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    shimmerFrameLayout.setVisibility(View.GONE);
                 } else {
-                    getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    shimmerFrameLayout.setVisibility(View.VISIBLE);
                 }
             }
         });

@@ -10,10 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -73,25 +76,20 @@ public class MovieViewFragment extends Fragment {
             tvStars.setText(stars);
 
             tvSynopsis.setText(movie.getSynopsis());
-
-            // Label-label field dihapus agar halaman terlihat bersih
-            TextView tvWriterLabel = getActivity().findViewById(R.id.movie_view_writer_label);
-            tvWriterLabel.setText(R.string.movie_view_writer_label);
-            TextView tvDirectorLabel = getActivity().findViewById(R.id.movie_view_director_label);
-            tvDirectorLabel.setText(R.string.movie_view_director_label);
-            TextView tvStarsLabel = getActivity().findViewById(R.id.movie_view_star_label);
-            tvStarsLabel.setText(R.string.movie_view_star_label);
-            TextView tvSynopsisLabel = getActivity().findViewById(R.id.movie_view_synopsis_label);
-            tvSynopsisLabel.setText(R.string.movie_view_synopsis_label);
         });
 
-        // Cek proses loading untuk spinner
-        mViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
-            if (isLoading != null) {
-                if (isLoading) {
-                    getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.GONE);
+        // Cek proses loading untuk shimmer layout
+        mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.movie_view_shimmer);
+            NestedScrollView nestedScrollView = getActivity().findViewById(R.id.movie_view_main);
+
+            if (isFinishedLoading != null) {
+                if (isFinishedLoading) {
+                    nestedScrollView.setVisibility(View.VISIBLE);
+                    shimmerFrameLayout.setVisibility(View.GONE);
                 } else {
-                    getActivity().findViewById(R.id.movie_list_progress_bar).setVisibility(View.VISIBLE);
+                   nestedScrollView.setVisibility(View.GONE);
+                   shimmerFrameLayout.setVisibility(View.VISIBLE);
                 }
             }
         });

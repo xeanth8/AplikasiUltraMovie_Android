@@ -24,10 +24,14 @@ import mobile.uas.kel_15.ultramovie.movie.MovieListViewModel;
 import mobile.uas.kel_15.ultramovie.movie.MovieViewViewModel;
 
 public class MovieRepository  {
+    // Untuk mendapat context aplikasi karena Volley membutuhkan
     Application application;
     String url = AppConfig.SERVER + "/MovieModel.php";
+
+    // Data dari database masuk ke sini sebelum ke MutableLiveData
     ArrayList<Movie> movieList = new ArrayList<>();
 
+    // MutableLiveData untuk semua dan satu movie
     private final MutableLiveData<List<Movie>> allMovies = new MutableLiveData<>();
     private final MutableLiveData<Movie> movieData = new MutableLiveData<>();
 
@@ -35,10 +39,15 @@ public class MovieRepository  {
         this.application = application;
     }
 
+
     public MutableLiveData<List<Movie>> getAllMovies() {
+        // Munculkan loading spinner
         MovieListViewModel.processStarted();
+
+        // Proses standar request dengan Volley
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
             try {
+                // Hilangkan laoding spinner
                 MovieListViewModel.processFinished();
 
                 JSONObject jsonObject = new JSONObject(responses);
@@ -86,6 +95,7 @@ public class MovieRepository  {
         };
 
         Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
+
         return allMovies;
     }
 
@@ -96,8 +106,9 @@ public class MovieRepository  {
                 MovieViewViewModel.processFinished();
 
                 JSONObject jsonObject = new JSONObject(responses);
+
+                // Di getAllMovie, ini jadi Array karena banyak data. Ini jadi Object karena hanya 1.
                 JSONObject data = jsonObject.getJSONObject("data");
-//                Log.d("TAG", "data length: " + jsonArray.length());
 
                 Movie movie;
 

@@ -24,6 +24,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     private List<Movie> movieList = new ArrayList<>();
     public MovieListAdapter() { }
 
+    // Inflate (munculkan) masing-masing card untuk setiap movie.
     @NonNull
     @Override
     public MovieListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,9 +33,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
         return new ViewHolder(view);
     }
 
+    // Setting teks di setiap card movie yang diinflate.
     @Override
     public void onBindViewHolder(@NonNull MovieListAdapter.ViewHolder holder, int position) {
 
+        // Setiap card movie yang diinflate diberikan onClickListener dengan argument movieList.get(Position).getId()
         holder.itemView.setOnClickListener(v -> {
             NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieViewFragment(movieList.get(position).getId());
             Navigation.findNavController(holder.itemView).navigate(action);
@@ -53,6 +56,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
         return movieList.size();
     }
 
+    // Set movieList yang akan disetting ke card dengan movies dari Fragment
     public void setMovieList(List<Movie> movies) {
         this.movieList = movies;
         notifyDataSetChanged();
