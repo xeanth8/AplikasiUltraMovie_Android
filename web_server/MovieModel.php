@@ -46,7 +46,7 @@
 			}
 			else
 			{
-				$response['error_text'] = "No products found";
+				$response['error_text'] = "No movie found";
 			}
 
 			echo json_encode($response);

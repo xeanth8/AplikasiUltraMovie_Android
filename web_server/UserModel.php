@@ -2,26 +2,34 @@
 
 	include 'DBConfig.php';
 
-	$kd_genre;
-	$nama_genre;
+	$username;
+	$password;
+    $level;
+    $nama;
+    $jenis_kelamin;
+    $asal_negara;
 
-	$table_name = "genre";
+	$table_name = "user";
 	$action  = $_POST['action'];
 
 	if($action != "read" && $action != "find" && $action != "delete")
 	{
-        if(isset($_POST['kd_genre']))
+        if(isset($_POST['username']))
 		{
-			$kd_genre = $_POST['kd_genre'];
+			$username = $_POST['username'];
 		}
-        $nama_genre = $_POST['nama_genre'];
+        $password = $_POST['password'];
+        $level = $_POST['level'];
+        $nama = $_POST['nama'];
+        $jenis_kelamin = $_POST['jenis_kelamin'];
+        $asal_negara = $_POST['asal_negara'];
 	}
 
 	switch ($action) {
 
 		case 'read':
 			
-			$result = get_all_genres($conn);
+			$result = get_all_users($conn);
 
 			if(mysqli_num_rows($result) > 0)
 			{
@@ -36,7 +44,7 @@
 			}
 			else
 			{
-				$response['error_text'] = "No genre found";
+				$response['error_text'] = "No users found";
 			}
 
 			echo json_encode($response);
@@ -47,8 +55,8 @@
 
 		case 'create':
 
-			// Masukkan data genre
-			$result = input_genre($nama_genre, $conn);
+			// Register
+			$result = input_user($username, $password, $level, $nama, $jenis_kelamin, $asal_negara, $conn);
 
 			if($result == 1)
 			{
@@ -67,8 +75,8 @@
 
 		case 'update':
 
-			// Update data genre
-			$result = update_genre($kd_genre, $nama_genre, $conn);
+			// Update data user
+			$result = update_user($username, $password, $level, $nama, $jenis_kelamin, $asal_negara, $conn);
 
 			if($result == 1)
 			{
@@ -86,9 +94,9 @@
 			break;
 
 		case 'delete':
-			$kd_genre = (int)$_POST['kd_genre'];
+			$username = $_POST['username'];
 
-			$result = delete_genre($kd_genre, $conn);
+			$result = delete_user($username, $conn);
 
 			if($result != null)
 			{
@@ -106,9 +114,12 @@
 			break;
 		
 		case 'find':
-			$kd_genre = (int)$_POST['kd_genre'];
+            
+            // Login
+			$username = $_POST['username'];
+            $password = $_POST['password'];
 
-			$result = find_genre($kd_genre, $conn);
+			$result = find_user($username, $password, $conn);
 
 			if($result != null)
 			{
@@ -128,50 +139,50 @@
 			break;
 	}
 
-	function get_all_genres($conn)
+	function get_all_users($conn)
 	{
-		$query = "SELECT * FROM genre";
+		$query = "SELECT * FROM user";
 
 		$result = mysqli_query($conn, $query);
 
 		return $result;
 	}
 
-	function input_genre($nama_genre, $conn)
+	function input_user($username, $password, $level, $nama, $jenis_kelamin, $asal_negara, $conn)
 	{
-		$query = "INSERT INTO genre (nama_genre) VALUES (?)";
+		$query = "INSERT INTO user (username, password, level, nama, jenis_kelamin, asal_negara) VALUES (?, ?, ?, ?, ?, ?)";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("s", $nama_genre);
+		$stmt->bind_param("ssssss", $username, $password, $level, $nama, $jenis_kelamin, $asal_negara);
 		$result = $stmt->execute() or die('Error query: ' . $stmt->error);
 
         return $result;
 	}
 
-	function update_genre($kd_genre, $nama_genre, $conn)
+	function update_user($username, $password, $level, $nama, $jenis_kelamin, $asal_negara, $conn)
 	{
-		$query = "UPDATE genre SET nama_genre = ? WHERE kd_genre = ?";
+		$query = "UPDATE user SET password = ?, level = ?, nama = ?, jenis_kelamin = ?, asal_negara = ? WHERE username = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("sd", $nama_genre, $kd_genre);
+		$stmt->bind_param("ssssss", $password, $level, $nama, $jenis_kelamin, $asal_negara, $username);
 		$result = $stmt->execute() or die('Error query: ' . $stmt->error);
 
 		return $result;
 	}
 
-	function delete_genre($kd_genre, $conn)
+	function delete_user($username, $conn)
 	{
-		$query = "DELETE FROM genre WHERE kd_genre = ?";
+		$query = "DELETE FROM user WHERE username = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("d", $kd_genre);
+		$stmt->bind_param("s", $username);
 		$result = $stmt->execute() or die('Error query: ' . $stmt->error);
 
 		return $result;
 	}
 
-	function find_genre($kd_genre, $conn)
+	function find_user($username, $password, $conn)
 	{
-		$query = "SELECT * FROM genre WHERE kd_genre = ? ";
+		$query = "SELECT * FROM user WHERE username = ? AND password = ?";
 		$stmt = $conn->prepare($query);
-		$stmt->bind_param("d", $kd_genre);
+		$stmt->bind_param("ss", $username, $password);
 		$stmt->execute() or die('Error query: ' . $stmt->error);
 
 		$result = $stmt->get_result()->fetch_assoc();

@@ -40,7 +40,7 @@
 			}
 			else
 			{
-				$response['error_text'] = "No products found";
+				$response['error_text'] = "No writer found";
 			}
 
 			echo json_encode($response);
