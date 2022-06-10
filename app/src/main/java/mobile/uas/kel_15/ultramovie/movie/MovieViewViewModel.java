@@ -22,6 +22,8 @@ public class MovieViewViewModel extends AndroidViewModel {
         repository = new MovieRepository(application);
     }
 
+
+    // Fungsi-fungsi UI
     public LiveData<Movie> getMovie(String movieId) {
         if(_movie == null) _movie = repository.getMovie(movieId);
         return _movie;
@@ -31,6 +33,8 @@ public class MovieViewViewModel extends AndroidViewModel {
         repository.delete(movieId);
     }
 
+
+    // Tidak perlu diubah
     public static void processStarted() {
         isLoading.postValue(false);
     }
