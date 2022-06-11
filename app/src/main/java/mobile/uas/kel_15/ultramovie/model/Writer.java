@@ -46,4 +46,9 @@ public class Writer {
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

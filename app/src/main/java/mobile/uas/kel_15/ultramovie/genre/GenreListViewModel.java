@@ -28,6 +28,7 @@ public class GenreListViewModel extends AndroidViewModel {
         return _allGenres;
     }
 
+
     public static void processStarted() {
         isLoading.postValue(false);
     }

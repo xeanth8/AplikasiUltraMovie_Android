@@ -40,5 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         navigationBarView.setOnItemReselectedListener(item -> {});
+
+        // For user level validation later
+        //        bottomNavigationView.getMenu().findItem(R.id.navigation_bottom_item_writers).setVisible(false);
+
     }
 }

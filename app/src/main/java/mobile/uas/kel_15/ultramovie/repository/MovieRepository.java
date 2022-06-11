@@ -116,6 +116,7 @@ public class MovieRepository  {
 
                 movie.setId(String.valueOf(data.getInt("id_movie")));
                 movie.setTitle(data.getString("nm_movie"));
+                movie.setDirector(data.getString("director"));
 
                 String[] genres =  data.getString("Genres").split(",", -1);
                 movie.setGenres(genres);

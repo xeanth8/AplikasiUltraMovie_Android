@@ -29,7 +29,7 @@
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie.xml" value="0.25" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_add.xml" value="0.234375" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_edit.xml" value="0.22864583333333333" />
-        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_fill.xml" value="0.371875" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_fill.xml" value="0.33" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_list.xml" value="0.27890625" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_list_placeholder.xml" value="0.2630208333333333" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_movie_view.xml" value="0.33" />
@@ -38,9 +38,13 @@
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_writer_list.xml" value="0.371875" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/fragment_writer_list_placeholder.xml" value="0.25052083333333336" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/header_navigation_drawer.xml" value="0.14722222222222223" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/item_drop_down.xml" value="0.22864583333333333" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/movie_fill_auto_fill_row.xml" value="0.2296875" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/layout/movie_fill_genre_auto_fill_row.xml" value="0.33" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.23333333333333334" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/menu/navigation_drawer.xml" value="0.176171875" />
         <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/menu/top_app_bar.xml" value="0.371875" />
+        <entry key="..\:/Kuliah/Semester 6/TIH01 - Pemrograman Mobile/sourcecode/AplikasiUltraMovie_Android/app/src/main/res/xml/standalone_chip.xml" value="0.25052083333333336" />
       </map>
     </option>
   </component>

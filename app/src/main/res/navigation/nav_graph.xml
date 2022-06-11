@@ -33,7 +33,7 @@
         android:label="fragment_movie_view"
         tools:layout="@layout/fragment_movie_view" >
         <argument
-            android:name="movie_id"
+            android:name="movieId"
             app:argType="string" />
         <action
             android:id="@+id/action_movieViewFragment_to_movieFillFragment"
@@ -58,9 +58,31 @@
         android:id="@+id/movieFillFragment"
         android:name="mobile.uas.kel_15.ultramovie.movie.MovieFillFragment"
         android:label="MovieFillFragment" >
+        <argument android:name="movieId"
+            app:argType="string"
+            app:nullable="true" />
         <argument
-            android:name="movieId"
-            app:argType="string" />
+            android:name="movieTitle"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="movieGenre"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="movieWriter"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="movieStar"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument android:name="movieSynopsis"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="movieDirector"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"

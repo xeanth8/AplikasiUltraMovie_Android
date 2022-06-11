@@ -15,14 +15,18 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.model.Movie;
 
 public class MovieViewFragment extends Fragment {
 
@@ -39,6 +43,7 @@ public class MovieViewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Movie movieData = new Movie();
         tvTitle = getActivity().findViewById(R.id.movie_view_title);
         tvWriter = getActivity().findViewById(R.id.movie_view_writer_content);
         tvDirector = getActivity().findViewById(R.id.movie_view_director_content);
@@ -54,6 +59,14 @@ public class MovieViewFragment extends Fragment {
 
         // Observe perubahan data movie
         mViewModel.getMovie(movieId).observe(getViewLifecycleOwner(), movie -> {
+            movieData.setId(movie.getId());
+            movieData.setTitle(movie.getTitle());
+            movieData.setGenres(movie.getGenres());
+            movieData.setWriters(movie.getWriters());
+            movieData.setDirector(movie.getDirector());
+            movieData.setStars(movie.getStars());
+            movieData.setSynopsis(movie.getSynopsis());
+
             tvTitle.setText(movie.getTitle());
 
             String writer = String.join(", ", movie.getWriters());
@@ -78,6 +91,21 @@ public class MovieViewFragment extends Fragment {
             tvSynopsis.setText(movie.getSynopsis());
         });
 
+        FloatingActionButton fabEdit = getView().findViewById(R.id.movie_view_fab_edit);
+        fabEdit.setOnClickListener(v -> {
+            System.out.println("edit");
+            NavDirections action = MovieViewFragmentDirections.actionMovieViewFragmentToMovieFillFragment(
+                    movieData.getId(),
+                    movieData.getTitle(),
+                    movieData.getGenres(),
+                    movieData.getWriters(),
+                    movieData.getStars(),
+                    movieData.getSynopsis(),
+                    movieData.getDirector()
+            );
+            Navigation.findNavController(getView()).navigate(action);
+        });
+
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
             ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.movie_view_shimmer);
@@ -98,8 +126,6 @@ public class MovieViewFragment extends Fragment {
         amDelete.setOnClickListener(v -> {
             mViewModel.delete(movieId);
         });
-
-
     }
 
 }

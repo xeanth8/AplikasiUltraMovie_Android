@@ -62,14 +62,6 @@
 
                     </LinearLayout>
 
-                    <Button
-                        android:layout_width="38dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceBodyMedium"
-                        app:icon="@drawable/ic_baseline_edit_24"
-                        android:layout_gravity="center_vertical"
-                        style="@style/IconOnlyButton" />
-
                 </LinearLayout>
 
                 <com.google.android.material.divider.MaterialDivider
