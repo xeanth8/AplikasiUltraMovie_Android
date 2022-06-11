@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Arrays;
 import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.model.Genre;
@@ -45,10 +46,24 @@ public class MovieFillViewModel extends AndroidViewModel {
     // Fungsi-fungsi UI
     public void update(Movie movie) {
         movieRepository.update(movie);
+        System.out.println(movie.getId());
+        System.out.println(movie.getTitle());
+        System.out.println(Arrays.toString(movie.getWriters()));
+        System.out.println(Arrays.toString(movie.getGenres()));
+        System.out.println(Arrays.toString(movie.getStars()));
+        System.out.println(movie.getDirector());
+        System.out.println(movie.getSynopsis());
     }
 
     public void insert(Movie movie) {
         movieRepository.insert(movie);
+        System.out.println(movie.getId());
+        System.out.println(movie.getTitle());
+        System.out.println(Arrays.toString(movie.getWriters()));
+        System.out.println(Arrays.toString(movie.getGenres()));
+        System.out.println(Arrays.toString(movie.getStars()));
+        System.out.println(movie.getDirector());
+        System.out.println(movie.getSynopsis());
     }
 
     // Tidak perlu diubah

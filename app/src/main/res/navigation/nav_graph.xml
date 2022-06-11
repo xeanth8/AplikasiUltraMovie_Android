@@ -43,6 +43,15 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/movieViewFragment" />
+        <action
+            android:id="@+id/action_movieViewFragment_to_movieListFragment"
+            app:destination="@id/movieListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/movieListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/genreListFragment"
@@ -92,6 +101,15 @@
             android:name="movieDirector"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_movieFillFragment_to_movieListFragment"
+            app:destination="@id/movieListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/movieListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"

@@ -2,10 +2,13 @@ package mobile.uas.kel_15.ultramovie.repository;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -19,7 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import mobile.uas.kel_15.ultramovie.AppConfig;
+import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Movie;
+import mobile.uas.kel_15.ultramovie.movie.MovieFillViewModel;
 import mobile.uas.kel_15.ultramovie.movie.MovieListViewModel;
 import mobile.uas.kel_15.ultramovie.movie.MovieViewViewModel;
 
@@ -66,7 +71,7 @@ public class MovieRepository  {
                     movie.setTitle(item.getString("nm_movie"));
                     movie.setDirector(item.getString("director"));
 
-                    String[] genres =  item.getString("Genres").split(",", -1);
+                    String[] genres = item.getString("Genres").split(",", -1);
                     movie.setGenres(genres);
 
                     String[] writers = item.getString("Writers").split(",", -1);
@@ -84,7 +89,9 @@ public class MovieRepository  {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, Throwable::printStackTrace) {
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -133,7 +140,9 @@ public class MovieRepository  {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, Throwable::printStackTrace) {
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -150,15 +159,77 @@ public class MovieRepository  {
     }
 
     public void insert(Movie movie) {
-        // TODO: Implement insert function
+        MovieFillViewModel.processStarted();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            MovieFillViewModel.processFinished();
+
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "create");
+                params.put("nm_movie", movie.getTitle());
+                params.put("genres", String.join(",", movie.getGenres()));
+                params.put("writers", String.join(",", movie.getWriters()));
+                params.put("director", movie.getDirector());
+                params.put("stars", String.join(",", movie.getStars()));
+                params.put("sinopsis", movie.getSynopsis());
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 
     public void update(Movie movie) {
-        // TODO: Implement update function
+        MovieFillViewModel.processStarted();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            MovieFillViewModel.processFinished();
+
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "update");
+                params.put("id_movie", movie.getId());
+                params.put("nm_movie", movie.getTitle());
+                params.put("genres", String.join(",", movie.getGenres()));
+                params.put("writers", String.join(",", movie.getWriters()));
+                params.put("director", movie.getDirector());
+                params.put("stars", String.join(",", movie.getStars()));
+                params.put("sinopsis", movie.getSynopsis());
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 
     public void delete(String movieId) {
-        // TODO: implement delete function
+        MovieViewViewModel.processStarted();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            MovieViewViewModel.processFinished();
+
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "delete");
+                params.put("id_movie", movieId);
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 }
 

@@ -1,5 +1,7 @@
 package mobile.uas.kel_15.ultramovie.movie;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -114,17 +116,38 @@ public class MovieViewFragment extends Fragment {
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {
                     nestedScrollView.setVisibility(View.VISIBLE);
+                    fabEdit.setVisibility(View.VISIBLE);
                     shimmerFrameLayout.setVisibility(View.GONE);
                 } else {
                    nestedScrollView.setVisibility(View.GONE);
+                   fabEdit.setVisibility(View.GONE);
                    shimmerFrameLayout.setVisibility(View.VISIBLE);
                 }
             }
         });
 
-        ActionMenuItemView amDelete = getActivity().findViewById(R.id.app_bar_item_delete);
+        ActionMenuItemView amDelete = getView().findViewById(R.id.app_bar_item_delete);
         amDelete.setOnClickListener(v -> {
-            mViewModel.delete(movieId);
+            new AlertDialog.Builder(getActivity())
+                    .setMessage("Do you want to delete this movie?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    mViewModel.delete(movieId);
+
+                                    getView().findViewById(R.id.movie_view_progress_bar).setVisibility(View.VISIBLE);
+                                    mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+                                        if (isFinishedLoading) {
+                                            getView().findViewById(R.id.movie_view_progress_bar).setVisibility(View.GONE);
+                                            NavDirections action = MovieViewFragmentDirections.actionMovieViewFragmentToMovieListFragment();
+                                            Navigation.findNavController(getView()).navigate(action);
+                                        }
+                                    });
+                                }
+                            })
+                            .setNegativeButton("No", (dialog1, which) -> {})
+                    .create().show();
+            System.out.println("Delete pressed");
         });
     }
 

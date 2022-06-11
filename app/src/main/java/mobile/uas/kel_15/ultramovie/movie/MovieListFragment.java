@@ -49,11 +49,18 @@ public class MovieListFragment extends Fragment {
         // Observe perubahan data-data movie dan berikan data movienya ke Adapter
         mViewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::setMovieList);
 
-//        FloatingActionButton fab;
-//        fab = getActivity().findViewById(R.id.movie_fab_add).setOnClickListener(v -> {
-//            NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieFillFragment(null);
-////            Navigation.findNavController().navigate(action);
-//        });
+        getView().findViewById(R.id.movie_fab_add).setOnClickListener(v -> {
+            NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieFillFragment(
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                    );
+            Navigation.findNavController(getView()).navigate(action);
+        });
 
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
