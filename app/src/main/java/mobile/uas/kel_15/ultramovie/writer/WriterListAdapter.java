@@ -38,10 +38,11 @@ public class WriterListAdapter extends RecyclerView.Adapter<WriterListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull WriterListAdapter.ViewHolder holder, int position) {
 
-//        holder.itemView.setOnClickListener(v -> {
-////            NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieViewFragment(genreList.get(position).getId());
-////            Navigation.findNavController(holder.itemView).navigate(action);
-//        });
+        holder.itemView.setOnClickListener(v -> {
+
+            NavDirections action = WriterListFragmentDirections.actionWriterListFragmentToWriterViewFragment(writerList.get(position).getId());
+            Navigation.findNavController(holder.itemView).navigate(action);
+        });
 
         holder.getName().setText(writerList.get(position).getName());
     }

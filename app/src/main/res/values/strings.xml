@@ -31,6 +31,10 @@
 
     <string name="movie_fill_app_title_edit">Edit Movie</string>
 
+    <string name="writer_view_email_label">Email</string>
+    <string name="writer_view_phone_label">Phone</string>
+    <string name="writer_view_movies_label">Movies</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>

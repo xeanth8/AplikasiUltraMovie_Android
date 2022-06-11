@@ -53,7 +53,16 @@
         android:id="@+id/writerListFragment"
         android:name="mobile.uas.kel_15.ultramovie.writer.WriterListFragment"
         android:label="fragment_writer_list"
-        tools:layout="@layout/fragment_writer_list" />
+        tools:layout="@layout/fragment_writer_list" >
+        <action
+            android:id="@+id/action_writerListFragment_to_writerViewFragment"
+            app:destination="@id/writerViewFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/writerListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieFillFragment"
         android:name="mobile.uas.kel_15.ultramovie.movie.MovieFillFragment"
@@ -89,4 +98,13 @@
         android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
         android:label="fragment_more"
         tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/writerViewFragment"
+        android:name="mobile.uas.kel_15.ultramovie.writer.WriterViewFragment"
+        android:label="fragment_writer_view"
+        tools:layout="@layout/fragment_writer_view" >
+        <argument
+            android:name="writerId"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -6,6 +6,8 @@ public class Writer {
     private String email;
     private String telepon;
 
+    private String[] movies;
+
     public Writer() {    }
 
     public Writer(String id, String name, String email, String telepon) {
@@ -46,6 +48,10 @@ public class Writer {
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
+
+    public String[] getMovies() { return movies; }
+
+    public void setMovies(String[] movies) { this.movies = movies; }
 
     @Override
     public String toString() {

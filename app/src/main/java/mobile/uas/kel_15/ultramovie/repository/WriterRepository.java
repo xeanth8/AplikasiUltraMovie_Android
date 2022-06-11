@@ -21,8 +21,11 @@ import java.util.Map;
 import mobile.uas.kel_15.ultramovie.AppConfig;
 import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
 import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.model.Writer;
+import mobile.uas.kel_15.ultramovie.movie.MovieViewViewModel;
 import mobile.uas.kel_15.ultramovie.writer.WriterListViewModel;
+import mobile.uas.kel_15.ultramovie.writer.WriterViewViewModel;
 
 public class WriterRepository  {
     Application application;
@@ -81,8 +84,50 @@ public class WriterRepository  {
     }
 
     public MutableLiveData<Writer> getWriter(String id) {
-        // TODO: Implement get function
-        return null;
+
+        WriterViewViewModel.processStarted();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            try{
+                WriterViewViewModel.processFinished();
+
+                JSONObject jsonObject = new JSONObject(responses);
+
+                // Di getAllWriter, ini jadi Array karena banyak data. Ini jadi Object karena hanya 1.
+                JSONObject data = jsonObject.getJSONObject("data");
+
+                Writer writer;
+
+                // Log.d("Data:", String.valueOf(data));
+
+                writer = new Writer();
+
+                writer.setId(String.valueOf(data.getInt("kd_writer")));
+                writer.setName(data.getString("nm_writer"));
+                writer.setEmail(data.getString("email"));
+                writer.setTelepon(data.getString("telepon"));
+
+                String[] movies =  data.getString("movies").split(",", -1);
+                writer.setMovies(movies);
+
+                writerData.postValue(writer);
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+        }, Throwable::printStackTrace) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "find");
+                params.put("kd_writer", id);
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
+
+        return writerData;
     }
 
     public void insert(Writer writer) {
