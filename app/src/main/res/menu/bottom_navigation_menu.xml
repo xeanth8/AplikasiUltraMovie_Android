@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_bottom_item_movies"
+        android:id="@+id/movieListFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_movie_24"
         android:title="@string/navigation_item_movies"/>
     <item
-        android:id="@+id/navigation_bottom_item_genres"
+        android:id="@+id/genreListFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_view_list_24"
         android:title="@string/navigation_item_genres"/>
     <item
-        android:id="@+id/navigation_bottom_item_writers"
+        android:id="@+id/writerListFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/navigation_item_writers"/>
     <item
-        android:id="@+id/navigation_bottom_item_more"
+        android:id="@+id/moreFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_more_horiz_24"
         android:title="@string/navigation_item_more"/>

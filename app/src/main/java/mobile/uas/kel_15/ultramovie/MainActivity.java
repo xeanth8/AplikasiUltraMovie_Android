@@ -6,6 +6,8 @@ import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavControlle
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
@@ -24,21 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigationBarView;
         navigationBarView = findViewById(R.id.bottom_navigation_view);
-        navigationBarView.setOnItemSelectedListener(item -> {
-                    int id = item.getItemId();
-                    if (id == R.id.navigation_bottom_item_movies) {
-                        navController.navigate(R.id.movieListFragment);
-                    } else if (id == R.id.navigation_bottom_item_genres) {
-                        navController.navigate(R.id.genreListFragment);
-                    } else if (id == R.id.navigation_bottom_item_writers) {
-                        navController.navigate(R.id.writerListFragment);
-                    } else if (id == R.id.navigation_bottom_item_more) {
-                        navController.navigate(R.id.moreFragment);
-                    }
+        NavigationUI.setupWithNavController(navigationBarView, navController);
 
-                    return true;
-                }
-        );
         navigationBarView.setOnItemReselectedListener(item -> {});
 
         // For user level validation later
