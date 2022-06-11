@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -24,6 +25,7 @@ import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.model.Writer;
 import mobile.uas.kel_15.ultramovie.movie.MovieViewViewModel;
+import mobile.uas.kel_15.ultramovie.writer.WriterFillViewModel;
 import mobile.uas.kel_15.ultramovie.writer.WriterListViewModel;
 import mobile.uas.kel_15.ultramovie.writer.WriterViewViewModel;
 
@@ -131,7 +133,34 @@ public class WriterRepository  {
     }
 
     public void insert(Writer writer) {
-        // TODO: Implement insert function
+        WriterFillViewModel.processStarted();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            try{
+                WriterFillViewModel.processFinished();
+
+                JSONObject jsonObject = new JSONObject(responses);
+
+                JSONObject error_text = jsonObject.getJSONObject("error_text");
+
+                writerData.postValue(writer);
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+        }, Throwable::printStackTrace) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "create");
+                params.put("nm_writer", "nm_writer");
+                params.put("email", "email");
+                params.put("telepon", "telepon");
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 
     public void delete(String writerId) {

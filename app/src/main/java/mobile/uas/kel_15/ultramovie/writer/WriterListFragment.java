@@ -10,12 +10,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.movie.MovieViewFragmentDirections;
 
 public class WriterListFragment extends Fragment {
 
@@ -40,6 +44,14 @@ public class WriterListFragment extends Fragment {
 
         // Observe perubahan data-data writer
         mViewModel.getAllWriters().observe(getViewLifecycleOwner(), adapter::setWriterList);
+
+        // Action untuk tambah data baru
+        FloatingActionButton fabEdit = getView().findViewById(R.id.writer_fab_add);
+        fabEdit.setOnClickListener(v -> {
+            System.out.println("add");
+            NavDirections action = WriterListFragmentDirections.actionWriterListFragmentToWriterFillFragment();
+            Navigation.findNavController(getView()).navigate(action);
+        });
 
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
