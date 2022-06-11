@@ -23,6 +23,7 @@ import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.model.Writer;
 import mobile.uas.kel_15.ultramovie.writer.WriterListViewModel;
+import mobile.uas.kel_15.ultramovie.writer.WriterViewViewModel;
 
 public class WriterRepository  {
     Application application;
@@ -81,7 +82,7 @@ public class WriterRepository  {
     }
 
     public MutableLiveData<Writer> getWriter(String id) {
-        // TODO: Implement get function
+        WriterViewViewModel.processStarted();
         return null;
     }
 
