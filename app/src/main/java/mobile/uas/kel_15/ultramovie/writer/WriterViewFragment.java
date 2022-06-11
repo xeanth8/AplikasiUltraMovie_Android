@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,8 @@ public class WriterViewFragment extends Fragment {
 
         // Ambil safeargs dari Fragment WriterList
         String writerId = WriterViewFragmentArgs.fromBundle(getArguments()).getWriterId();
+
+//      Log.d("Test", writerId);
 
         // Observe perubahan data movie
         wViewModel.getWriter(writerId).observe(getViewLifecycleOwner(), writer -> {

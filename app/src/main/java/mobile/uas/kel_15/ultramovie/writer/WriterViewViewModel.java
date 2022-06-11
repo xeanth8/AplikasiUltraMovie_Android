@@ -1,6 +1,7 @@
 package mobile.uas.kel_15.ultramovie.writer;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -25,7 +26,8 @@ public class WriterViewViewModel extends AndroidViewModel {
 
     // Fungsi-fungsi UI
     public LiveData<Writer> getWriter(String writerId) {
-        if(_writer== null) _writer = repository.getWriter(writerId);
+
+        if(_writer == null) _writer = repository.getWriter(writerId);
         return _writer;
     }
 

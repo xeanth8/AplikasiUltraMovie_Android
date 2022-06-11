@@ -84,6 +84,7 @@ public class WriterRepository  {
     }
 
     public MutableLiveData<Writer> getWriter(String id) {
+
         WriterViewViewModel.processStarted();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
@@ -97,11 +98,14 @@ public class WriterRepository  {
 
                 Writer writer;
 
+                // Log.d("Data:", String.valueOf(data));
+
                 writer = new Writer();
 
                 writer.setId(String.valueOf(data.getInt("kd_writer")));
                 writer.setName(data.getString("nm_writer"));
                 writer.setEmail(data.getString("email"));
+                writer.setTelepon(data.getString("telepon"));
 
                 String[] movies =  data.getString("movies").split(",", -1);
                 writer.setMovies(movies);
