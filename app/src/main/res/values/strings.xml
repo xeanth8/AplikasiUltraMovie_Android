@@ -16,6 +16,7 @@
 
     <string name="fab_desc_add">Add</string>
     <string name="fab_desc_edit">Edit</string>
+    <string name="fab_desc_submit">Submit</string>
 
     <string name="card_genre_name_placeholder">Genre</string>
     <string name="card_movie_title_placeholder">Title</string>
@@ -28,6 +29,8 @@
     <string name="movie_view_star_label">Starring</string>
     <string name="movie_view_synopsis_label">Synopsis</string>
 
+    <string name="movie_fill_app_title_edit">Edit Movie</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -37,5 +40,10 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <string name="movie_fill_error_title_empty">Title is required.</string>
+    <string name="movie_fill_error_genre_empty">A minimum of one genre is required.</string>
+    <string name="movie_fill_error_writer_empty">A minimum of one writer is required.</string>
+    <string name="app_server_error">Failed to connect to the server. Please try again later.</string>
+    <string name="movie_fill_app_title_add">Add Movie</string>
 
 </resources>
