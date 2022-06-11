@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -129,8 +127,8 @@ public class MovieViewFragment extends Fragment {
         ActionMenuItemView amDelete = getView().findViewById(R.id.app_bar_item_delete);
         amDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(getActivity())
-                    .setMessage("Do you want to delete this movie?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setMessage(R.string.movie_view_message_delete)
+                            .setPositiveButton(R.string.dialog_button_yes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     mViewModel.delete(movieId);
@@ -145,9 +143,8 @@ public class MovieViewFragment extends Fragment {
                                     });
                                 }
                             })
-                            .setNegativeButton("No", (dialog1, which) -> {})
+                            .setNegativeButton(R.string.dialog_button_no, (dialog1, which) -> {})
                     .create().show();
-            System.out.println("Delete pressed");
         });
     }
 
