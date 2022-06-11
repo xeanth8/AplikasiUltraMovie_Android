@@ -71,6 +71,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/writerListFragment" />
+        <action
+            android:id="@+id/action_writerListFragment_to_writerFillFragment"
+            app:destination="@id/writerFillFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/writerListFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFillFragment"
@@ -125,4 +133,9 @@
             android:name="writerId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/writerFillFragment"
+        android:name="mobile.uas.kel_15.ultramovie.writer.WriterFillFragment"
+        android:label="fragment_writer_fill"
+        tools:layout="@layout/fragment_writer_fill" />
 </navigation>

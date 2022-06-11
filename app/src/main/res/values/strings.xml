@@ -35,6 +35,8 @@
     <string name="writer_view_phone_label">Phone</string>
     <string name="writer_view_movies_label">Movies</string>
 
+    <string name="writer_fill_name_label">Writer\'s Name</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>

@@ -72,6 +72,7 @@ public class WriterViewFragment extends Fragment {
                     Arrays.stream(writer.getMovies())
                             .map(String::trim)
                             .toArray(String[]::new));
+
             tvMovies.setText(movies);
 
         });
