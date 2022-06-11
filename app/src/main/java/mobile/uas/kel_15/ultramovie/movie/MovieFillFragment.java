@@ -46,6 +46,11 @@ public class MovieFillFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        MaterialToolbar toolbar = getView().findViewById(R.id.movie_fill_app_bar);
+        toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(getView()).popBackStack();
+        });
+
         movie = new Movie();
 
         genres = new ArrayList<>();
@@ -68,14 +73,13 @@ public class MovieFillFragment extends Fragment {
         mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieFillViewModel.class);
 
         // Set judul sesuai aksi
-        MaterialToolbar materialToolbar = getView().findViewById(R.id.movie_fill_app_bar);
         if (MovieFillFragmentArgs.fromBundle(getArguments()).getMovieId() != null) {
-            materialToolbar.setTitle(R.string.movie_fill_app_title_edit);
+            toolbar.setTitle(R.string.movie_fill_app_title_edit);
 
             // Isi EditText sesuai data jika aksi edit
             populate();
         } else {
-            materialToolbar.setTitle(R.string.movie_fill_app_title_add);
+            toolbar.setTitle(R.string.movie_fill_app_title_add);
         }
 
         // Adapter untuk dropdown genre

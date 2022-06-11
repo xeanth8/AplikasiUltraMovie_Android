@@ -19,6 +19,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,6 +43,11 @@ public class MovieViewFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        MaterialToolbar toolbar = getView().findViewById(R.id.movie_view_app_bar);
+        toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(getView()).popBackStack();
+        });
 
         Movie movieData = new Movie();
         tvTitle = getActivity().findViewById(R.id.movie_view_title);

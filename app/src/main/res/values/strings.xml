@@ -46,6 +46,7 @@
     <string name="movie_fill_error_title_empty">Title is required.</string>
     <string name="movie_fill_error_genre_empty">A minimum of one genre is required.</string>
     <string name="movie_fill_error_writer_empty">A minimum of one writer is required.</string>
+
     <string name="app_server_error">Failed to connect to the server. Please try again later.</string>
 
 
