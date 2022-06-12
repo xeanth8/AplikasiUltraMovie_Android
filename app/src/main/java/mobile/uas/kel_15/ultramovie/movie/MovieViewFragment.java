@@ -1,6 +1,5 @@
 package mobile.uas.kel_15.ultramovie.movie;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,6 +21,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
@@ -132,9 +132,10 @@ public class MovieViewFragment extends Fragment {
 
         ActionMenuItemView amDelete = getView().findViewById(R.id.app_bar_item_delete);
         amDelete.setOnClickListener(v -> {
-            new AlertDialog.Builder(getActivity())
-                    .setMessage(R.string.movie_view_message_delete)
-                            .setPositiveButton(R.string.dialog_button_yes, new DialogInterface.OnClickListener() {
+            new MaterialAlertDialogBuilder(getActivity())
+                    .setTitle(R.string.movie_view_delete_title)
+                    .setMessage(R.string.movie_view_title_message)
+                            .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     mViewModel.delete(movieId);
@@ -149,7 +150,7 @@ public class MovieViewFragment extends Fragment {
                                     });
                                 }
                             })
-                            .setNegativeButton(R.string.dialog_button_no, (dialog1, which) -> {})
+                            .setNegativeButton(R.string.dialog_button_cancel, (dialog1, which) -> {})
                     .create().show();
         });
     }

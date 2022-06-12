@@ -38,10 +38,13 @@
 
     <string name="writer_fill_name_label">Writer\'s Name</string>
 
-    <string name="movie_view_message_delete">Do you want to delete this movie?</string>
+    <string name="movie_view_delete_title">Delete this movie?</string>
+    <string name="movie_view_title_message">Deleted movies will be removed permanently and cannot be recovered.</string>
 
     <string name="dialog_button_yes">Yes</string>
     <string name="dialog_button_no">No</string>
+    <string name="dialog_button_delete">Delete</string>
+    <string name="dialog_button_cancel">Cancel</string>
 
     <string name="movie_fill_error_title_empty">Title is required.</string>
     <string name="movie_fill_error_genre_empty">A minimum of one genre is required.</string>
