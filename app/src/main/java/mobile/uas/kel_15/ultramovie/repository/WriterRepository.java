@@ -2,6 +2,7 @@ package mobile.uas.kel_15.ultramovie.repository;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import mobile.uas.kel_15.ultramovie.AppConfig;
+import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.model.Movie;
@@ -71,7 +73,9 @@ public class WriterRepository  {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, Throwable::printStackTrace) {
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -116,7 +120,9 @@ public class WriterRepository  {
             } catch (JSONException e){
                 e.printStackTrace();
             }
-        }, Throwable::printStackTrace) {
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -136,25 +142,18 @@ public class WriterRepository  {
         WriterFillViewModel.processStarted();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
-            try{
-                WriterFillViewModel.processFinished();
+            WriterFillViewModel.processFinished();
 
-                JSONObject jsonObject = new JSONObject(responses);
-
-                JSONObject error_text = jsonObject.getJSONObject("error_text");
-
-                writerData.postValue(writer);
-            } catch (JSONException e){
-                e.printStackTrace();
-            }
-        }, Throwable::printStackTrace) {
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("action", "create");
-                params.put("nm_writer", "nm_writer");
-                params.put("email", "email");
-                params.put("telepon", "telepon");
+                params.put("nm_writer", writer.getName());
+                params.put("email", writer.getEmail());
+                params.put("telepon", writer.getTelepon());
 
                 return params;
             }
@@ -164,7 +163,25 @@ public class WriterRepository  {
     }
 
     public void delete(String writerId) {
-        // TODO: implement delete function
+        WriterFillViewModel.processStarted();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            WriterFillViewModel.processFinished();
+
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "delete");
+                params.put("kd_writer", writerId);
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 }
 
