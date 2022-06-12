@@ -1,21 +1,19 @@
 package mobile.uas.kel_15.ultramovie.writer;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.movie.MovieViewFragmentDirections;
 
 public class WriterFillFragment extends Fragment {
 
@@ -29,6 +27,12 @@ public class WriterFillFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Kode untuk back
+        MaterialToolbar toolbar = getView().findViewById(R.id.writer_fill_app_bar);
+        toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(getView()).popBackStack();
+        });
 
         FloatingActionButton fabSave = getView().findViewById(R.id.writer_fill_fab_save);
         fabSave.setOnClickListener(v -> {

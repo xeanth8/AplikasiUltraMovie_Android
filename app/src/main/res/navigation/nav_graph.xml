@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
-        android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
+        android:name="mobile.uas.kel_15.ultramovie.misc.MoreFragment"
         android:label="fragment_more"
         tools:layout="@layout/fragment_more" >
         <action
@@ -148,7 +148,7 @@
         tools:layout="@layout/fragment_writer_fill" />
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="mobile.uas.kel_15.ultramovie.AboutUsFragment"
+        android:name="mobile.uas.kel_15.ultramovie.misc.AboutUsFragment"
         android:label="fragment_about_us"
         tools:layout="@layout/fragment_about_us" />
 </navigation>

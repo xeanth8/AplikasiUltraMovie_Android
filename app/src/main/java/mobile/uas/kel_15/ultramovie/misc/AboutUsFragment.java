@@ -1,4 +1,4 @@
-package mobile.uas.kel_15.ultramovie;
+package mobile.uas.kel_15.ultramovie.misc;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import mobile.uas.kel_15.ultramovie.R;
 
 public class AboutUsFragment extends Fragment {
 
