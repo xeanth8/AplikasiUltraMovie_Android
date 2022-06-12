@@ -38,6 +38,9 @@
 
     <string name="writer_fill_name_label">Writer\'s Name</string>
 
+    <string name="writer_view_delete_title">Delete this writer?</string>
+    <string name="writer_view_delete_message">Deleted writer will be removed permanently and cannot be recovered</string>
+
     <string name="movie_view_delete_title">Delete this movie?</string>
     <string name="movie_view_title_message">Deleted movies will be removed permanently and cannot be recovered.</string>
 

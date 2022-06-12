@@ -63,10 +63,18 @@ public class WriterFillFragment extends Fragment {
                 {
                     if(!(etPhone.getText().toString().matches("")))
                     {
+                        writer.setName(etName.getText().toString());
+                        writer.setEmail(etEmail.getText().toString());
+                        writer.setTelepon(etPhone.getText().toString());
+
+                        wViewModel.insert(writer);
+
+                        getView().findViewById(R.id.writer_fill_progress_bar).setVisibility(View.VISIBLE);
+
                         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
                             if (isFinishedLoading) {
                                 getView().findViewById(R.id.writer_fill_progress_bar).setVisibility(View.GONE);
-                                NavDirections action = MovieFillFragmentDirections.actionMovieFillFragmentToMovieListFragment();
+                                NavDirections action = WriterFillFragmentDirections.actionWriterFillFragmentToWriterListFragment();
                                 Navigation.findNavController(getView()).navigate(action);
                             }
                         });

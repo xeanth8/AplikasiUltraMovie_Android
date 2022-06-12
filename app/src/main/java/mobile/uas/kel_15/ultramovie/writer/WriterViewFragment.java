@@ -1,5 +1,6 @@
 package mobile.uas.kel_15.ultramovie.writer;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -20,11 +22,13 @@ import android.widget.TextView;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Writer;
+import mobile.uas.kel_15.ultramovie.movie.MovieViewFragmentDirections;
 import mobile.uas.kel_15.ultramovie.writer.WriterViewFragmentArgs;
 import mobile.uas.kel_15.ultramovie.writer.WriterViewViewModel;
 
@@ -103,7 +107,26 @@ public class WriterViewFragment extends Fragment {
 
         ActionMenuItemView amDelete = getActivity().findViewById(R.id.app_bar_item_delete);
         amDelete.setOnClickListener(v -> {
-            wViewModel.delete(writerId);
+            new MaterialAlertDialogBuilder(getActivity())
+                    .setTitle(R.string.writer_view_delete_title)
+                    .setMessage(R.string.writer_view_delete_title)
+                    .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            wViewModel.delete(writerId);
+
+                            getView().findViewById(R.id.writer_view_progress_bar).setVisibility(View.VISIBLE);
+                            wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+                                if (isFinishedLoading) {
+                                    getView().findViewById(R.id.writer_view_progress_bar).setVisibility(View.GONE);
+                                    NavDirections action = WriterViewFragmentDirections.actionWriterViewFragmentToWriterListFragment();
+                                    Navigation.findNavController(getView()).navigate(action);
+                                }
+                            });
+                        }
+                    })
+                    .setNegativeButton(R.string.dialog_button_cancel, (dialog1, which) -> {})
+                    .create().show();
         });
 
     }

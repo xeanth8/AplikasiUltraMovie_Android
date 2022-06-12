@@ -144,6 +144,15 @@
         <argument
             android:name="writerId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_writerViewFragment_to_writerListFragment"
+            app:destination="@id/writerListFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/writerListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/writerFillFragment"
