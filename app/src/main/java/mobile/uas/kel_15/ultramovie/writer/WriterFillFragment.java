@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -19,6 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Writer;
+import mobile.uas.kel_15.ultramovie.movie.MovieFillFragmentDirections;
 import mobile.uas.kel_15.ultramovie.movie.MovieFillViewModel;
 
 public class WriterFillFragment extends Fragment {
@@ -61,7 +63,13 @@ public class WriterFillFragment extends Fragment {
                 {
                     if(!(etPhone.getText().toString().matches("")))
                     {
-
+                        wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+                            if (isFinishedLoading) {
+                                getView().findViewById(R.id.writer_fill_progress_bar).setVisibility(View.GONE);
+                                NavDirections action = MovieFillFragmentDirections.actionMovieFillFragmentToMovieListFragment();
+                                Navigation.findNavController(getView()).navigate(action);
+                            }
+                        });
                     }
                     else
                     {
