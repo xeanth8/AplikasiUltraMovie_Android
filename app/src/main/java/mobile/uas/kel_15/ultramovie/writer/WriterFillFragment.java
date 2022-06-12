@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import mobile.uas.kel_15.ultramovie.R;
@@ -29,6 +30,12 @@ public class WriterFillFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Kode untuk back
+        MaterialToolbar toolbar = getView().findViewById(R.id.writer_fill_app_bar);
+        toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(getView()).popBackStack();
+        });
 
         FloatingActionButton fabSave = getView().findViewById(R.id.writer_fill_fab_save);
         fabSave.setOnClickListener(v -> {

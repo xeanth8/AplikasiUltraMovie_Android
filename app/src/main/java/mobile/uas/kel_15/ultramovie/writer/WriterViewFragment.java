@@ -9,6 +9,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 
 import java.util.Arrays;
@@ -39,6 +41,12 @@ public class WriterViewFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Kode untuk back
+        MaterialToolbar toolbar = getView().findViewById(R.id.writer_view_app_bar);
+        toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(getView()).popBackStack();
+        });
 
         Writer writerData = new Writer();
         tvName = getActivity().findViewById(R.id.writer_view_name);
