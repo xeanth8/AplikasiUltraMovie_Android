@@ -1,15 +1,14 @@
 package mobile.uas.kel_15.ultramovie;
 
-import static androidx.navigation.ui.NavigationUI.navigateUp;
-import static androidx.navigation.ui.NavigationUI.setupActionBarWithNavController;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewKt;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,10 +27,21 @@ public class MainActivity extends AppCompatActivity {
         navigationBarView = findViewById(R.id.bottom_navigation_view);
         NavigationUI.setupWithNavController(navigationBarView, navController);
 
-        navigationBarView.setOnItemReselectedListener(item -> {});
+        navigationBarView.setOnItemReselectedListener(item -> {
+            navController.popBackStack(item.getItemId(),false);
+        });
+
+
+        // Hide bottom navigation view ketika keyboard muncul
+        // Ini menyebabkan status bar jadi putih, masih mencari solusi
+        ViewCompat.setOnApplyWindowInsetsListener(navigationBarView.getRootView(), (v, insets) -> {
+            boolean imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime());
+            ViewKt.setVisible(navigationBarView, !imeVisible);
+            return insets;
+        });
 
         // For user level validation later
-        //        bottomNavigationView.getMenu().findItem(R.id.navigation_bottom_item_writers).setVisible(false);
+        //        botto mNavigationView.getMenu().findItem(R.id.navigation_bottom_item_writers).setVisible(false);
 
     }
 }
