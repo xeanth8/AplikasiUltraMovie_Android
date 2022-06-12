@@ -123,7 +123,15 @@
         android:id="@+id/moreFragment"
         android:name="mobile.uas.kel_15.ultramovie.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/writerViewFragment"
         android:name="mobile.uas.kel_15.ultramovie.writer.WriterViewFragment"
@@ -138,4 +146,9 @@
         android:name="mobile.uas.kel_15.ultramovie.writer.WriterFillFragment"
         android:label="fragment_writer_fill"
         tools:layout="@layout/fragment_writer_fill" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="mobile.uas.kel_15.ultramovie.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
 </navigation>
