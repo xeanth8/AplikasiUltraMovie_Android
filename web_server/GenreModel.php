@@ -36,7 +36,7 @@
 			}
 			else
 			{
-				$response['error_text'] = "No genre found";
+				$response['error_text'] = "No genres found";
 			}
 
 			echo json_encode($response);
@@ -169,7 +169,7 @@
 
 	function find_genre($kd_genre, $conn)
 	{
-		$query = "SELECT * FROM genre WHERE kd_genre = ? ";
+		$query = "SELECT g.kd_genre, g.nama_genre, (SELECT GROUP_CONCAT(m.nm_movie ORDER BY m.nm_movie) as Movie FROM movie_has_genre mhg JOIN movie m on mhg.id_movie = m.id_movie WHERE mhg.kd_genre = g.kd_genre) as 'movies' FROM genre g WHERE g.kd_genre = ? ";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("d", $kd_genre);
 		$stmt->execute() or die('Error query: ' . $stmt->error);
