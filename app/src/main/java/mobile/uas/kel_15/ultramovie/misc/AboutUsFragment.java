@@ -3,6 +3,8 @@ package mobile.uas.kel_15.ultramovie.misc;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.writer.WriterListAdapter;
@@ -38,36 +44,63 @@ public class AboutUsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        String mailTitle = "Butuh Bantuan | Aplikasi Ultra Movie";
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(AboutUsViewModel.class);
-        MaterialToolbar toolbar = getView().findViewById(R.id.contact_list);
-        toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(getView()).popBackStack();
+        MaterialCardView contactfendy = getView().findViewById(R.id.contact_fendy);
+        contactfendy.setOnClickListener(v -> {
+            String[] mail = {"s31190038@student.ubm.ac.id"};
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, mail);
+            intent.putExtra(Intent.EXTRA_SUBJECT, mailTitle);
+            startActivity(intent);
         });
 
-        findViewById(R.id.contact_fendy).setOnClickListener{
-            String[] mail = {"s31190038@student.ubm.ac.id"};
-        };
-
-        findViewById(R.id.contact_johanes).setOnClickListener{
+        MaterialCardView contactjohanes = getView().findViewById(R.id.contact_johanes);
+        contactjohanes.setOnClickListener(v -> {
             String[] mail = {"s31190042@student.ubm.ac.id"};
-        };
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, mail);
+            intent.putExtra(Intent.EXTRA_SUBJECT, mailTitle);
+            startActivity(intent);
+        });
 
-        findViewById(R.id.contact_kosasi).setOnClickListener{
+        MaterialCardView contactkosasi = getView().findViewById(R.id.contact_kosasi);
+        contactkosasi.setOnClickListener(v -> {
             String[] mail = {"s31190050@student.ubm.ac.id"};
-        };
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, mail);
+            intent.putExtra(Intent.EXTRA_SUBJECT, mailTitle);
+            startActivity(intent);
+        });
 
-        findViewById(R.id.contact_michelle).setOnClickListener{
+        MaterialCardView contactmichelle = getView().findViewById(R.id.contact_michelle);
+        contactmichelle.setOnClickListener(v -> {
             String[] mail = {"s31190052@student.ubm.ac.id"};
-        };
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, mail);
+            intent.putExtra(Intent.EXTRA_SUBJECT, mailTitle);
+            startActivity(intent);
+        });
 
-        findViewById(R.id.contact_phone).setOnClickListener{
-            String no = "081234567890";
-        };
+        MaterialCardView phones = getView().findViewById(R.id.contact_phone);
+        phones.setOnClickListener(v -> {
+            String no = "081283456789";
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.fromParts("tel", no, null));
+            startActivity(intent);
+        });
 
-        findViewById(R.id.link).setOnClickListener{
+        MaterialCardView links = getView().findViewById(R.id.link);
+        links.setOnClickListener(v -> {
             String url = "";
-        };
-
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        });
     }
 }
