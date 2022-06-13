@@ -47,9 +47,7 @@ public class MovieFillFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         MaterialToolbar toolbar = getView().findViewById(R.id.movie_fill_app_bar);
-        toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(getView()).popBackStack();
-        });
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(getView()).popBackStack());
 
         movie = new Movie();
 
@@ -98,6 +96,9 @@ public class MovieFillFragment extends Fragment {
                 }
             });
         });
+        actvGenre.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) actvGenre.showDropDown();
+        });
 
         // Adapter untuk dropdown writer
         mViewModel.getAllWriters().observe(getViewLifecycleOwner(), writersAdapter -> {
@@ -114,6 +115,9 @@ public class MovieFillFragment extends Fragment {
                     writers.add(selected);
                 }
             });
+        });
+        actvWriter.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) actvWriter.showDropDown();
         });
 
         // Fungsi untuk ubah nama star ke chips ketika tombol Done ditekan
@@ -133,9 +137,7 @@ public class MovieFillFragment extends Fragment {
         });
 
 
-        getView().findViewById(R.id.movie_fill_fab_submit).setOnClickListener(v -> {
-            submit();
-        });
+        getView().findViewById(R.id.movie_fill_fab_submit).setOnClickListener(v -> submit());
 
     }
 
@@ -189,7 +191,6 @@ public class MovieFillFragment extends Fragment {
 
     private void submit() {
         String title = etTitle.getText().toString().trim();
-        System.out.println("title" + title);
 
         if (!title.isEmpty()) {
             if (!genres.isEmpty()) {

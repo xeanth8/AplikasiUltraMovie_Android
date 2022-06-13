@@ -95,7 +95,7 @@ public class AboutUsFragment extends Fragment {
             startActivity(intent);
         });
 
-        MaterialCardView links = getView().findViewById(R.id.link);
+        MaterialCardView links = getView().findViewById(R.id.source);
         links.setOnClickListener(v -> {
             String url = "";
             Intent intent = new Intent(Intent.ACTION_VIEW);

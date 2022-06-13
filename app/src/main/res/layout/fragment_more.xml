@@ -18,7 +18,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_movie_24"/>
+            android:src="@drawable/ultra_movie"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -122,6 +122,38 @@
                     android:text="About Us"
                     android:layout_gravity="center_vertical"
                     app:drawableLeftCompat="@drawable/ic_baseline_info_24"
+                    android:textColor="@color/md_theme_light_onSurfaceVariant"
+                    app:drawableTint="@color/md_theme_light_onSurfaceVariant"
+                    android:drawablePadding="12dp"/>
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/more_card_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?attr/materialCardViewElevatedStyle"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginHorizontal="12dp">
+
+            <LinearLayout
+                android:layout_marginVertical="12dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="@string/action_logout"
+                    android:layout_gravity="center_vertical"
+                    app:drawableLeftCompat="@drawable/ic_baseline_logout_24"
                     android:textColor="@color/md_theme_light_onSurfaceVariant"
                     app:drawableTint="@color/md_theme_light_onSurfaceVariant"
                     android:drawablePadding="12dp"/>

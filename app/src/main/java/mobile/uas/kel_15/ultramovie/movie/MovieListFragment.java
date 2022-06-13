@@ -1,27 +1,26 @@
 package mobile.uas.kel_15.ultramovie.movie;
 
-import androidx.core.widget.NestedScrollView;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.model.User;
+import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
 
 public class MovieListFragment extends Fragment {
 
@@ -37,6 +36,19 @@ public class MovieListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (LoginViewModel.getUser().getValue() != null) {
+            LoginViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
+                if (user.getLevel() == User.LEVEL_MEMBER) {
+                    view.findViewById(R.id.movie_fab_add).setVisibility(View.GONE);
+                }
+            });
+        } else {
+            NavController navController = Navigation.findNavController(view);
+            navController.popBackStack();
+            navController.navigate(R.id.loginFragment);
+        }
+
+
         // Setup adapter untuk setiap card movie
         RecyclerView recyclerView = view.findViewById(R.id.movie_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -49,7 +61,7 @@ public class MovieListFragment extends Fragment {
         // Observe perubahan data-data movie dan berikan data movienya ke Adapter
         mViewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::setMovieList);
 
-        getView().findViewById(R.id.movie_fab_add).setOnClickListener(v -> {
+        view.findViewById(R.id.movie_fab_add).setOnClickListener(v -> {
             NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieFillFragment(
                     null,
                     null,

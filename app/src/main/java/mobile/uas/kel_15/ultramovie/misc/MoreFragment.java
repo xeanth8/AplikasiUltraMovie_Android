@@ -1,21 +1,21 @@
 package mobile.uas.kel_15.ultramovie.misc;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
 
 public class MoreFragment extends Fragment {
 
@@ -35,9 +35,19 @@ public class MoreFragment extends Fragment {
         tvUsername.setText("Username");
 
 
-        getView().findViewById(R.id.more_card_about_us).setOnClickListener(v -> {
+        view.findViewById(R.id.more_card_about_us).setOnClickListener(v -> {
             NavDirections action = MoreFragmentDirections.actionMoreFragmentToAboutUsFragment();
             Navigation.findNavController(getView()).navigate(action);
+        });
+
+        view.findViewById(R.id.more_card_logout).setOnClickListener(v -> {
+            LoginViewModel.revokeUser();
+
+            NavController navController = Navigation.findNavController(view);
+
+            navController.popBackStack();
+            navController.popBackStack();
+            navController.navigate(R.id.loginFragment);
         });
 
     }

@@ -3,6 +3,7 @@ package mobile.uas.kel_15.ultramovie.movie;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -28,11 +29,14 @@ import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Movie;
+import mobile.uas.kel_15.ultramovie.model.User;
+import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
 
 public class MovieViewFragment extends Fragment {
 
     private TextView tvTitle, tvWriter, tvDirector, tvStars, tvSynopsis;
     private ChipGroup cgGenre;
+    private User user;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -43,6 +47,15 @@ public class MovieViewFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        LoginViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
+            this.user = user;
+            if (this.user.getLevel() == User.LEVEL_MEMBER) {
+                getActivity().findViewById(R.id.movie_fab_edit).setVisibility(View.GONE);
+                MaterialToolbar toolbar = view.findViewById(R.id.movie_view_app_bar);
+                toolbar.getMenu().findItem(R.id.app_bar_item_delete).setVisible(false);
+            }
+        });
 
         MaterialToolbar toolbar = getView().findViewById(R.id.movie_view_app_bar);
         toolbar.setNavigationOnClickListener(v -> {
@@ -97,9 +110,8 @@ public class MovieViewFragment extends Fragment {
             tvSynopsis.setText(movie.getSynopsis());
         });
 
-        FloatingActionButton fabEdit = getView().findViewById(R.id.movie_view_fab_edit);
+        FloatingActionButton fabEdit = getView().findViewById(R.id.movie_fab_edit);
         fabEdit.setOnClickListener(v -> {
-            System.out.println("edit");
             NavDirections action = MovieViewFragmentDirections.actionMovieViewFragmentToMovieFillFragment(
                     movieData.getId(),
                     movieData.getTitle(),
@@ -120,12 +132,12 @@ public class MovieViewFragment extends Fragment {
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {
                     nestedScrollView.setVisibility(View.VISIBLE);
-                    fabEdit.setVisibility(View.VISIBLE);
                     shimmerFrameLayout.setVisibility(View.GONE);
+                    if (this.user.getLevel() == User.LEVEL_ADMIN) fabEdit.setVisibility(View.VISIBLE);
                 } else {
                    nestedScrollView.setVisibility(View.GONE);
-                   fabEdit.setVisibility(View.GONE);
                    shimmerFrameLayout.setVisibility(View.VISIBLE);
+                   if (this.user.getLevel() == User.LEVEL_ADMIN) fabEdit.setVisibility(View.GONE);
                 }
             }
         });
@@ -134,7 +146,7 @@ public class MovieViewFragment extends Fragment {
         amDelete.setOnClickListener(v -> {
             new MaterialAlertDialogBuilder(getActivity())
                     .setTitle(R.string.movie_view_delete_title)
-                    .setMessage(R.string.movie_view_title_message)
+                    .setMessage(R.string.movie_view_delete_message)
                             .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

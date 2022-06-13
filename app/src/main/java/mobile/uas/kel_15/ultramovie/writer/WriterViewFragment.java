@@ -109,7 +109,7 @@ public class WriterViewFragment extends Fragment {
         amDelete.setOnClickListener(v -> {
             new MaterialAlertDialogBuilder(getActivity())
                     .setTitle(R.string.writer_view_delete_title)
-                    .setMessage(R.string.writer_view_delete_title)
+                    .setMessage(R.string.writer_view_delete_message)
                     .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
