@@ -47,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
             ViewKt.setVisible(navigationBarView, !imeVisible);
 
+            Insets systemBars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            int bottomPadding;
+            if (ViewKt.isVisible(navigationBarView)) {
+                bottomPadding = systemBars.bottom;
+            } else {
+                bottomPadding = 0;
+            }
+
+            new WindowInsetsCompat.Builder(windowInsets).setInsets(
+                    WindowInsetsCompat.Type.systemBars(),
+                    Insets.of(0, systemBars.top, 0, systemBars.bottom - bottomPadding)
+            ).build();
+
             return windowInsets;
         });
     }

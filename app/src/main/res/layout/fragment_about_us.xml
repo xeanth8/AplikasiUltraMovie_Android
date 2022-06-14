@@ -8,14 +8,14 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/appBar"
+                android:id="@+id/about_us_app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
@@ -25,7 +25,6 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -45,32 +44,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16sp"
-                    android:text="Versi 0.1.0"
+                    android:text="@string/app_version"
                     android:textColor="@color/md_theme_light_onSurfaceVariant"
-                    android:textSize="19sp" />
+                    android:textAppearance="?attr/textAppearanceBodyMedium"/>
 
                 <TextView
                     android:id="@+id/textview_copyright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16sp"
-                    android:text="Copyright ©Kelompok 15"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/copyright"
                     android:textColor="@color/md_theme_light_onSurfaceVariant"
-                    android:textSize="16sp" />
+                    android:textAppearance="?attr/textAppearanceBodySmall" />
 
                 <TextView
                     android:id="@+id/textview_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:gravity="center_horizontal"
                     android:textColor="@color/md_theme_light_onSurfaceVariant"
-                    android:text="Dibuat oleh Kelompok 15 sebagai tugas UAS Pemrograman Mobile"
+                    android:text="@string/app_desc"
                     android:textAlignment="center"
-                    android:textSize="16sp" />
+                    android:textAppearance="?attr/textAppearanceBodyMedium" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/contact_list"
@@ -90,10 +89,10 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/contact_fendy"
                             android:layout_width="match_parent"
-                            android:layout_height="52dp"
-                            android:layout_gravity="center"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginTop="16dp"
-                            android:layout_marginHorizontal="34dp"
+                            android:layout_marginHorizontal="32dp"
                             android:clickable="true"
                             app:cardElevation="0dp"
                             app:strokeWidth="0dp"
@@ -103,20 +102,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginHorizontal="65dp"
+                                android:layout_marginStart="64dp"
                                 android:layout_weight="1"
-                                android:drawablePadding="20dp"
-                                android:text="Fendyanto"
                                 android:textColor="@color/md_theme_light_background"
-                                android:textSize="16sp">
+                                android:textSize="16sp"
+                                android:text="@string/creator_fendyanto_name">
 
                             </TextView>
 
                             <ImageView
-                                android:id="@+id/mail3"
-                                android:layout_width="30dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginHorizontal="15dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="16dp"
                                 android:src="@drawable/mail_white" />
 
                         </com.google.android.material.card.MaterialCardView>
@@ -124,32 +122,31 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/contact_johanes"
                             android:layout_width="match_parent"
-                            android:layout_height="52dp"
-                            android:layout_gravity="center"
-                            android:layout_marginHorizontal="34dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="32dp"
                             android:clickable="true"
                             app:cardElevation="0dp"
                             app:strokeWidth="0dp"
-                            app:cardBackgroundColor="@color/md_theme_light_primary">
+                            app:cardBackgroundColor="@color/md_theme_light_primary" >
 
                             <TextView
-                                android:layout_width="141dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginHorizontal="65dp"
+                                android:layout_marginStart="64dp"
                                 android:layout_weight="1"
-                                android:drawablePadding="20dp"
-                                android:text="Johanes Shane"
                                 android:textColor="@color/md_theme_light_background"
-                                android:textSize="16sp">
+                                android:textSize="16sp"
+                                android:text="@string/creator_johanes_name">
 
                             </TextView>
 
                             <ImageView
-                                android:id="@+id/mail"
-                                android:layout_width="30dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginHorizontal="15dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="16dp"
                                 android:src="@drawable/mail_white" />
 
                         </com.google.android.material.card.MaterialCardView>
@@ -157,33 +154,31 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/contact_kosasi"
                             android:layout_width="match_parent"
-                            android:layout_height="52dp"
-                            android:layout_gravity="center"
-                            android:layout_marginHorizontal="34dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="32dp"
                             android:clickable="true"
+                            app:cardElevation="0dp"
                             app:strokeWidth="0dp"
-                            app:cardBackgroundColor="@color/md_theme_light_primary"
-                            app:cardElevation="0dp">
+                            app:cardBackgroundColor="@color/md_theme_light_primary" >
 
                             <TextView
-                                android:layout_width="161dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginHorizontal="65dp"
+                                android:layout_marginStart="64dp"
                                 android:layout_weight="1"
-                                android:drawablePadding="20dp"
-                                android:text="Kosasi"
                                 android:textColor="@color/md_theme_light_background"
                                 android:textSize="16sp"
-                                app:cardBackgroundColor="@color/md_theme_light_primary">
+                                android:text="@string/creator_kosasi_name">
 
                             </TextView>
 
                             <ImageView
-                                android:id="@+id/mail7"
-                                android:layout_width="30dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginHorizontal="15dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="16dp"
                                 android:src="@drawable/mail_white" />
 
                         </com.google.android.material.card.MaterialCardView>
@@ -191,82 +186,79 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/contact_michelle"
                             android:layout_width="match_parent"
-                            android:layout_height="52dp"
-                            android:layout_marginHorizontal="34dp"
-                            android:layout_gravity="center"
-                            app:cardElevation="0dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="32dp"
                             android:clickable="true"
+                            app:cardElevation="0dp"
                             app:strokeWidth="0dp"
                             app:cardBackgroundColor="@color/md_theme_light_primary" >
 
                             <TextView
-                                android:layout_width="223dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginHorizontal="65dp"
+                                android:layout_marginStart="64dp"
                                 android:layout_weight="1"
-                                android:drawablePadding="20dp"
-                                android:text="Michelle Wong"
                                 android:textColor="@color/md_theme_light_background"
-                                android:textSize="16sp">
+                                android:textSize="16sp"
+                                android:text="@string/creator_michelle_name">
 
                             </TextView>
 
                             <ImageView
-                                android:id="@+id/mail5"
-                                android:layout_width="30dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginHorizontal="15dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="16dp"
                                 android:src="@drawable/mail_white" />
-
 
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/contact_phone"
                             android:layout_width="match_parent"
-                            android:layout_height="52dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginHorizontal="34dp"
-                            android:layout_gravity="center"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginHorizontal="32dp"
                             android:clickable="true"
                             app:cardElevation="0dp"
                             app:strokeWidth="0dp"
                             app:cardBackgroundColor="@color/md_theme_light_primary" >
 
                             <TextView
-                                android:layout_width="169dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginHorizontal="65dp"
+                                android:layout_marginStart="64dp"
                                 android:layout_weight="1"
-                                android:drawablePadding="20dp"
-                                android:text="081283456789"
                                 android:textColor="@color/md_theme_light_background"
-                                android:textSize="16sp">
+                                android:textSize="16sp"
+                                android:text="@string/creator_phone">
 
                             </TextView>
 
                             <ImageView
-                                android:id="@+id/phone"
-                                android:layout_width="30dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginHorizontal="15dp"
+                                android:id="@+id/mail"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="16dp"
                                 android:src="@drawable/phone_white" />
-
 
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
-                            android:layout_width="385dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="4dp"
                             android:gravity="center"
-                            android:text="Source code dapat diakses melalui Link dibawah ini"
-                            android:textColor="@color/md_theme_dark_onSurfaceVariant"
-                            android:textSize="14dp"
+                            android:text="@string/repo_label"
+                            android:textColor="@color/md_theme_light_onPrimary"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textStyle="bold"
                             app:strokeWidth="0dp"/>
 
@@ -274,8 +266,7 @@
                             android:id="@+id/source"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="25dp"
+                            android:layout_marginBottom="16dp"
                             android:clickable="true"
                             android:minHeight="48dp"
                             app:strokeWidth="0dp"
@@ -285,11 +276,11 @@
                                 android:id="@+id/link"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_gravity="center_vertical|center"
                                 android:layout_marginHorizontal="20dp"
-                                android:layout_marginVertical="8dp"
                                 android:layout_weight="1"
-                                android:text="Source Code"
+                                android:text="@string/repo_link"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="@color/md_theme_light_tertiaryContainer"
                                 />
 
@@ -302,7 +293,6 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
 </FrameLayout>

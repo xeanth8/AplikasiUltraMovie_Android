@@ -47,7 +47,7 @@ public class MovieFillFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         MaterialToolbar toolbar = getView().findViewById(R.id.movie_fill_app_bar);
-        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(getView()).popBackStack());
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         movie = new Movie();
 

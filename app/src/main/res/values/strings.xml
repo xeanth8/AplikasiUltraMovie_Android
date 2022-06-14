@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Ultra Movie 15</string>
+    <string name="app_version">Versi 0.1.0</string>
+    <string name="app_desc">Dibuat oleh Kelompok 15 sebagai tugas UAS Pemrograman Mobile</string>
 
     <string name="navigation_item_movies">Movies</string>
     <string name="navigation_item_genres">Genres</string>
@@ -18,11 +20,11 @@
     <string name="fab_desc_edit">Edit</string>
     <string name="fab_desc_submit">Submit</string>
 
-    <string name="card_genre_name_placeholder" translatable="false">Genre</string>
-    <string name="card_movie_title_placeholder" translatable="false">Title</string>
-    <string name="card_movie_genre_placeholder" translatable="false">Genres</string>
-    <string name="card_movie_writer_placeholder" translatable="false">Writers</string>
-    <string name="card_writer_name_placeholder" translatable="false">Name</string>
+    <string name="card_genre_name_placeholder">Genre</string>
+    <string name="card_movie_title_placeholder">Title</string>
+    <string name="card_movie_genre_placeholder">Genres</string>
+    <string name="card_movie_writer_placeholder">Writers</string>
+    <string name="card_writer_name_placeholder">Name</string>
 
     <string name="movie_view_writer_label">Written by</string>
     <string name="movie_view_director_label">Directed by</string>
@@ -77,7 +79,21 @@
     <string name="login_failed">"Login failed"</string>
     <string name="desc_to_register">Don\'t have an account?</string>
     <string name="desc_to_login">Already have an account?</string>
+
     <string name="confirmation_logout">Do you want to logout?</string>
+
+    <string name="repo_link">xeanth8/AplikasiUltraMovie_Android</string>
+    <string name="repo_label">Source code aplikasi ini tersedia di GitHub</string>
+    <string name="copyright">Copyright ©Kelompok 15</string>
+
+    <string name="creator_fendyanto_name">Fendyanto</string>
+    <string name="creator_johanes_name">Johanes Shane</string>
+    <string name="creator_kosasi_name">Kosasi</string>
+    <string name="creator_michelle_name">Michelle Wong</string>
+    <string name="creator_phone">081283456789</string>
+    <string name="more_user_identity_label">User identity</string>
+    <string name="more_option_label">Options</string>
+    <string name="more_item_about_us">About Us</string>
 
 
 </resources>

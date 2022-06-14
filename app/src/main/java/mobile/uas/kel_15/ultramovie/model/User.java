@@ -6,22 +6,22 @@ import androidx.core.app.Person;
 
 public class User {
 
-    public static final int GENDER_MALE = 1;
-    public static final int GENDER_FEMALE = 2;
+    public static final String GENDER_MALE = "pria";
+    public static final String GENDER_FEMALE = "wanita";
 
-    public static final int LEVEL_ADMIN = 1;
-    public static final int LEVEL_MEMBER = 2;
+    public static final String LEVEL_ADMIN = "admin";
+    public static final String LEVEL_MEMBER = "member";
 
     public static final int AUTHENTICATED = 1;
     public static final int AUTHENTICATION_INVALID = 2;
     public static final int UNAUTHENTICATED = 4;
 
     private String name;
-    private int gender;
+    private String gender;
     private String countryOrigin;
     private String username;
     private String password;
-    private int level;
+    private String level;
     private int authenticated = UNAUTHENTICATED;
 
     public User() { }
@@ -35,7 +35,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, int gender, String countryOrigin, String username, String password, int level) {
+    public User(String name, String gender, String countryOrigin, String username, String password, String level) {
         this.name = name;
         this.gender = gender;
         this.countryOrigin = countryOrigin;
@@ -52,11 +52,11 @@ public class User {
         this.name = name;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -84,11 +84,11 @@ public class User {
         this.password = password;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 

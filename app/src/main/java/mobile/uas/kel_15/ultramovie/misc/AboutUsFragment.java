@@ -43,8 +43,14 @@ public class AboutUsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        String mailTitle = "Butuh Bantuan | Aplikasi Ultra Movie";
         super.onViewCreated(view, savedInstanceState);
+
+        String mailTitle = "Butuh Bantuan | Aplikasi Ultra Movie";
+
+        MaterialToolbar toolbar = getView().findViewById(R.id.about_us_app_bar);
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
+
+
         MaterialCardView contactfendy = getView().findViewById(R.id.contact_fendy);
         contactfendy.setOnClickListener(v -> {
             String[] mail = {"s31190038@student.ubm.ac.id"};
@@ -95,7 +101,7 @@ public class AboutUsFragment extends Fragment {
 
         MaterialCardView links = getView().findViewById(R.id.source);
         links.setOnClickListener(v -> {
-            String url = "";
+            String url = "https://github.com/xeanth8/AplikasiUltraMovie_Android/";
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);

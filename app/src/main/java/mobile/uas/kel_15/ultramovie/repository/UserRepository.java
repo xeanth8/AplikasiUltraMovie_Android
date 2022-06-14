@@ -4,6 +4,7 @@ import android.app.Application;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -19,6 +20,7 @@ import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
+import mobile.uas.kel_15.ultramovie.user.RegisterViewModel;
 
 public class UserRepository {
     private Application application;
@@ -93,7 +95,35 @@ public class UserRepository {
         return userData;
     }
 
-    public void register(User user) {
+    public MutableLiveData<String> register(User user) {
+        MutableLiveData<String> registerStatus = new MutableLiveData<>();
+        RegisterViewModel.processStarted();
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            RegisterViewModel.processFinished();
+            System.out.println("responses"+responses);
+            if (responses.contains("Duplicate")) registerStatus.postValue("Duplicate");
+            else if (responses.contains("Success")) registerStatus.postValue("Success");
+        }, error -> {
+            RegisterViewModel.processFinished();
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "create");
+                params.put("username", user.getUsername());
+                params.put("password", user.getPassword());
+                params.put("level", user.getLevel());
+                params.put("nama", user.getName());
+                params.put("jenis_kelamin", user.getGender());
+                params.put("asal_negara", user.getCountryOrigin());
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
+        return registerStatus;
     }
 }

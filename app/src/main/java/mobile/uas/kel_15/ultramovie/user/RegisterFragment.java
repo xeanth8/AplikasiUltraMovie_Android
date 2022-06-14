@@ -21,11 +21,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.model.User;
 
 public class RegisterFragment extends Fragment {
 
@@ -119,7 +121,28 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        // Ke register
+        view.findViewById(R.id.register_button_register).setOnClickListener(v -> {
+            mViewModel.register(
+                    etName.getText().toString(),
+                    etUsername.getText().toString(),
+                    etPassword.getText().toString(),
+                    spCountry.getSelectedItem().toString(),
+                    spGender.getSelectedItem().toString(),
+                    spLevel.getSelectedItem().toString().toLowerCase()
+            ).observe(getViewLifecycleOwner(), s -> {
+                if (s.equals("Duplicate")) {
+                    Toast.makeText(getContext(), "This username already exists.", Toast.LENGTH_SHORT).show();
+                    etUsername.requestFocus();
+                } else if (s.equals("Success")) {
+                    Toast.makeText(getContext(), "Register successful.", Toast.LENGTH_SHORT).show();
+                    NavDirections action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
+                    NavController navController = Navigation.findNavController(view);
+                    navController.navigate(action);
+                }
+            });
+        });
+
+        // Ke login
         view.findViewById(R.id.register_link_login).setOnClickListener(v -> {
             NavDirections action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
             NavController navController = Navigation.findNavController(view);

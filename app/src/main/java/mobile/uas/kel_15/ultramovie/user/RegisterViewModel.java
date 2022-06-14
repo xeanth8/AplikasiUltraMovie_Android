@@ -8,8 +8,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Set;
 
+import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.repository.UserRepository;
@@ -19,9 +23,8 @@ public class RegisterViewModel extends AndroidViewModel {
 
     private final String[] GENDER = {getApplication().getString(R.string.gender_male), getApplication().getString(R.string.gender_female)};
     private final String[] LEVEL = {getApplication().getString(R.string.level_member), getApplication().getString(R.string.level_admin)};
-    private final ArrayList<String> COUNTRIES = new ArrayList<>();
+    private ArrayList<String> COUNTRIES = new ArrayList<>();
 
-    private User user;
 //    private User userData = new MutableLiveData<>();
     private static MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private static MutableLiveData<Boolean> isFormValid = new MutableLiveData<>();
@@ -31,8 +34,23 @@ public class RegisterViewModel extends AndroidViewModel {
         repository = new UserRepository(application);
     }
 
-    public void register(User user) {
-        repository.register(user);
+    public LiveData<String> register(String name, String username, String password, String country, String gender, String level) {
+        User user = new User();
+
+        user.setName(name);
+        user.setUsername(username);
+        user.setPassword(Commons.md5(password));
+        user.setCountryOrigin(country);
+
+        System.out.println(gender);
+        System.out.println(getApplication().getString(R.string.gender_male));
+        System.out.println(getApplication().getString(R.string.gender_female));
+        if (gender.equals("Male")) user.setGender(User.GENDER_MALE);
+        else user.setGender(User.GENDER_FEMALE);
+
+        user.setLevel(level);
+
+        return repository.register(user);
     }
 
     public static LiveData<Boolean> isFormValid(String name, String username, String password) {
@@ -47,19 +65,14 @@ public class RegisterViewModel extends AndroidViewModel {
     }
 
     private static boolean checkName(String name) {
-        System.out.println("name" + !name.equals(""));
         return !name.equals("");
     }
 
     private static boolean checkUsername(String username) {
-        System.out.println("userregex" + username.matches(".matches(\"[A-Za-z0-9_]+\")"));
-        System.out.println("userleng" + username.length());
         return username.matches("[a-zA-Z0-9_]+") && username.length() >= 4 && username.length() <= 16;
     }
 
     private static boolean checkPassword(String password) {
-        System.out.println("pwempt" + !password.equals(""));
-        System.out.println("pwleng" + password.length());
         return !password.equals("") && password.length() >= 5;
     }
 
@@ -78,6 +91,8 @@ public class RegisterViewModel extends AndroidViewModel {
             COUNTRIES.add(locale.getDisplayCountry());
         }
 
+        Set<String> s = new LinkedHashSet<>(COUNTRIES);
+        COUNTRIES = new ArrayList<>(s);
         return COUNTRIES;
     }
 

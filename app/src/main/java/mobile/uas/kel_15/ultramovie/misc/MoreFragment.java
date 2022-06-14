@@ -16,6 +16,8 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.Objects;
+
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.movie.MovieViewFragmentDirections;
@@ -51,9 +53,9 @@ public class MoreFragment extends Fragment {
                     etUsername.setText(user.getUsername());
                     etCountry.setText(user.getCountryOrigin());
 
-                    if (user.getGender() == User.GENDER_MALE) {
+                    if (Objects.equals(user.getGender(), User.GENDER_MALE)) {
                         etName.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getContext().getResources().getDrawable(R.drawable.ic_baseline_male_24), null);
-                    } else if (user.getGender() == User.GENDER_FEMALE) {
+                    } else if (Objects.equals(user.getGender(), User.GENDER_FEMALE)) {
                         etName.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getContext().getResources().getDrawable(R.drawable.ic_baseline_female_24), null);
                     }
 
