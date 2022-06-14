@@ -7,11 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
+import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.repository.UserRepository;
 
@@ -21,6 +17,7 @@ public class LoginViewModel extends AndroidViewModel {
     private User user;
     private static MutableLiveData<User> userData = new MutableLiveData<>();
     private static MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    private static MutableLiveData<Boolean> isFormValid = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -28,7 +25,7 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public LiveData<User> login(String username, String password) {
-        String hashedPassword = md5(password);
+        String hashedPassword = Commons.md5(password);
 
         userData = repository.login(username, hashedPassword);
 
@@ -40,28 +37,13 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public static void revokeUser() {
-        userData.postValue(null);
+        userData.setValue(null);
     }
 
-    private String md5(String plainPassword) {
-        StringBuilder hash = new StringBuilder();
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("MD5");
-            md.update(plainPassword.getBytes(StandardCharsets.UTF_8));
-            byte[] digest = md.digest();
-            BigInteger no = new BigInteger(1, digest);
-            hash = new StringBuilder(no.toString(16));
-
-            while(hash.length() < 32) {
-                hash.insert(0, "0");
-            }
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return String.valueOf(hash);
+    public static LiveData<Boolean> isFormValid(String username, String password) {
+        isFormValid = new MutableLiveData<>();
+        isFormValid.postValue(!username.equals("") && !password.equals(""));
+        return isFormValid;
     }
 
     // Tidak perlu diubah

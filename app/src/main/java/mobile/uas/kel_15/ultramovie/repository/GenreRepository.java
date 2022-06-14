@@ -18,13 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mobile.uas.kel_15.ultramovie.AppConfig;
+import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 
 public class GenreRepository  {
     Application application;
-    String url = AppConfig.SERVER + "/GenreModel.php";
+    String url = Commons.SERVER + "/GenreModel.php";
     ArrayList<Genre> genreList = new ArrayList<>();
 
     private final MutableLiveData<List<Genre>> allGenres = new MutableLiveData<>();

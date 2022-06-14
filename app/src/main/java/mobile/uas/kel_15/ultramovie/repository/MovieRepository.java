@@ -7,8 +7,6 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -21,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mobile.uas.kel_15.ultramovie.AppConfig;
+import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.movie.MovieFillViewModel;
@@ -31,7 +29,7 @@ import mobile.uas.kel_15.ultramovie.movie.MovieViewViewModel;
 public class MovieRepository  {
     // Untuk mendapat context aplikasi karena Volley membutuhkan
     Application application;
-    String url = AppConfig.SERVER + "/MovieModel.php";
+    String url = Commons.SERVER + "/MovieModel.php";
 
     // Data dari database masuk ke sini sebelum ke MutableLiveData
     ArrayList<Movie> movieList = new ArrayList<>();

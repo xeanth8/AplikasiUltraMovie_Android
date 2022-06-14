@@ -15,14 +15,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import mobile.uas.kel_15.ultramovie.AppConfig;
+import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
 
 public class UserRepository {
     private Application application;
-    String url = AppConfig.SERVER + "/UserModel.php";
+    String url = Commons.SERVER + "/UserModel.php";
 //    private
 
     public UserRepository(Application application) {
@@ -31,7 +31,7 @@ public class UserRepository {
 
     public MutableLiveData<User> login(String username, String password) {
         MutableLiveData<User> userData = new MutableLiveData<>();
-        System.out.println("Is this running");
+
         LoginViewModel.processStarted();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
@@ -91,5 +91,9 @@ public class UserRepository {
         Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
 
         return userData;
+    }
+
+    public void register(User user) {
+
     }
 }

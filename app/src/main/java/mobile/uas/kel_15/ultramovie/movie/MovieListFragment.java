@@ -36,7 +36,10 @@ public class MovieListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+         // Cek apakah ada user. Jika tidak, pop fragment ini dan langsung ke fragment Login
         if (LoginViewModel.getUser().getValue() != null) {
+
+        // Jika ada user, hilangkan fab untuk add jika levelnya LEVEL_MEMBER
             LoginViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
                 if (user.getLevel() == User.LEVEL_MEMBER) {
                     view.findViewById(R.id.movie_fab_add).setVisibility(View.GONE);
@@ -59,7 +62,7 @@ public class MovieListFragment extends Fragment {
         mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieListViewModel.class);
 
         // Observe perubahan data-data movie dan berikan data movienya ke Adapter
-        mViewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::setMovieList);
+        if(LoginViewModel.getUser().getValue() != null) mViewModel.getAllMovies().observe(getViewLifecycleOwner(), adapter::setMovieList);
 
         view.findViewById(R.id.movie_fab_add).setOnClickListener(v -> {
             NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieFillFragment(
