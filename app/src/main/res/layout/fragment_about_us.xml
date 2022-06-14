@@ -24,7 +24,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -62,23 +63,18 @@
                 <TextView
                     android:id="@+id/textview_desc"
                     android:layout_width="wrap_content"
-                    android:layout_height="54dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_marginTop="20dp"
-                    android:gravity="top"
-                    android:text=""
+                    android:gravity="center_horizontal"
+                    android:text="Dibuat oleh Kelompok 15 sebagai tugas UAS Pemrograman Mobile"
+                    android:textAlignment="center"
                     android:textSize="16sp" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/contact_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="30dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical">
 
                     <com.google.android.material.card.MaterialCardView
@@ -87,7 +83,6 @@
                         android:layout_height="52dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="24dp"
-                        android:layout_marginTop="16dp"
                         android:clickable="true">
 
                         <TextView
