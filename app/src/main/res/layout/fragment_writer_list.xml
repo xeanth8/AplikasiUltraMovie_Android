@@ -53,10 +53,6 @@
             android:layout_gravity="center">
             <include
                 layout="@layout/fragment_writer_list_placeholder"/>
-            <include
-                layout="@layout/fragment_writer_list_placeholder"
-                app:layout_anchor="@+id/writer_list_shimmer"
-                app:layout_anchorGravity="center" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
