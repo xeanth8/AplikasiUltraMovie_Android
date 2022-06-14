@@ -43,9 +43,9 @@
                     android:id="@+id/textview_textaboutus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|right"
-                    android:layout_marginTop="45dp"
-                    android:text=""
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16sp"
+                    android:text="Versi 0.1.0"
                     android:textColor="@color/md_theme_dark_surface"
                     android:textSize="19sp" />
 
@@ -53,9 +53,9 @@
                     android:id="@+id/textview_copyright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|right"
-                    android:layout_marginTop="10dp"
-                    android:text=""
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16sp"
+                    android:text="Copyright ©Kelompok 15"
                     android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="16sp" />
 
