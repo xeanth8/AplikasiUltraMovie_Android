@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textview.MaterialTextView;
 
 import org.w3c.dom.Text;
 
@@ -29,8 +30,6 @@ import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.writer.WriterListAdapter;
 
 public class AboutUsFragment extends Fragment {
-
-    private AboutUsViewModel mViewModel;
 
     public static AboutUsFragment newInstance() {
         return new AboutUsFragment();
@@ -46,7 +45,6 @@ public class AboutUsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         String mailTitle = "Butuh Bantuan | Aplikasi Ultra Movie";
         super.onViewCreated(view, savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AboutUsViewModel.class);
         MaterialCardView contactfendy = getView().findViewById(R.id.contact_fendy);
         contactfendy.setOnClickListener(v -> {
             String[] mail = {"s31190038@student.ubm.ac.id"};
