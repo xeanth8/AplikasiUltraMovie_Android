@@ -47,12 +47,7 @@
             android:layout_height="match_parent"
             android:id="@+id/movie_list_shimmer"
             android:layout_gravity="center">
-
-            <include
-                layout="@layout/fragment_movie_list_placeholder"
-                app:layout_anchor="@+id/movie_list_shimmer"
-                app:layout_anchorGravity="center" />
-
+            <include layout="@layout/fragment_movie_list_placeholder"/>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -73,8 +68,7 @@
             android:contentDescription="@string/fab_desc_add"
             app:srcCompat="@drawable/ic_baseline_add_24"
             app:tint="@color/md_theme_light_onPrimary"
-            android:backgroundTint="@color/md_theme_light_primary"
-            />
+            android:backgroundTint="@color/md_theme_light_primary" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
