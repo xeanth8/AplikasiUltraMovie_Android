@@ -55,22 +55,29 @@
 
     <string name="app_server_error">Failed to connect to the server. Please try again later.</string>
 
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="level_member">Member</string>
+    <string name="level_admin">Admin</string>
 
+    <string name="prompt_name">Name</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_gender">Gender</string>
-    <string name="prompt_origin">Country Origin</string>
+    <string name="prompt_country">Country Origin</string>
     <string name="prompt_level">Level</string>
 
+    <string name="login_title">"Welcome!"</string>
+    <string name="login_subtitle">Please login</string>
     <string name="action_login">Login</string>
     <string name="action_register">Register</string>
     <string name="action_logout">Logout</string>
-    <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="link_register">Don\'t have an account? Register now</string>
-    <string name="link_login">Already have an account? Login</string>
+    <string name="desc_to_register">Don\'t have an account?</string>
+    <string name="desc_to_login">Already have an account?</string>
+    <string name="confirmation_logout">Do you want to logout?</string>
 
 
 </resources>

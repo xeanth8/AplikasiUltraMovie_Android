@@ -51,11 +51,8 @@
             android:layout_height="match_parent"
             android:id="@+id/writer_list_shimmer"
             android:layout_gravity="center">
-
             <include
-                layout="@layout/fragment_writer_list_placeholder"
-                app:layout_anchor="@+id/writer_list_shimmer"
-                app:layout_anchorGravity="center" />
+                layout="@layout/fragment_writer_list_placeholder"/>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

@@ -2,11 +2,15 @@ package mobile.uas.kel_15.ultramovie.user;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,6 +32,8 @@ public class LoginFragment extends Fragment {
     private LoginViewModel mViewModel;
     private EditText etUsername;
     private EditText etPassword;
+    private Button btLogin;
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -40,9 +46,39 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-
         etUsername = view.findViewById(R.id.login_field_username);
         etPassword = view.findViewById(R.id.login_field_password);
+        btLogin = view.findViewById(R.id.login_button_login);
+
+        etUsername.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                LoginViewModel.isFormValid(etUsername.getText().toString(), etPassword.getText().toString()).observe(getViewLifecycleOwner(), isValid -> {
+                    btLogin.setEnabled(isValid);
+                });
+            }
+        });
+
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                LoginViewModel.isFormValid(etUsername.getText().toString(), etPassword.getText().toString()).observe(getViewLifecycleOwner(), isValid -> {
+                    btLogin.setEnabled(isValid);
+                });
+            }
+        });
 
         view.findViewById(R.id.login_button_login).setOnClickListener(v -> {
             String username = etUsername.getText().toString();
@@ -78,18 +114,21 @@ public class LoginFragment extends Fragment {
         });
 
 
+        progressDialog  = new ProgressDialog(getContext());
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-            ProgressBar progressBar = view.findViewById(R.id.login_progress_bar);
+//            ProgressBar progressBar = view.findViewById(R.id.login_progress_bar);
+            progressDialog.setMessage("Logging in...");
+            progressDialog.setCancelable(false);
 
             if (isFinishedLoading != null) {
-                if (isFinishedLoading) progressBar.setVisibility(View.INVISIBLE);
-                else progressBar.setVisibility(View.VISIBLE);
+                if (isFinishedLoading) progressDialog.hide();
+                else progressDialog.show();
             }
         });
 
 
         // Ke register
-        view.findViewById(R.id.textView).setOnClickListener(v -> {
+        view.findViewById(R.id.login_link_register).setOnClickListener(v -> {
             NavDirections action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment();
             Navigation.findNavController(view).navigate(action);
 //            NavController navController = Navigation.findNavController(view);

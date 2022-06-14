@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -20,20 +19,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mobile.uas.kel_15.ultramovie.AppConfig;
+import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
-import mobile.uas.kel_15.ultramovie.model.Genre;
-import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.model.Writer;
-import mobile.uas.kel_15.ultramovie.movie.MovieViewViewModel;
 import mobile.uas.kel_15.ultramovie.writer.WriterFillViewModel;
 import mobile.uas.kel_15.ultramovie.writer.WriterListViewModel;
 import mobile.uas.kel_15.ultramovie.writer.WriterViewViewModel;
 
 public class WriterRepository  {
     Application application;
-    String url = AppConfig.SERVER + "/WriterModel.php";
+    String url = Commons.SERVER + "/WriterModel.php";
     ArrayList<Writer> writerList = new ArrayList<>();
 
     private final MutableLiveData<List<Writer>> allWriters = new MutableLiveData<>();
