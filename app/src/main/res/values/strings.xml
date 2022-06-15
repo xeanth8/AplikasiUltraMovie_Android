@@ -34,6 +34,8 @@
     <string name="movie_fill_app_title_add">Add Movie</string>
     <string name="movie_fill_app_title_edit">Edit Movie</string>
 
+    <string name="genre_fill_name_label">Genre Name</string>
+
     <string name="writer_view_email_label">Email</string>
     <string name="writer_view_phone_label">Phone</string>
     <string name="writer_view_movies_label">Movies</string>
