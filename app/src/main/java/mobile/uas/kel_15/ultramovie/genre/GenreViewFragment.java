@@ -1,5 +1,6 @@
 package mobile.uas.kel_15.ultramovie.genre;
 
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,12 +25,16 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 
+import java.util.Arrays;
+
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.model.Movie;
+import mobile.uas.kel_15.ultramovie.model.Writer;
 
 public class GenreViewFragment extends Fragment {
 
-    TextView tvNameGenre;
+    TextView tvNameGenre; ///tvMovie;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -47,7 +52,11 @@ public class GenreViewFragment extends Fragment {
         });
 
         Genre genreData = new Genre();
+        ///Writer writerData = new Writer();
+
+
         tvNameGenre = getActivity().findViewById(R.id.genre_view_name);
+        ///tvMovie = getActivity().findViewById(R.id.genre_view_movies_content);
 
         GenreViewViewModel wViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(GenreViewViewModel.class);
 
@@ -56,8 +65,19 @@ public class GenreViewFragment extends Fragment {
        wViewModel.getGenre(genreId).observe(getViewLifecycleOwner(), genre -> {
        genreData.setId(genre.getId());
        genreData.setName(genre.getName());
+       /// writerData.setMovies(writerData.getMovies());
+
 
        tvNameGenre.setText(genre.getName());
+
+       ///    String movies = String.join("\n",
+       ///            Arrays.stream(writerData.getMovies())
+       ///                    .map(String::trim)
+       ///                    .toArray(String[]::new));
+
+       ///tvMovie.setText(movies);
+
+
       });
 
         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading ->{

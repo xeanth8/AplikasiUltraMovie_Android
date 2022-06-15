@@ -37,7 +37,7 @@
     <string name="genre_fill_name_label">Genre Name</string>
     <string name="genre_view_movies_label">Movie List</string>
     <string name="genre_view_delete_title">Delete this Genre?</string>
-    <string name="genre_view_delete_message">Deleted Genre will be removed permanently and cannot be recovered (Use With Caution !)</string>
+    <string name="genre_view_delete_message">Deleted Genre will be removed permanently and cannot be recovered</string>
 
     <string name="writer_view_email_label">Email</string>
     <string name="writer_view_phone_label">Phone</string>

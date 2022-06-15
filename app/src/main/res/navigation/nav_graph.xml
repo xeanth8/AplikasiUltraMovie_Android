@@ -67,7 +67,8 @@
         <action
             android:id="@+id/action_genreListFragment_to_genreFillFragment"
             app:destination="@id/genreFillFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/writerListFragment"
@@ -246,6 +247,7 @@
         <action
             android:id="@+id/action_genreFillFragment_to_genreListFragment"
             app:destination="@id/genreListFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>

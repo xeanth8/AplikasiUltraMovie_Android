@@ -123,7 +123,7 @@ public class GenreRepository  {
         GenreViewViewModel.processStarted();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
-            GenreViewViewModel.processStarted();
+            GenreViewViewModel.processFinished();
 
         }, error -> {
             Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
@@ -144,7 +144,7 @@ public class GenreRepository  {
         GenreViewViewModel.processStarted();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
-            GenreViewViewModel.processStarted();
+            GenreViewViewModel.processFinished();
 
         }, error -> {
             Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
