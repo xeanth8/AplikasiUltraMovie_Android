@@ -20,6 +20,7 @@ import java.util.List;
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.model.Movie;
+import mobile.uas.kel_15.ultramovie.writer.WriterListFragmentDirections;
 
 public class GenreListAdapter extends RecyclerView.Adapter<GenreListAdapter.ViewHolder> {
     private List<Genre> genreList = new ArrayList<>();
@@ -36,10 +37,12 @@ public class GenreListAdapter extends RecyclerView.Adapter<GenreListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull GenreListAdapter.ViewHolder holder, int position) {
 
-//        holder.itemView.setOnClickListener(v -> {
-////            NavDirections action = MovieListFragmentDirections.actionMovieListFragmentToMovieViewFragment(genreList.get(position).getId());
-////            Navigation.findNavController(holder.itemView).navigate(action);
-//        });
+        holder.itemView.setOnClickListener(v -> {
+
+            NavDirections action = GenreListFragmentDirections.actionGenreListFragmentToGenreViewFragment(genreList.get(position).getId());
+            Navigation.findNavController(holder.itemView).navigate(action);
+        });
+
 
         holder.getName().setText(genreList.get(position).getName());
     }

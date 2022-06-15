@@ -62,7 +62,8 @@
         tools:layout="@layout/fragment_genre_list" >
         <action
             android:id="@+id/action_genreListFragment_to_genreViewFragment"
-            app:destination="@id/genreViewFragment" />
+            app:destination="@id/genreViewFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_genreListFragment_to_genreFillFragment"
             app:destination="@id/genreFillFragment"
