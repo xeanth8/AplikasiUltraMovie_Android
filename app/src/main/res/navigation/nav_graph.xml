@@ -238,7 +238,9 @@
         <action
             android:id="@+id/action_genreViewFragment_to_genreListFragment"
             app:destination="@id/genreListFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/genreListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/genreFillFragment"

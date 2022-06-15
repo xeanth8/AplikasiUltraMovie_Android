@@ -46,7 +46,7 @@ public class MovieFillFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MaterialToolbar toolbar = getView().findViewById(R.id.movie_fill_app_bar);
+        MaterialToolbar toolbar = view.findViewById(R.id.movie_fill_app_bar);
         toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         movie = new Movie();
@@ -55,16 +55,16 @@ public class MovieFillFragment extends Fragment {
         writers = new ArrayList<>();
         stars = new ArrayList<>();
 
-        etTitle = getActivity().findViewById(R.id.movie_fill_field_title);
-        etDirector = getActivity().findViewById(R.id.movie_fill_field_director);
-        etSynopsis = getActivity().findViewById(R.id.movie_fill_field_synopsis);
-        actvGenre = getActivity().findViewById(R.id.movie_fill_field_genre);
-        actvWriter = getActivity().findViewById(R.id.movie_fill_field_writer);
-        actvStar = getActivity().findViewById(R.id.movie_fill_field_stars);
+        etTitle = view.findViewById(R.id.movie_fill_field_title);
+        etDirector = view.findViewById(R.id.movie_fill_field_director);
+        etSynopsis = view.findViewById(R.id.movie_fill_field_synopsis);
+        actvGenre = view.findViewById(R.id.movie_fill_field_genre);
+        actvWriter = view.findViewById(R.id.movie_fill_field_writer);
+        actvStar = view.findViewById(R.id.movie_fill_field_stars);
 
-        cgGenre = getActivity().findViewById(R.id.movie_fill_chip_group_genre);
-        cgWriter = getActivity().findViewById(R.id.movie_fill_chip_group_writer);
-        cgStar = getActivity().findViewById(R.id.movie_fill_chip_group_stars);
+        cgGenre = view.findViewById(R.id.movie_fill_chip_group_genre);
+        cgWriter = view.findViewById(R.id.movie_fill_chip_group_writer);
+        cgStar = view.findViewById(R.id.movie_fill_chip_group_stars);
 
 
         // Inisialisasi ViewModel
@@ -137,7 +137,7 @@ public class MovieFillFragment extends Fragment {
         });
 
 
-        getView().findViewById(R.id.movie_fill_fab_submit).setOnClickListener(v -> submit());
+        view.findViewById(R.id.movie_fill_fab_submit).setOnClickListener(v -> submit());
 
     }
 

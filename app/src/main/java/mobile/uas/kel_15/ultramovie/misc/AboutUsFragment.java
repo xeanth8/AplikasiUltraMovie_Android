@@ -47,11 +47,11 @@ public class AboutUsFragment extends Fragment {
 
         String mailTitle = "Butuh Bantuan | Aplikasi Ultra Movie";
 
-        MaterialToolbar toolbar = getView().findViewById(R.id.about_us_app_bar);
+        MaterialToolbar toolbar = view.findViewById(R.id.about_us_app_bar);
         toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
 
-        MaterialCardView contactfendy = getView().findViewById(R.id.contact_fendy);
+        MaterialCardView contactfendy = view.findViewById(R.id.contact_fendy);
         contactfendy.setOnClickListener(v -> {
             String[] mail = {"s31190038@student.ubm.ac.id"};
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -61,7 +61,7 @@ public class AboutUsFragment extends Fragment {
             startActivity(intent);
         });
 
-        MaterialCardView contactjohanes = getView().findViewById(R.id.contact_johanes);
+        MaterialCardView contactjohanes = view.findViewById(R.id.contact_johanes);
         contactjohanes.setOnClickListener(v -> {
             String[] mail = {"s31190042@student.ubm.ac.id"};
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -71,7 +71,7 @@ public class AboutUsFragment extends Fragment {
             startActivity(intent);
         });
 
-        MaterialCardView contactkosasi = getView().findViewById(R.id.contact_kosasi);
+        MaterialCardView contactkosasi = view.findViewById(R.id.contact_kosasi);
         contactkosasi.setOnClickListener(v -> {
             String[] mail = {"s31190050@student.ubm.ac.id"};
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -81,7 +81,7 @@ public class AboutUsFragment extends Fragment {
             startActivity(intent);
         });
 
-        MaterialCardView contactmichelle = getView().findViewById(R.id.contact_michelle);
+        MaterialCardView contactmichelle = view.findViewById(R.id.contact_michelle);
         contactmichelle.setOnClickListener(v -> {
             String[] mail = {"s31190052@student.ubm.ac.id"};
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -91,7 +91,7 @@ public class AboutUsFragment extends Fragment {
             startActivity(intent);
         });
 
-        MaterialCardView phones = getView().findViewById(R.id.contact_phone);
+        MaterialCardView phones = view.findViewById(R.id.contact_phone);
         phones.setOnClickListener(v -> {
             String no = "081283456789";
             Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -99,7 +99,7 @@ public class AboutUsFragment extends Fragment {
             startActivity(intent);
         });
 
-        MaterialCardView links = getView().findViewById(R.id.source);
+        MaterialCardView links = view.findViewById(R.id.source);
         links.setOnClickListener(v -> {
             String url = "https://github.com/xeanth8/AplikasiUltraMovie_Android/";
             Intent intent = new Intent(Intent.ACTION_VIEW);

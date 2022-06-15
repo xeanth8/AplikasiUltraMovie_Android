@@ -43,16 +43,16 @@ public class WriterViewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Kode untuk back
-        MaterialToolbar toolbar = getView().findViewById(R.id.writer_view_app_bar);
+        MaterialToolbar toolbar = view.findViewById(R.id.writer_view_app_bar);
         toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(getView()).popBackStack();
+            Navigation.findNavController(view).popBackStack();
         });
 
         Writer writerData = new Writer();
-        tvName = getActivity().findViewById(R.id.writer_view_name);
-        tvEmail = getActivity().findViewById(R.id.writer_view_email_content);
-        tvPhone = getActivity().findViewById(R.id.writer_view_phone_content);
-        tvMovies = getActivity().findViewById(R.id.writer_view_movies_content);
+        tvName = view.findViewById(R.id.writer_view_name);
+        tvEmail = view.findViewById(R.id.writer_view_email_content);
+        tvPhone = view.findViewById(R.id.writer_view_phone_content);
+        tvMovies = view.findViewById(R.id.writer_view_movies_content);
 
         // Inisialisasi ViewModel
         WriterViewViewModel wViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(WriterViewViewModel.class);
@@ -87,8 +87,8 @@ public class WriterViewFragment extends Fragment {
 
         // Cek proses loading untuk shimmer layout
         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.writer_view_shimmer);
-            NestedScrollView nestedScrollView = getActivity().findViewById(R.id.writer_view_main);
+            ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.writer_view_shimmer);
+            NestedScrollView nestedScrollView = view.findViewById(R.id.writer_view_main);
 
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {
@@ -101,9 +101,9 @@ public class WriterViewFragment extends Fragment {
             }
         });
 
-        ActionMenuItemView amDelete = getActivity().findViewById(R.id.app_bar_item_delete);
+        ActionMenuItemView amDelete = view.findViewById(R.id.app_bar_item_delete);
         amDelete.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(getActivity())
+            new MaterialAlertDialogBuilder(getContext())
                     .setTitle(R.string.writer_view_delete_title)
                     .setMessage(R.string.writer_view_delete_message)
                     .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
@@ -111,12 +111,12 @@ public class WriterViewFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             wViewModel.delete(writerId);
 
-                            getView().findViewById(R.id.writer_view_progress_bar).setVisibility(View.VISIBLE);
+                            view.findViewById(R.id.writer_view_progress_bar).setVisibility(View.VISIBLE);
                             wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
                                 if (isFinishedLoading) {
-                                    getView().findViewById(R.id.writer_view_progress_bar).setVisibility(View.GONE);
+                                    view.findViewById(R.id.writer_view_progress_bar).setVisibility(View.GONE);
                                     NavDirections action = WriterViewFragmentDirections.actionWriterViewFragmentToWriterListFragment();
-                                    Navigation.findNavController(getView()).navigate(action);
+                                    Navigation.findNavController(view).navigate(action);
                                 }
                             });
                         }

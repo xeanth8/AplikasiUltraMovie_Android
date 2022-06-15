@@ -51,24 +51,24 @@ public class MovieViewFragment extends Fragment {
         LoginViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             this.user = user;
             if (this.user.getLevel() == User.LEVEL_MEMBER) {
-                getActivity().findViewById(R.id.movie_fab_edit).setVisibility(View.GONE);
+                view.findViewById(R.id.movie_fab_edit).setVisibility(View.GONE);
                 MaterialToolbar toolbar = view.findViewById(R.id.movie_view_app_bar);
                 toolbar.getMenu().findItem(R.id.app_bar_item_delete).setVisible(false);
             }
         });
 
-        MaterialToolbar toolbar = getView().findViewById(R.id.movie_view_app_bar);
+        MaterialToolbar toolbar = view.findViewById(R.id.movie_view_app_bar);
         toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(getView()).popBackStack();
+            Navigation.findNavController(view).popBackStack();
         });
 
         Movie movieData = new Movie();
-        tvTitle = getActivity().findViewById(R.id.movie_view_title);
-        tvWriter = getActivity().findViewById(R.id.movie_view_writer_content);
-        tvDirector = getActivity().findViewById(R.id.movie_view_director_content);
-        tvStars = getActivity().findViewById(R.id.movie_view_star_content);
-        tvSynopsis = getActivity().findViewById(R.id.movie_view_synopsis_content);
-        cgGenre = getActivity().findViewById(R.id.movie_chip_group_genres);
+        tvTitle = view.findViewById(R.id.movie_view_title);
+        tvWriter = view.findViewById(R.id.movie_view_writer_content);
+        tvDirector = view.findViewById(R.id.movie_view_director_content);
+        tvStars = view.findViewById(R.id.movie_view_star_content);
+        tvSynopsis = view.findViewById(R.id.movie_view_synopsis_content);
+        cgGenre = view.findViewById(R.id.movie_chip_group_genres);
 
         // Inisialisasi ViewModel
         MovieViewViewModel mViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(MovieViewViewModel.class);
@@ -110,7 +110,7 @@ public class MovieViewFragment extends Fragment {
             tvSynopsis.setText(movie.getSynopsis());
         });
 
-        FloatingActionButton fabEdit = getView().findViewById(R.id.movie_fab_edit);
+        FloatingActionButton fabEdit = view.findViewById(R.id.movie_fab_edit);
         fabEdit.setOnClickListener(v -> {
             NavDirections action = MovieViewFragmentDirections.actionMovieViewFragmentToMovieFillFragment(
                     movieData.getId(),
@@ -121,13 +121,13 @@ public class MovieViewFragment extends Fragment {
                     movieData.getSynopsis(),
                     movieData.getDirector()
             );
-            Navigation.findNavController(getView()).navigate(action);
+            Navigation.findNavController(view).navigate(action);
         });
 
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.movie_view_shimmer);
-            NestedScrollView nestedScrollView = getActivity().findViewById(R.id.movie_view_main);
+            ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.movie_view_shimmer);
+            NestedScrollView nestedScrollView = view.findViewById(R.id.movie_view_main);
 
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {
@@ -142,9 +142,9 @@ public class MovieViewFragment extends Fragment {
             }
         });
 
-        ActionMenuItemView amDelete = getView().findViewById(R.id.app_bar_item_delete);
+        ActionMenuItemView amDelete = view.findViewById(R.id.app_bar_item_delete);
         amDelete.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(getActivity())
+            new MaterialAlertDialogBuilder(getContext())
                     .setTitle(R.string.movie_view_delete_title)
                     .setMessage(R.string.movie_view_delete_message)
                             .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
@@ -152,12 +152,12 @@ public class MovieViewFragment extends Fragment {
                                 public void onClick(DialogInterface dialog, int which) {
                                     mViewModel.delete(movieId);
 
-                                    getView().findViewById(R.id.movie_view_progress_bar).setVisibility(View.VISIBLE);
+                                    view.findViewById(R.id.movie_view_progress_bar).setVisibility(View.VISIBLE);
                                     mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
                                         if (isFinishedLoading) {
-                                            getView().findViewById(R.id.movie_view_progress_bar).setVisibility(View.GONE);
+                                            view.findViewById(R.id.movie_view_progress_bar).setVisibility(View.GONE);
                                             NavDirections action = MovieViewFragmentDirections.actionMovieViewFragmentToMovieListFragment();
-                                            Navigation.findNavController(getView()).navigate(action);
+                                            Navigation.findNavController(view).navigate(action);
                                         }
                                     });
                                 }

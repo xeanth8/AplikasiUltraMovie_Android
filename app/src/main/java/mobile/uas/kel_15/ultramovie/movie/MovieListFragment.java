@@ -74,12 +74,12 @@ public class MovieListFragment extends Fragment {
                     null,
                     null
                     );
-            Navigation.findNavController(getView()).navigate(action);
+            Navigation.findNavController(view).navigate(action);
         });
 
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.movie_list_shimmer);
+            ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.movie_list_shimmer);
 
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {

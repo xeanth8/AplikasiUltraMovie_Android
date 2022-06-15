@@ -46,16 +46,16 @@ public class WriterListFragment extends Fragment {
         mViewModel.getAllWriters().observe(getViewLifecycleOwner(), adapter::setWriterList);
 
         // Action untuk tambah data baru
-        FloatingActionButton fabEdit = getView().findViewById(R.id.writer_fab_add);
+        FloatingActionButton fabEdit = view.findViewById(R.id.writer_fab_add);
         fabEdit.setOnClickListener(v -> {
             System.out.println("add");
             NavDirections action = WriterListFragmentDirections.actionWriterListFragmentToWriterFillFragment();
-            Navigation.findNavController(getView()).navigate(action);
+            Navigation.findNavController(view).navigate(action);
         });
 
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.writer_list_shimmer);
+            ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.writer_list_shimmer);
 
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {

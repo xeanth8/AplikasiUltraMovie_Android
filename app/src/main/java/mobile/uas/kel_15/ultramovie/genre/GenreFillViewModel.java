@@ -13,19 +13,18 @@ import mobile.uas.kel_15.ultramovie.repository.GenreRepository;
 
 
 public class GenreFillViewModel extends AndroidViewModel {
-    private GenreRepository genreRepository;
-    private MutableLiveData<Genre> _genre;
+    private GenreRepository repository;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
     public GenreFillViewModel(@NonNull Application application) {
         super(application);
-        genreRepository = new GenreRepository(application);
+        repository = new GenreRepository(application);
     }
 
     // Fungsi-fungsi UI
 
     public void insert(Genre genre) {
-        genreRepository.insert(genre);
+        repository.insert(genre);
     }
 
     // Tidak perlu diubah

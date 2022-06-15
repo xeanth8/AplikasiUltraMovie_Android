@@ -46,16 +46,15 @@ public class GenreListFragment extends Fragment {
         mViewModel.getAllGenres().observe(getViewLifecycleOwner(), adapter::setGenreList);
 
         // Action untuk tambah data baru
-        FloatingActionButton fabEdit = getView().findViewById(R.id.genre_fab_add);
+        FloatingActionButton fabEdit = view.findViewById(R.id.genre_fab_add);
         fabEdit.setOnClickListener(v -> {
-            System.out.println("add");
             NavDirections action = GenreListFragmentDirections.actionGenreListFragmentToGenreFillFragment();
-            Navigation.findNavController(getView()).navigate(action);
+            Navigation.findNavController(view).navigate(action);
         });
 
         // Cek proses loading untuk shimmer layout
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-            ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.genre_list_shimmer);
+            ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.genre_list_shimmer);
 
             if (isFinishedLoading != null) {
                 if (isFinishedLoading) {

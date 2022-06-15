@@ -77,7 +77,7 @@ public class MoreFragment extends Fragment {
         });
 
         view.findViewById(R.id.more_card_logout).setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(getActivity())
+            new MaterialAlertDialogBuilder(getContext())
                     .setMessage(R.string.confirmation_logout)
                     .setPositiveButton(R.string.action_logout, new DialogInterface.OnClickListener() {
                         @Override
@@ -88,7 +88,7 @@ public class MoreFragment extends Fragment {
 
                             navController.popBackStack();
                             navController.popBackStack();
-                            navController.navigate(R.id.loginFragment);
+                            navController.navigate(R.id.loginFragment) ;
                         }
                     })
                     .setNegativeButton(R.string.dialog_button_cancel, (dialog1, which) -> {})

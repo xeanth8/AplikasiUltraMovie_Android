@@ -40,20 +40,20 @@ public class WriterFillFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Kode untuk back
-        MaterialToolbar toolbar = getView().findViewById(R.id.writer_fill_app_bar);
+        MaterialToolbar toolbar = view.findViewById(R.id.writer_fill_app_bar);
         toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(getView()).popBackStack();
+            Navigation.findNavController(view).popBackStack();
         });
 
         writer = new Writer();
 
-        etName = getActivity().findViewById(R.id.writer_fill_field_name);
-        etEmail = getActivity().findViewById(R.id.writer_fill_field_email);
-        etPhone = getActivity().findViewById(R.id.writer_fill_field_phone);
+        etName = view.findViewById(R.id.writer_fill_field_name);
+        etEmail = view.findViewById(R.id.writer_fill_field_email);
+        etPhone = view.findViewById(R.id.writer_fill_field_phone);
 
         wViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(WriterFillViewModel.class);
 
-        FloatingActionButton fabSave = getView().findViewById(R.id.writer_fill_fab_save);
+        FloatingActionButton fabSave = view.findViewById(R.id.writer_fill_fab_save);
         fabSave.setOnClickListener(v -> {
             Log.d("Tes", "Aman");
             //Validasi input field
@@ -69,13 +69,13 @@ public class WriterFillFragment extends Fragment {
 
                         wViewModel.insert(writer);
 
-                        getView().findViewById(R.id.writer_fill_progress_bar).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.writer_fill_progress_bar).setVisibility(View.VISIBLE);
 
                         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
                             if (isFinishedLoading) {
-                                getView().findViewById(R.id.writer_fill_progress_bar).setVisibility(View.GONE);
+                                view.findViewById(R.id.writer_fill_progress_bar).setVisibility(View.GONE);
                                 NavDirections action = WriterFillFragmentDirections.actionWriterFillFragmentToWriterListFragment();
-                                Navigation.findNavController(getView()).navigate(action);
+                                Navigation.findNavController(view).navigate(action);
                             }
                         });
                     }

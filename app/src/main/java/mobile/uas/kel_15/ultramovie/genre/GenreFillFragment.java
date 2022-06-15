@@ -40,20 +40,19 @@ public class GenreFillFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MaterialToolbar toolbar = getView().findViewById(R.id.genre_fill_app_bar);
+        MaterialToolbar toolbar = view.findViewById(R.id.genre_fill_app_bar);
         toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(getView()).popBackStack();
+            Navigation.findNavController(view).popBackStack();
         });
 
         genre = new Genre();
 
-        etName = getActivity().findViewById(R.id.genre_fill_field_name);
+        etName = view.findViewById(R.id.genre_fill_field_name);
 
         wViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(GenreFillViewModel.class);
 
-        FloatingActionButton fabSave = getView().findViewById(R.id.genre_fill_fab_save);
+        FloatingActionButton fabSave = view.findViewById(R.id.genre_fill_fab_save);
         fabSave.setOnClickListener(v -> {
-            Log.d("Tes", "Aman");
             //Validasi input field
             if(!(etName.getText().toString().matches("")))
             {
@@ -61,23 +60,22 @@ public class GenreFillFragment extends Fragment {
 
                         wViewModel.insert(genre);
 
-                        getView().findViewById(R.id.genre_fill_progress_bar).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.genre_fill_progress_bar).setVisibility(View.VISIBLE);
 
                         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
                             if (isFinishedLoading) {
-                                getView().findViewById(R.id.genre_fill_progress_bar).setVisibility(View.GONE);
+                                view.findViewById(R.id.genre_fill_progress_bar).setVisibility(View.GONE);
                                 NavDirections action = GenreFillFragmentDirections.actionGenreFillFragmentToGenreListFragment();
-                                Navigation.findNavController(getView()).navigate(action);
+                                Navigation.findNavController(view).navigate(action);
                             }
                         });
             }
             else
             {
                 etName.setError("Genre name is required.");
+                etName.requestFocus();
             }
 
         });
-
     }
-
 }

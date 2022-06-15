@@ -74,8 +74,8 @@
     <string name="prompt_country">Country Origin</string>
     <string name="prompt_level">Level</string>
 
-    <string name="login_title">"Welcome!"</string>
-    <string name="login_subtitle">Please login</string>
+    <string name="login_title">"Login"</string>
+    <string name="login_subtitle">Please enter your username and password.</string>
     <string name="action_login">Login</string>
     <string name="action_register">Register</string>
     <string name="action_logout">Logout</string>

@@ -22,6 +22,7 @@ import java.util.Map;
 
 import mobile.uas.kel_15.ultramovie.Commons;
 import mobile.uas.kel_15.ultramovie.R;
+import mobile.uas.kel_15.ultramovie.genre.GenreFillViewModel;
 import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
 import mobile.uas.kel_15.ultramovie.genre.GenreViewViewModel;
 import mobile.uas.kel_15.ultramovie.model.Genre;
@@ -98,6 +99,9 @@ public class GenreRepository  {
                 genre.setId(String.valueOf(data.getInt("kd_genre")));
                 genre.setName(data.getString("nama_genre"));
 
+                if (data.getString("movies").equals("null")) genre.setMovies(new String[]{"No movies."});
+                else genre.setMovies(data.getString("movies").split(",", -1));
+
                 genreData.postValue(genre);
 
             }catch (JSONException e){
@@ -120,10 +124,10 @@ public class GenreRepository  {
     }
 
     public void insert(Genre genre) {
-        GenreViewViewModel.processStarted();
+        GenreFillViewModel.processStarted();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
-            GenreViewViewModel.processFinished();
+            GenreFillViewModel.processFinished();
 
         }, error -> {
             Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();

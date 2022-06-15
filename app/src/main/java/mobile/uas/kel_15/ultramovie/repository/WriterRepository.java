@@ -108,8 +108,8 @@ public class WriterRepository  {
                 writer.setEmail(data.getString("email"));
                 writer.setTelepon(data.getString("telepon"));
 
-                String[] movies =  data.getString("movies").split(",", -1);
-                writer.setMovies(movies);
+                if (data.getString("movies").equals("null")) writer.setMovies(new String[]{"No movies."});
+                else writer.setMovies(data.getString("movies").split(",", -1));
 
                 writerData.postValue(writer);
             } catch (JSONException e){
