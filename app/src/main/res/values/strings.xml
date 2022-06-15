@@ -35,21 +35,21 @@
     <string name="movie_fill_app_title_edit">Edit Movie</string>
 
     <string name="genre_fill_name_label">Genre Name</string>
-    <string name="genre_view_movies_label">Movie List</string>
-    <string name="genre_view_delete_title">Delete this Genre?</string>
-    <string name="genre_view_delete_message">Deleted Genre will be removed permanently and cannot be recovered</string>
+    <string name="genre_view_movies_label">Movies of this genre:</string>
+    <string name="genre_view_delete_title">Delete this genre?</string>
+    <string name="genre_view_delete_message">Deleted data will be lost permanently and cannot be recovered.</string>
 
     <string name="writer_view_email_label">Email</string>
     <string name="writer_view_phone_label">Phone</string>
-    <string name="writer_view_movies_label">Movies</string>
+    <string name="writer_view_movies_label">Movies by this writer:</string>
 
     <string name="writer_fill_name_label">Writer\'s Name</string>
 
     <string name="writer_view_delete_title">Delete this writer?</string>
-    <string name="writer_view_delete_message">Deleted writer will be removed permanently and cannot be recovered</string>
+    <string name="writer_view_delete_message">Deleted data will be lost permanently and cannot be recovered.</string>
 
     <string name="movie_view_delete_title">Delete this movie?</string>
-    <string name="movie_view_delete_message">Deleted movies will be removed permanently and cannot be recovered.</string>
+    <string name="movie_view_delete_message">Deleted data will be lost permanently and cannot be recovered.</string>
 
     <string name="dialog_button_yes">Yes</string>
     <string name="dialog_button_no">No</string>
@@ -99,6 +99,4 @@
     <string name="more_user_identity_label">User identity</string>
     <string name="more_option_label">Options</string>
     <string name="more_item_about_us">About Us</string>
-
-
 </resources>

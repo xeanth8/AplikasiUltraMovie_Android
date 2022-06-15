@@ -78,16 +78,19 @@ public class WriterFillFragment extends Fragment {
                     else
                     {
                         etPhone.setError("Phone is required.");
+                        etPhone.requestFocus();
                     }
                 }
                 else
                 {
                     etEmail.setError("Email is required.");
+                    etEmail.requestFocus();
                 }
             }
             else
             {
                 etName.setError("Writer's name is required.");
+                etName.requestFocus();
             }
 
         });

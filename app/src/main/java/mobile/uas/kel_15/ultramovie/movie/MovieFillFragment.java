@@ -234,12 +234,15 @@ public class MovieFillFragment extends Fragment {
 
                 } else {
                     actvWriter.setError(getString(R.string.movie_fill_error_writer_empty));
+                    actvWriter.requestFocus();
                 }
             } else {
                 actvGenre.setError(getString(R.string.movie_fill_error_genre_empty));
+                actvGenre.requestFocus();
             }
         } else {
             etTitle.setError(getString(R.string.movie_fill_error_title_empty));
+            etTitle.requestFocus();
         }
     }
 }
