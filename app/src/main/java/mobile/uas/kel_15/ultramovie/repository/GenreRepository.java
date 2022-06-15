@@ -1,7 +1,9 @@
 package mobile.uas.kel_15.ultramovie.repository;
 
 import android.app.Application;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -19,7 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 import mobile.uas.kel_15.ultramovie.Commons;
+import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.genre.GenreListViewModel;
+import mobile.uas.kel_15.ultramovie.genre.GenreViewViewModel;
 import mobile.uas.kel_15.ultramovie.model.Genre;
 
 public class GenreRepository  {
@@ -77,16 +81,84 @@ public class GenreRepository  {
     }
 
     public MutableLiveData<Genre> getGenre(String id) {
-        // TODO: Implement get function
-        return null;
+
+        GenreViewViewModel.processStarted();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            try{
+                GenreViewViewModel.processFinished();
+
+                JSONObject jsonObject = new JSONObject(responses);
+
+                JSONObject data = jsonObject.getJSONObject("data");
+
+                Genre genre;
+                genre = new Genre();
+
+                genre.setId(String.valueOf(data.getInt("kd_genre")));
+                genre.setName(data.getString("nama_genre"));
+
+                genreData.postValue(genre);
+
+            }catch (JSONException e){
+                e.printStackTrace();}
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "find");
+                params.put("kd_genre", id);
+
+                return params;
+            }
+
+        };
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
+        return genreData;
     }
 
     public void insert(Genre genre) {
-        // TODO: Implement insert function
+        GenreViewViewModel.processStarted();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            GenreViewViewModel.processStarted();
+
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "create");
+                params.put("nama_genre", genre.getName());
+
+                return params;
+            }
+        };
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 
     public void delete(String genreId) {
-        // TODO: implement delete function
+        GenreViewViewModel.processStarted();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, responses -> {
+            GenreViewViewModel.processStarted();
+
+        }, error -> {
+            Toast.makeText(application.getApplicationContext(), R.string.app_server_error, Toast.LENGTH_SHORT).show();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("action", "delete");
+                params.put("kd_genre", genreId);
+
+                return params;
+            }
+        };
+        Volley.newRequestQueue(application.getApplicationContext()).add(stringRequest);
     }
 }
 
