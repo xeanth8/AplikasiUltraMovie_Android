@@ -27,52 +27,41 @@ import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Genre;
+import mobile.uas.kel_15.ultramovie.writer.WriterViewFragmentArgs;
 import mobile.uas.kel_15.ultramovie.writer.WriterViewFragmentDirections;
 
 public class GenreViewFragment extends Fragment {
 
-    TextView tvNameGenre, tvMovies;
-
-    public static GenreViewFragment newInstance() {
-        return new GenreViewFragment();
-    }
+    TextView tvNameGenre;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_genre_view, container, false);
     }
 
-    public void onViewCreated(@Nullable Bundle savedInstanceState) {
-        super.onViewCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        MaterialToolbar toolbar = getView().findViewById(R.id.writer_view_app_bar);
+
+        MaterialToolbar toolbar = getView().findViewById(R.id.genre_view_app_bar);
         toolbar.setNavigationOnClickListener(v -> {
             Navigation.findNavController(getView()).popBackStack();
         });
 
         Genre genreData = new Genre();
         tvNameGenre = getActivity().findViewById(R.id.genre_view_name);
-        tvMovies = getActivity().findViewById(R.id.genre_view_movies_content);
 
         GenreViewViewModel wViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(GenreViewViewModel.class);
 
         String genreId = GenreViewFragmentArgs.fromBundle(getArguments()).getGenreId();
 
-        wViewModel.getGenre(genreId).observe(getViewLifecycleOwner(), genre ->{
+        wViewModel.getGenre(genreId).observe(getViewLifecycleOwner(), genre -> {
             genreData.setId(genre.getId());
             genreData.setName(genre.getName());
-            genreData.setMovies(genre.getMovies());
 
             tvNameGenre.setText(genre.getName());
-
-            String movies = String.join("\n",
-                    Arrays.stream(genre.getMovies())
-                            .map(String::trim)
-                            .toArray(String[]::new));
-
-            tvMovies.setText(movies);
-
         });
 
         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading ->{
