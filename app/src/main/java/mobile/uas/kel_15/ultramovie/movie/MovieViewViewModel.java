@@ -5,15 +5,12 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
 
 public class MovieViewViewModel extends AndroidViewModel {
-    private MovieRepository repository;
+    private final MovieRepository repository;
     private MutableLiveData<Movie> _movie;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 

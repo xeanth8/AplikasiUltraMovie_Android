@@ -1,39 +1,23 @@
 package mobile.uas.kel_15.ultramovie.misc;
 
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textview.MaterialTextView;
-
-import org.w3c.dom.Text;
 
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.writer.WriterListAdapter;
 
 public class AboutUsFragment extends Fragment {
-
-    public static AboutUsFragment newInstance() {
-        return new AboutUsFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.Arrays;
 import java.util.List;
 
 import mobile.uas.kel_15.ultramovie.model.Genre;
@@ -17,9 +16,9 @@ import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
 import mobile.uas.kel_15.ultramovie.repository.WriterRepository;
 
 public class MovieFillViewModel extends AndroidViewModel {
-    private MovieRepository movieRepository;
-    private GenreRepository genreRepository;
-    private WriterRepository writerRepository;
+    private final MovieRepository movieRepository;
+    private final GenreRepository genreRepository;
+    private final WriterRepository writerRepository;
 
     private MutableLiveData<List<Genre>> _genres;
     private MutableLiveData<List<Writer>> _writers;

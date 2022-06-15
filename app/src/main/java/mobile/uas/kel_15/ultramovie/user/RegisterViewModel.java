@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -19,14 +18,14 @@ import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.repository.UserRepository;
 
 public class RegisterViewModel extends AndroidViewModel {
-    private UserRepository repository;
+    private final UserRepository repository;
 
     private final String[] GENDER = {getApplication().getString(R.string.gender_male), getApplication().getString(R.string.gender_female)};
     private final String[] LEVEL = {getApplication().getString(R.string.level_member), getApplication().getString(R.string.level_admin)};
     private ArrayList<String> COUNTRIES = new ArrayList<>();
 
 //    private User userData = new MutableLiveData<>();
-    private static MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private static MutableLiveData<Boolean> isFormValid = new MutableLiveData<>();
 
     public RegisterViewModel(@NonNull Application application) {

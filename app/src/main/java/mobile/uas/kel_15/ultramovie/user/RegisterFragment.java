@@ -1,17 +1,7 @@
 package mobile.uas.kel_15.ultramovie.user;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -23,11 +13,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.model.User;
 
 public class RegisterFragment extends Fragment {
 

@@ -12,7 +12,7 @@ import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
 
 public class MovieListViewModel extends AndroidViewModel {
-    private MovieRepository repository;
+    private final MovieRepository repository;
 
     private MutableLiveData<List<Movie>> _allMovies;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();

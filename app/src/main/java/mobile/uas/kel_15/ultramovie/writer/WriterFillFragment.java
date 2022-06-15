@@ -20,8 +20,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Writer;
-import mobile.uas.kel_15.ultramovie.movie.MovieFillFragmentDirections;
-import mobile.uas.kel_15.ultramovie.movie.MovieFillViewModel;
 
 public class WriterFillFragment extends Fragment {
 
@@ -41,9 +39,7 @@ public class WriterFillFragment extends Fragment {
 
         // Kode untuk back
         MaterialToolbar toolbar = view.findViewById(R.id.writer_fill_app_bar);
-        toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         writer = new Writer();
 

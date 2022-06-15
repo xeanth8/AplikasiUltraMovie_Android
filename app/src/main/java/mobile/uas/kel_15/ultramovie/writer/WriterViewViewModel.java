@@ -1,21 +1,17 @@
 package mobile.uas.kel_15.ultramovie.writer;
 
 import android.app.Application;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.model.Writer;
-import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
 import mobile.uas.kel_15.ultramovie.repository.WriterRepository;
 
 public class WriterViewViewModel extends AndroidViewModel {
 
-    private WriterRepository repository;
+    private final WriterRepository repository;
     private MutableLiveData<Writer> _writer;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 

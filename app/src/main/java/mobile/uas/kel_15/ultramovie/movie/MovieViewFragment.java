@@ -3,7 +3,6 @@ package mobile.uas.kel_15.ultramovie.movie;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -26,6 +25,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Movie;
@@ -50,7 +50,7 @@ public class MovieViewFragment extends Fragment {
 
         LoginViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             this.user = user;
-            if (this.user.getLevel() == User.LEVEL_MEMBER) {
+            if (Objects.equals(this.user.getLevel(), User.LEVEL_MEMBER)) {
                 view.findViewById(R.id.movie_fab_edit).setVisibility(View.GONE);
                 MaterialToolbar toolbar = view.findViewById(R.id.movie_view_app_bar);
                 toolbar.getMenu().findItem(R.id.app_bar_item_delete).setVisible(false);
@@ -133,11 +133,11 @@ public class MovieViewFragment extends Fragment {
                 if (isFinishedLoading) {
                     nestedScrollView.setVisibility(View.VISIBLE);
                     shimmerFrameLayout.setVisibility(View.GONE);
-                    if (this.user.getLevel() == User.LEVEL_ADMIN) fabEdit.setVisibility(View.VISIBLE);
+                    if (Objects.equals(this.user.getLevel(), User.LEVEL_ADMIN)) fabEdit.setVisibility(View.VISIBLE);
                 } else {
                    nestedScrollView.setVisibility(View.GONE);
                    shimmerFrameLayout.setVisibility(View.VISIBLE);
-                   if (this.user.getLevel() == User.LEVEL_ADMIN) fabEdit.setVisibility(View.GONE);
+                   if (Objects.equals(this.user.getLevel(), User.LEVEL_ADMIN)) fabEdit.setVisibility(View.GONE);
                 }
             }
         });

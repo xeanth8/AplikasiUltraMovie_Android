@@ -82,7 +82,7 @@ public class MovieFillFragment extends Fragment {
 
         // Adapter untuk dropdown genre
         mViewModel.getAllGenres().observe(getViewLifecycleOwner(), genresAdapter -> {
-            ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(getContext(), android.R.layout.simple_dropdown_item_1line, genresAdapter);
+            ArrayAdapter<Genre> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, genresAdapter);
             actvGenre.setAdapter(adapter);
             actvGenre.setThreshold(1);
 
@@ -102,7 +102,7 @@ public class MovieFillFragment extends Fragment {
 
         // Adapter untuk dropdown writer
         mViewModel.getAllWriters().observe(getViewLifecycleOwner(), writersAdapter -> {
-            ArrayAdapter<Writer> adapter = new ArrayAdapter<Writer>(getContext(), android.R.layout.simple_dropdown_item_1line, writersAdapter);
+            ArrayAdapter<Writer> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, writersAdapter);
             actvWriter.setAdapter(adapter);
             actvWriter.setThreshold(1);
 
@@ -197,10 +197,10 @@ public class MovieFillFragment extends Fragment {
                 if (!writers.isEmpty()) {
                     movie.setTitle(title);
 
-                    String[] genreArray = (String[]) genres.toArray(new String[0]);
+                    String[] genreArray = genres.toArray(new String[0]);
                     movie.setGenres(genreArray);
 
-                    String[] writerArray = (String[]) writers.toArray(new String[0]);
+                    String[] writerArray = writers.toArray(new String[0]);
                     movie.setWriters(writerArray);
 
                     if (etDirector.getText() != null) movie.setDirector(etDirector.getText().toString());
@@ -210,7 +210,7 @@ public class MovieFillFragment extends Fragment {
 
                     String[] starArray;
                     if (!stars.isEmpty()) {
-                        starArray = (String[]) stars.toArray(new String[0]);
+                        starArray = stars.toArray(new String[0]);
                         movie.setStars(starArray);
                     } else if (!actvStar.getText().toString().isEmpty()){
                         starArray = new String[]{actvStar.getText().toString()};

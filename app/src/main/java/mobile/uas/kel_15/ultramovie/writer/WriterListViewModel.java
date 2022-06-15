@@ -8,15 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import mobile.uas.kel_15.ultramovie.model.Genre;
-import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.model.Writer;
-import mobile.uas.kel_15.ultramovie.repository.GenreRepository;
-import mobile.uas.kel_15.ultramovie.repository.MovieRepository;
 import mobile.uas.kel_15.ultramovie.repository.WriterRepository;
 
 public class WriterListViewModel extends AndroidViewModel {
-    private WriterRepository repository;
+    private final WriterRepository repository;
     private MutableLiveData<List<Writer>> _allWriters;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 

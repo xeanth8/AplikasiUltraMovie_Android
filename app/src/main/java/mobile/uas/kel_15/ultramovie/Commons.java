@@ -11,7 +11,7 @@ public class Commons {
 
     public static String md5(String plainPassword) {
         StringBuilder hash = new StringBuilder();
-        MessageDigest md = null;
+        MessageDigest md;
         try {
             md = MessageDigest.getInstance("MD5");
             md.update(plainPassword.getBytes(StandardCharsets.UTF_8));

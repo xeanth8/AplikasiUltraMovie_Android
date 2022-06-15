@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +23,8 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Objects;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
@@ -98,10 +99,10 @@ public class LoginFragment extends Fragment {
                     etPassword.setText("");
                 } else if (user.getAuthenticated() == User.AUTHENTICATED) {
                     BottomNavigationView navigationBarView = getActivity().findViewById(R.id.bottom_navigation_view);
-                    if (user.getLevel() == User.LEVEL_MEMBER) {
+                    if (Objects.equals(user.getLevel(), User.LEVEL_MEMBER)) {
                         navigationBarView.getMenu().findItem(R.id.writerListFragment).setVisible(false);
                         navigationBarView.getMenu().findItem(R.id.genreListFragment).setVisible(false);
-                    } else if (user.getLevel() == User.LEVEL_ADMIN){
+                    } else if (Objects.equals(user.getLevel(), User.LEVEL_ADMIN)){
                         navigationBarView.getMenu().findItem(R.id.writerListFragment).setVisible(true);
                         navigationBarView.getMenu().findItem(R.id.genreListFragment).setVisible(true);
                     }

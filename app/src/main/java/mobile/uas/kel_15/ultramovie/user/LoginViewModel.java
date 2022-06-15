@@ -12,11 +12,10 @@ import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.repository.UserRepository;
 
 public class LoginViewModel extends AndroidViewModel {
-    private UserRepository repository;
+    private final UserRepository repository;
 
-    private User user;
     private static MutableLiveData<User> userData = new MutableLiveData<>();
-    private static MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private static MutableLiveData<Boolean> isFormValid = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {

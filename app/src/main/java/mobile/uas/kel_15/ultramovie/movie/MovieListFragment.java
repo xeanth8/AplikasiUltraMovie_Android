@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 
+import java.util.Objects;
+
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
 import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
@@ -41,7 +43,7 @@ public class MovieListFragment extends Fragment {
 
         // Jika ada user, hilangkan fab untuk add jika levelnya LEVEL_MEMBER
             LoginViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
-                if (user.getLevel() == User.LEVEL_MEMBER) {
+                if (Objects.equals(user.getLevel(), User.LEVEL_MEMBER)) {
                     view.findViewById(R.id.movie_fab_add).setVisibility(View.GONE);
                 }
             });

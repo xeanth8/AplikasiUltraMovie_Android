@@ -19,7 +19,6 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.writer.WriterListFragmentDirections;
 
 public class GenreListFragment extends Fragment {
 

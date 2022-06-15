@@ -20,7 +20,6 @@ import java.util.Objects;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.User;
-import mobile.uas.kel_15.ultramovie.movie.MovieViewFragmentDirections;
 import mobile.uas.kel_15.ultramovie.user.LoginViewModel;
 
 public class MoreFragment extends Fragment {
@@ -59,8 +58,8 @@ public class MoreFragment extends Fragment {
                         etName.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, getContext().getResources().getDrawable(R.drawable.ic_baseline_female_24), null);
                     }
 
-                    if (user.getLevel() == User.LEVEL_ADMIN) etLevel.setText(R.string.level_admin);
-                    else if (user.getLevel() == User.LEVEL_MEMBER)
+                    if (Objects.equals(user.getLevel(), User.LEVEL_ADMIN)) etLevel.setText(R.string.level_admin);
+                    else if (Objects.equals(user.getLevel(), User.LEVEL_MEMBER))
                         etLevel.setText(R.string.level_member);
                 }
             });

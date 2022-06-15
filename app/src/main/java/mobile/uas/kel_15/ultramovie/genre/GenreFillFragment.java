@@ -1,20 +1,17 @@
 package mobile.uas.kel_15.ultramovie.genre;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,7 +19,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Genre;
-import mobile.uas.kel_15.ultramovie.writer.WriterFillFragmentDirections;
 
 public class GenreFillFragment extends Fragment {
 
@@ -41,9 +37,7 @@ public class GenreFillFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         MaterialToolbar toolbar = view.findViewById(R.id.genre_fill_app_bar);
-        toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         genre = new Genre();
 

@@ -7,14 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import mobile.uas.kel_15.ultramovie.model.Movie;
 import mobile.uas.kel_15.ultramovie.model.Writer;
 import mobile.uas.kel_15.ultramovie.repository.WriterRepository;
 
 public class WriterFillViewModel extends AndroidViewModel {
 
-    private WriterRepository writerRepository;
-    private MutableLiveData<Writer> _writer;
+    private final WriterRepository writerRepository;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
     public WriterFillViewModel(@NonNull Application application) {

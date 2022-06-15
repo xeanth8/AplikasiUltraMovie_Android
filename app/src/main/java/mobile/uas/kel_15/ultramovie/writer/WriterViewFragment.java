@@ -44,9 +44,7 @@ public class WriterViewFragment extends Fragment {
 
         // Kode untuk back
         MaterialToolbar toolbar = view.findViewById(R.id.writer_view_app_bar);
-        toolbar.setNavigationOnClickListener(v -> {
-            Navigation.findNavController(view).popBackStack();
-        });
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         Writer writerData = new Writer();
         tvName = view.findViewById(R.id.writer_view_name);
@@ -102,28 +100,23 @@ public class WriterViewFragment extends Fragment {
         });
 
         ActionMenuItemView amDelete = view.findViewById(R.id.app_bar_item_delete);
-        amDelete.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(getContext())
-                    .setTitle(R.string.writer_view_delete_title)
-                    .setMessage(R.string.writer_view_delete_message)
-                    .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            wViewModel.delete(writerId);
+        amDelete.setOnClickListener(v -> new MaterialAlertDialogBuilder(getContext())
+                .setTitle(R.string.writer_view_delete_title)
+                .setMessage(R.string.writer_view_delete_message)
+                .setPositiveButton(R.string.dialog_button_delete, (dialog, which) -> {
+                    wViewModel.delete(writerId);
 
-                            view.findViewById(R.id.writer_view_progress_bar).setVisibility(View.VISIBLE);
-                            wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
-                                if (isFinishedLoading) {
-                                    view.findViewById(R.id.writer_view_progress_bar).setVisibility(View.GONE);
-                                    NavDirections action = WriterViewFragmentDirections.actionWriterViewFragmentToWriterListFragment();
-                                    Navigation.findNavController(view).navigate(action);
-                                }
-                            });
+                    view.findViewById(R.id.writer_view_progress_bar).setVisibility(View.VISIBLE);
+                    wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
+                        if (isFinishedLoading) {
+                            view.findViewById(R.id.writer_view_progress_bar).setVisibility(View.GONE);
+                            NavDirections action = WriterViewFragmentDirections.actionWriterViewFragmentToWriterListFragment();
+                            Navigation.findNavController(view).navigate(action);
                         }
-                    })
-                    .setNegativeButton(R.string.dialog_button_cancel, (dialog1, which) -> {})
-                    .create().show();
-        });
+                    });
+                })
+                .setNegativeButton(R.string.dialog_button_cancel, (dialog1, which) -> {})
+                .create().show());
 
     }
 }

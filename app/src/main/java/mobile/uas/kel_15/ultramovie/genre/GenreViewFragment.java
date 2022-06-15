@@ -24,7 +24,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
-import mobile.uas.kel_15.ultramovie.model.Genre;
 
 public class GenreViewFragment extends Fragment {
 
@@ -41,9 +40,7 @@ public class GenreViewFragment extends Fragment {
 
 
         MaterialToolbar toolbar = view.findViewById(R.id.genre_view_app_bar);
-        toolbar.setNavigationOnClickListener(v -> {
-        Navigation.findNavController(view).popBackStack();
-        });
+        toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(view).popBackStack());
 
         tvNameGenre = view.findViewById(R.id.genre_view_name);
         tvMovie = view.findViewById(R.id.genre_view_movies_content);
