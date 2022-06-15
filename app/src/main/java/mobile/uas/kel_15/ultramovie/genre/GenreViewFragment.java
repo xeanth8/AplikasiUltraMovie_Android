@@ -23,21 +23,17 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Genre;
-import mobile.uas.kel_15.ultramovie.writer.WriterViewFragmentArgs;
-import mobile.uas.kel_15.ultramovie.writer.WriterViewFragmentDirections;
 
 public class GenreViewFragment extends Fragment {
 
     TextView tvNameGenre;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_genre_view, container, false);
     }
 
@@ -55,14 +51,14 @@ public class GenreViewFragment extends Fragment {
 
         GenreViewViewModel wViewModel = new ViewModelProvider((ViewModelStoreOwner) getViewLifecycleOwner()).get(GenreViewViewModel.class);
 
-        String genreId = GenreViewFragmentArgs.fromBundle(getArguments()).getGenreId();
+       String genreId = GenreViewFragmentArgs.fromBundle(getArguments()).getGenreId();
 
-        wViewModel.getGenre(genreId).observe(getViewLifecycleOwner(), genre -> {
-            genreData.setId(genre.getId());
-            genreData.setName(genre.getName());
+       wViewModel.getGenre(genreId).observe(getViewLifecycleOwner(), genre -> {
+       genreData.setId(genre.getId());
+       genreData.setName(genre.getName());
 
-            tvNameGenre.setText(genre.getName());
-        });
+       tvNameGenre.setText(genre.getName());
+      });
 
         wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading ->{
             ShimmerFrameLayout shimmerFrameLayout = getActivity().findViewById(R.id.genre_view_shimmer);
@@ -87,7 +83,7 @@ public class GenreViewFragment extends Fragment {
                     .setPositiveButton(R.string.dialog_button_delete, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            wViewModel.delete(genreId);
+                           wViewModel.delete(genreId);
 
                             getView().findViewById(R.id.genre_view_progress_bar).setVisibility(View.VISIBLE);
                             wViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {

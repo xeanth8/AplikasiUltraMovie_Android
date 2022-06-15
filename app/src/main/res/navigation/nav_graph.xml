@@ -59,7 +59,15 @@
         android:id="@+id/genreListFragment"
         android:name="mobile.uas.kel_15.ultramovie.genre.GenreListFragment"
         android:label="fragment_genre_list"
-        tools:layout="@layout/fragment_genre_list" />
+        tools:layout="@layout/fragment_genre_list" >
+        <action
+            android:id="@+id/action_genreListFragment_to_genreViewFragment"
+            app:destination="@id/genreViewFragment" />
+        <action
+            android:id="@+id/action_genreListFragment_to_genreFillFragment"
+            app:destination="@id/genreFillFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
     <fragment
         android:id="@+id/writerListFragment"
         android:name="mobile.uas.kel_15.ultramovie.writer.WriterListFragment"
@@ -216,5 +224,27 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/genreViewFragment"
+        android:name="mobile.uas.kel_15.ultramovie.genre.GenreViewFragment"
+        android:label="fragment_genre_view"
+        tools:layout="@layout/fragment_genre_view" >
+        <argument
+            android:name="genreId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_genreViewFragment_to_genreListFragment"
+            app:destination="@id/genreListFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/genreFillFragment"
+        android:name="mobile.uas.kel_15.ultramovie.genre.GenreFillFragment"
+        android:label="GenreFillFragment" >
+        <action
+            android:id="@+id/action_genreFillFragment_to_genreListFragment"
+            app:destination="@id/genreListFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
 </navigation>

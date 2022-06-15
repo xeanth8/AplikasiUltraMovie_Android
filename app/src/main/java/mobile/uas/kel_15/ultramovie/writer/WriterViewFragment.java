@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +20,13 @@ import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Arrays;
 
 import mobile.uas.kel_15.ultramovie.R;
 import mobile.uas.kel_15.ultramovie.model.Writer;
-import mobile.uas.kel_15.ultramovie.movie.MovieViewFragmentDirections;
-import mobile.uas.kel_15.ultramovie.writer.WriterViewFragmentArgs;
-import mobile.uas.kel_15.ultramovie.writer.WriterViewViewModel;
+
 
 public class WriterViewFragment extends Fragment {
 

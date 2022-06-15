@@ -10,6 +10,7 @@ import mobile.uas.kel_15.ultramovie.model.Genre;
 import mobile.uas.kel_15.ultramovie.repository.GenreRepository;
 
 public class GenreViewViewModel extends AndroidViewModel {
+
     private GenreRepository repository;
     private MutableLiveData<Genre> _genre;
     private static final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
