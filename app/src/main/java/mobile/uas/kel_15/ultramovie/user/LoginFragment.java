@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment {
         progressDialog  = new ProgressDialog(getContext());
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
 //            ProgressBar progressBar = view.findViewById(R.id.login_progress_bar);
-            progressDialog.setMessage("Logging in...");
+            progressDialog.setMessage(getString(R.string.message_logging_in));
             progressDialog.setCancelable(false);
 
             if (isFinishedLoading != null) {

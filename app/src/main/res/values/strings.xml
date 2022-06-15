@@ -20,11 +20,11 @@
     <string name="fab_desc_edit">Edit</string>
     <string name="fab_desc_submit">Submit</string>
 
-    <string name="card_genre_name_placeholder">Genre</string>
-    <string name="card_movie_title_placeholder">Title</string>
-    <string name="card_movie_genre_placeholder">Genres</string>
-    <string name="card_movie_writer_placeholder">Writers</string>
-    <string name="card_writer_name_placeholder">Name</string>
+    <string name="card_genre_name_placeholder" translatable="false">Genre</string>
+    <string name="card_movie_title_placeholder" translatable="false">Title</string>
+    <string name="card_movie_genre_placeholder" translatable="false">Genres</string>
+    <string name="card_movie_writer_placeholder" translatable="false">Writers</string>
+    <string name="card_writer_name_placeholder" translatable="false">Name</string>
 
     <string name="movie_view_writer_label">Written by</string>
     <string name="movie_view_director_label">Directed by</string>
@@ -61,6 +61,8 @@
     <string name="movie_fill_error_writer_empty">A minimum of one writer is required.</string>
 
     <string name="app_server_error">Failed to connect to the server. Please try again later.</string>
+    <string name="message_loading">Loading...</string>
+    <string name="message_logging_in">Logging in...</string>
 
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
@@ -79,24 +81,25 @@
     <string name="action_login">Login</string>
     <string name="action_register">Register</string>
     <string name="action_logout">Logout</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_username">Not a valid username.</string>
+    <string name="invalid_password">Password must be >5 characters.</string>
     <string name="login_failed">"Login failed"</string>
     <string name="desc_to_register">Don\'t have an account?</string>
     <string name="desc_to_login">Already have an account?</string>
 
     <string name="confirmation_logout">Do you want to logout?</string>
 
-    <string name="repo_link">xeanth8/AplikasiUltraMovie_Android</string>
+    <string name="repo_link" translatable="false">xeanth8/AplikasiUltraMovie_Android</string>
     <string name="repo_label">The source code of this app is available on GitHub.</string>
-    <string name="copyright">Copyright ©Kelompok 15</string>
+    <string name="copyright" translatable="false">Copyright ©Kelompok 15</string>
 
-    <string name="creator_fendyanto_name">Fendyanto</string>
-    <string name="creator_johanes_name">Johanes Shane</string>
-    <string name="creator_kosasi_name">Kosasi</string>
-    <string name="creator_michelle_name">Michelle Wong</string>
-    <string name="creator_phone">081283456789</string>
+    <string name="creator_fendyanto_name" translatable="false">Fendyanto</string>
+    <string name="creator_johanes_name" translatable="false">Johanes Shane</string>
+    <string name="creator_kosasi_name" translatable="false">Kosasi</string>
+    <string name="creator_michelle_name" translatable="false">Michelle Wong</string>
+    <string name="creator_phone" translatable="false">081283456789</string>
     <string name="more_user_identity_label">User identity</string>
     <string name="more_option_label">Options</string>
     <string name="more_item_about_us">About Us</string>
+    <string name="more_app_bar_title">More options</string>
 </resources>

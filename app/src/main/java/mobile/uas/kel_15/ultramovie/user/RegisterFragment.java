@@ -149,7 +149,7 @@ public class RegisterFragment extends Fragment {
         progressDialog  = new ProgressDialog(getContext());
         mViewModel.isLoading().observe(getViewLifecycleOwner(), isFinishedLoading -> {
 //            ProgressBar progressBar = view.findViewById(R.id.login_progress_bar);
-            progressDialog.setMessage("Loading...");
+            progressDialog.setMessage(getString(R.string.message_loading));
             progressDialog.setCancelable(false);
 
             if (isFinishedLoading != null) {

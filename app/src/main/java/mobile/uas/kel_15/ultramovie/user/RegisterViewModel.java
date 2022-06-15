@@ -41,10 +41,7 @@ public class RegisterViewModel extends AndroidViewModel {
         user.setPassword(Commons.md5(password));
         user.setCountryOrigin(country);
 
-        System.out.println(gender);
-        System.out.println(getApplication().getString(R.string.gender_male));
-        System.out.println(getApplication().getString(R.string.gender_female));
-        if (gender.equals("Male")) user.setGender(User.GENDER_MALE);
+        if (gender.equals(getApplication().getString(R.string.gender_male))) user.setGender(User.GENDER_MALE);
         else user.setGender(User.GENDER_FEMALE);
 
         user.setLevel(level);
@@ -87,7 +84,7 @@ public class RegisterViewModel extends AndroidViewModel {
     public ArrayList<String> getCountries() {
         for (String country : Locale.getISOCountries()) {
             Locale locale = new Locale("en", country);
-            COUNTRIES.add(locale.getDisplayCountry());
+            COUNTRIES.add(locale.getDisplayCountry(Locale.forLanguageTag("en-US")));
         }
 
         Set<String> s = new LinkedHashSet<>(COUNTRIES);
