@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Ultra Movie 15</string>
-    <string name="app_version">Versi 0.1.0</string>
-    <string name="app_desc">Dibuat oleh Kelompok 15 sebagai tugas UAS Pemrograman Mobile</string>
+    <string name="app_version">Ultra Movie 0.1.0</string>
+    <string name="app_desc">Made by Group 15 as an assignment of \nPemrograman Mobile final exam.</string>
 
     <string name="navigation_item_movies">Movies</string>
     <string name="navigation_item_genres">Genres</string>
@@ -88,7 +88,7 @@
     <string name="confirmation_logout">Do you want to logout?</string>
 
     <string name="repo_link">xeanth8/AplikasiUltraMovie_Android</string>
-    <string name="repo_label">Source code aplikasi ini tersedia di GitHub</string>
+    <string name="repo_label">The source code of this app is available on GitHub.</string>
     <string name="copyright">Copyright ©Kelompok 15</string>
 
     <string name="creator_fendyanto_name">Fendyanto</string>
